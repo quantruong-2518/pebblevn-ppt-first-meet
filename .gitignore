@@ -1,0 +1,27 @@
+# Bí mật & thông tin nhạy cảm — KHÔNG commit
+.env
+.env.*
+*.key
+*.pem
+secrets/
+**/secrets.*
+
+# Hệ điều hành / trình soạn thảo
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Phụ thuộc & build (cho project trong projects/)
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Tạm
+*.tmp
+*.log

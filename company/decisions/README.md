@@ -1,0 +1,24 @@
+# Nhật ký quyết định (Decision Log)
+
+Đây là **trí nhớ dài hạn** của công ty. Phiên chat sẽ quên; file ở đây thì không.
+
+## Khi nào ghi một quyết định?
+
+Ghi lại mọi quyết định **khó đảo ngược** hoặc có ảnh hưởng lâu dài:
+- Chọn hướng đi / từ bỏ một dòng sản phẩm
+- Ký hợp đồng quan trọng
+- Tuyển / thôi việc
+- Chọn công nghệ nền tảng, nhà cung cấp lớn
+- Thay đổi định vị, mô hình giá
+
+## Cách ghi
+
+1. Sao chép `0000-template.md` thành `NNNN-tieu-de-ngan.md` (số tăng dần: `0001`, `0002`...).
+2. Điền đầy đủ, đặc biệt mục **Bối cảnh** và **Hệ quả** — để 6 tháng sau đọc lại vẫn hiểu *vì sao*.
+3. Quyết định đã ghi thì **không sửa nội dung lịch sử**; nếu đổi ý, tạo quyết định mới và link ngược lại (superseded).
+
+## Danh mục quyết định
+
+| Số  | Tiêu đề | Ngày | Trạng thái |
+| --- | ------- | ---- | ---------- |
+| —   | _(chưa có)_ | — | — |
