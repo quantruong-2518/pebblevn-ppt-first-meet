@@ -12,6 +12,7 @@
 
 ## 💡 Bài học / chiến lược (learning)
 - [Mũi nhọn arc-fault / điện mặt trời](beachhead-arc-fault-dien-mat-troi.md) — beachhead đề xuất, chờ GM chốt. ⭐
+- [Hướng kiến trúc thương hiệu = C](huong-kien-truc-thuong-hieu-c.md) — GM chốt 2026-06-13: vay uy tín Hàn, xây tài sản Việt. ⭐
 
 ## 🔢 Con số (number)
 - _(chưa có — vd: giá nhập, biên lợi nhuận, chỉ tiêu doanh số sẽ lưu ở đây)_
@@ -26,4 +27,4 @@
 - _(chưa có — vd: thuật ngữ PIM/KOCHAM/MINT, mã tiêu chuẩn)_
 
 ---
-*⭐ = importance: high. Tổng: 4 trí nhớ.*
+*⭐ = importance: high. Tổng: 5 trí nhớ.*

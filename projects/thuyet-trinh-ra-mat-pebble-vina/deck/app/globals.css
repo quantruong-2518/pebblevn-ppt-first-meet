@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  /* Type triad (gán từ next/font ở layout.tsx) */
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-serif: var(--font-plex-serif), ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Bảng màu "instrument / blueprint kỹ thuật" — dark */
+  --color-base: #081019;        /* nền sâu navy-ink */
+  --color-surface: #0d1c2b;     /* bề mặt panel */
+  --color-ink: #e9f0f7;         /* chữ chính trên nền tối */
+  --color-muted: #8ba0b4;       /* chữ phụ */
+  --color-accent: #4f93e8;      /* xanh điện (sáng trên nền tối) */
+  --color-accent-deep: #1e6fd9; /* xanh thương hiệu gốc */
+  --color-gold: #e0b056;        /* vàng tiết chế — sắc Hàn/uy tín */
+  --color-navy: #0b2a4a;
+}
+
+/* shadcn/ui tokens (slate, dark) — để `npx shadcn add` hoạt động về sau */
+:root {
+  --background: oklch(0.13 0.028 261.7);
+  --foreground: oklch(0.95 0.01 247);
+  --primary: oklch(0.62 0.14 250);
+  --primary-foreground: oklch(0.13 0.028 261.7);
+  --muted: oklch(0.24 0.03 256);
+  --muted-foreground: oklch(0.7 0.03 256);
+  --border: oklch(1 0 0 / 10%);
+  --ring: oklch(0.62 0.14 250);
+  --radius: 0.5rem;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Nền deck: lưới blueprint mảnh + quầng sáng accent + chiều sâu navy */
+.deck-bg {
+  background-color: var(--color-base);
+  background-image:
+    radial-gradient(1200px 620px at 12% -12%, rgba(79, 147, 232, 0.1), transparent 60%),
+    radial-gradient(900px 520px at 110% 120%, rgba(11, 42, 74, 0.55), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 38px 38px, 38px 38px;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #04121f;
+}

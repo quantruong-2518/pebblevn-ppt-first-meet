@@ -21,4 +21,4 @@ Ghi lại mọi quyết định **khó đảo ngược** hoặc có ảnh hưở
 
 | Số  | Tiêu đề | Ngày | Trạng thái |
 | --- | ------- | ---- | ---------- |
-| —   | _(chưa có)_ | — | — |
+| [0001](0001-huong-kien-truc-thuong-hieu.md) | Hướng kiến trúc thương hiệu Pebble Vina (C — lai có lộ trình) | 2026-06-13 | accepted |
