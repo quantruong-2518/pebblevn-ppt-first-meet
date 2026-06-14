@@ -101,7 +101,7 @@ function Cover({ s, lang }: { s: SlideData; lang: Lang }) {
       variants={container}
       initial="hidden"
       animate="show"
-      className="grid h-full w-full grid-cols-1 items-center gap-x-10 md:grid-cols-[1.05fr_0.95fr]"
+      className="grid h-full w-full grid-cols-1 items-center gap-x-8 md:grid-cols-[35fr_65fr]"
     >
       {/* CỘT TRÁI — chữ */}
       <div className="flex flex-col justify-center">

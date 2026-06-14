@@ -47,7 +47,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="vi"
       className={`${sans.variable} ${serif.variable} ${mono.variable} ${notoKr.variable} ${notoSerifKr.variable}`}
     >
-      <body className="bg-base font-sans text-ink antialiased">{children}</body>
+      {/* suppressHydrationWarning: một số extension (Grammarly, ColorZilla, Dark Reader…)
+          chèn attribute vào <body> trước khi React hydrate. Chỉ bỏ qua mismatch attribute
+          của riêng <body>, KHÔNG ảnh hưởng các phần tử con. */}
+      <body className="bg-base font-sans text-ink antialiased" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

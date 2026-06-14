@@ -108,6 +108,9 @@ sinh khi làm bài (để truy vết *vì sao chọn cách này*).
   VI/KO/EN**, có khung hình (figure), phụ lục tách khỏi luồng. Render từ `deck/lib/slides.ts` (mirror MD, giữ
   meta để truy vết). Chạy: `cd deck && npm install && npm run dev`. Điều khiển: `← → / Space` · **`l`** đổi
   ngôn ngữ · **`m`** bảng meta · **`a`** phụ lục · **`f`** fullscreen. Chi tiết & hệ thiết kế: `deck/README.md`.
+- **Hệ thiết kế 3D** → [3d-design-system.md](3d-design-system.md) — khế ước hình ảnh cho mọi vật thể 3D trong
+  deck (titanium · accent glow · gold; preset chất liệu, mô-típ, animation, rollout theo slide). **Đọc trước
+  khi dựng item 3D mới** để giữ nhất quán. Reference: `deck/components/ChipScene.tsx`.
 - **`index.html` = ĐÃ NGHỈ HƯU** (2026-06-14) — chỉ còn trang thông báo trỏ về `deck/`. Gỡ để **hết cảnh hai
   bản render đua nhau** (theme sáng vs tối). Nay chỉ còn MỘT tầng render.
 - **Tách SHOW ↔ working-doc:** trong `slides.ts`, `eyebrow/title/headline/bullets/figure` là tầng SHOW (tam

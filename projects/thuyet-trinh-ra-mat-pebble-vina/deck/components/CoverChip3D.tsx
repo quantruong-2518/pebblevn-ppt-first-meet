@@ -1,148 +1,140 @@
 "use client";
 
+import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "motion/react";
+import { Cpu } from "lucide-react";
+import type { LeadEl } from "@/components/ChipScene";
 
-// Mô-típ "die" 3D cho bìa — gợi đúng sản phẩm gốc: chip bán dẫn Analog-PIM của Pebble Square.
-// Pure CSS 3D (perspective + preserve-3d + translateZ) + motion. Không cần three.js.
-// Lớp tách theo trục Z → có chiều sâu thật (parallax), không phải ảnh phẳng.
+// Bìa — chip 3D thật (R3F) + legend khoá đúng die (xem ChipScene). Canvas client-only (ssr:false).
+const ChipScene = dynamic(() => import("@/components/ChipScene").then((m) => m.ChipScene), { ssr: false });
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const S = 250; // cạnh package (px)
-const T = 24; // độ dày (extrude theo Z)
-const PAD = 24; // lề từ package vào die
-const DIE = S - PAD * 2; // cạnh die
-
-const wall =
-  "absolute bg-gradient-to-b from-[#173453] to-[#0a1825] border border-accent/15";
-
-// Vị trí các "node năng lực" nổi phía trên die — gợi chip làm được NHIỀU việc (không chỉ arc-fault).
-const NODES = [
-  { x: 36, y: 24, z: T + 46, d: 0 },
-  { x: 190, y: 58, z: T + 70, d: 0.6 },
-  { x: 128, y: 198, z: T + 54, d: 1.2 },
+// Mỗi legend = NHÃN + CHÚ THÍCH nhỏ (in nghiêng). Đặt CẠNH đúng item; ChipScene cập nhật
+// vị trí mỗi frame sao cho khoảng cách-x tới khối LUÔN bằng nhau (trái hay phải).
+// side khớp SIDES trong ChipScene: [CORE-1 phải, Activation trái, CORE-2 phải, IO trái].
+const CALLOUTS = [
+  { label: "PIM CORE-1", desc: "nhân Analog-PIM", side: "right" as const },
+  { label: "Activation Logic", desc: "kích hoạt phi tuyến", side: "left" as const },
+  { label: "PIM CORE-2", desc: "nhân PIM song song", side: "right" as const },
+  { label: "I/O Driver", desc: "giao tiếp & nguồn", side: "left" as const },
 ];
 
-export function CoverChip3D() {
-  const pins = Array.from({ length: 7 });
+const PLUSES = [
+  { left: "8%", top: "14%", size: 12, delay: 0 },
+  { left: "94%", top: "86%", size: 11, delay: 0.9 },
+  { left: "12%", top: "90%", size: 10, delay: 1.5 },
+];
+
+function NeonPlus({ left, top, size, delay }: { left: string; top: string; size: number; delay: number }) {
+  const glow = "0 0 6px rgba(255,255,255,0.9)";
   return (
-    <div
-      aria-hidden
-      className="pointer-events-none relative hidden h-full w-full items-center justify-center md:flex"
-      style={{ perspective: "1200px" }}
+    <motion.span
+      className="absolute"
+      style={{ left, top, width: size, height: size, transform: "translate(-50%,-50%)" }}
+      animate={{ opacity: [0.2, 0.8, 0.35, 0.7, 0.25] }}
+      transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut", delay }}
     >
+      <span className="absolute bg-white" style={{ left: "50%", top: 0, width: 1.5, height: "100%", transform: "translateX(-50%)", boxShadow: glow }} />
+      <span className="absolute bg-white" style={{ top: "50%", left: 0, height: 1.5, width: "100%", transform: "translateY(-50%)", boxShadow: glow }} />
+    </motion.span>
+  );
+}
+
+export function CoverChip3D() {
+  const leads = useRef<LeadEl[]>([]);
+  const setLead = (i: number, k: keyof LeadEl, el: LeadEl[keyof LeadEl]) => {
+    (leads.current[i] ??= { poly: null, dot: null, core: null, label: null })[k] = el as never;
+  };
+
+  return (
+    <div aria-hidden className="pointer-events-none relative hidden h-full w-full md:block">
       {/* quầng sáng nền */}
       <div
-        className="absolute"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{
-          width: 380,
-          height: 380,
+          width: 460,
+          height: 460,
           borderRadius: "9999px",
-          background:
-            "radial-gradient(circle, rgba(79,147,232,0.20), rgba(79,147,232,0.04) 45%, transparent 70%)",
-          filter: "blur(8px)",
+          background: "radial-gradient(circle, rgba(79,147,232,0.18), rgba(79,147,232,0.04) 45%, transparent 70%)",
+          filter: "blur(10px)",
         }}
       />
 
+      {/* cảnh 3D */}
       <motion.div
-        initial={{ opacity: 0, rotateX: 70, rotateZ: -56, y: 44 }}
-        animate={{ opacity: 1, rotateX: 58, rotateZ: -45, y: 0 }}
-        transition={{ duration: 1.2, ease, delay: 0.15 }}
-        style={{ transformStyle: "preserve-3d" }}
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease }}
       >
-        {/* trôi nhẹ vô hạn — cho cảm giác vật thể sống */}
-        <motion.div
-          animate={{ y: [0, -12, 0], rotateZ: [0, 1.6, 0] }}
-          transition={{ duration: 8, ease: "easeInOut", repeat: Infinity }}
-          style={{ transformStyle: "preserve-3d", width: S, height: S }}
-          className="relative"
-        >
-          {/* mặt đáy (z = 0) */}
-          <div className="absolute inset-0 bg-[#060f19]" />
-
-          {/* chân (pins) trên mặt đáy, đua ra 4 cạnh */}
-          {pins.map((_, i) => {
-            const p = PAD + (i * (DIE - 8)) / (pins.length - 1);
-            return (
-              <div key={`pin-${i}`}>
-                <span className="absolute bg-accent/45" style={{ left: p, top: -10, width: 4, height: 10 }} />
-                <span className="absolute bg-accent/45" style={{ left: p, bottom: -10, width: 4, height: 10 }} />
-                <span className="absolute bg-accent/45" style={{ top: p, left: -10, width: 10, height: 4 }} />
-                <span className="absolute bg-accent/45" style={{ top: p, right: -10, width: 10, height: 4 }} />
-              </div>
-            );
-          })}
-
-          {/* 4 vách bên → tạo độ dày */}
-          <div className={wall} style={{ width: S, height: T, top: 0, left: 0, transformOrigin: "top", transform: "rotateX(-90deg)" }} />
-          <div className={wall} style={{ width: S, height: T, bottom: 0, left: 0, transformOrigin: "bottom", transform: "rotateX(90deg)" }} />
-          <div className={wall} style={{ width: T, height: S, top: 0, left: 0, transformOrigin: "left", transform: "rotateY(90deg)" }} />
-          <div className={wall} style={{ width: T, height: S, top: 0, right: 0, transformOrigin: "right", transform: "rotateY(-90deg)" }} />
-
-          {/* mặt trên (z = T) */}
-          <div
-            className="absolute inset-0 border border-accent/35"
-            style={{
-              transform: `translateZ(${T}px)`,
-              background: "linear-gradient(135deg, #102a42 0%, #0a1a2a 60%, #0c2138 100%)",
-            }}
-          >
-            {/* die: lưới crossbar (gợi mảng tính-trong-bộ-nhớ Analog-PIM) */}
-            <div
-              className="absolute overflow-hidden border border-accent/30"
-              style={{
-                inset: PAD,
-                backgroundColor: "#08151f",
-                backgroundImage:
-                  "linear-gradient(rgba(79,147,232,0.22) 1px, transparent 1px), linear-gradient(90deg, rgba(79,147,232,0.22) 1px, transparent 1px)",
-                backgroundSize: `${DIE / 9}px ${DIE / 9}px`,
-              }}
-            >
-              {/* lõi phát sáng */}
-              <div
-                className="absolute left-1/2 top-1/2"
-                style={{
-                  width: 42,
-                  height: 42,
-                  transform: "translate(-50%,-50%)",
-                  background:
-                    "radial-gradient(circle, rgba(224,176,86,0.9), rgba(224,176,86,0.18) 60%, transparent 72%)",
-                  boxShadow: "0 0 22px 6px rgba(224,176,86,0.35)",
-                }}
-              />
-              <span className="absolute bottom-1.5 right-2 font-mono text-[8px] uppercase tracking-[0.2em] text-accent/70">
-                PIM
-              </span>
-
-              {/* tia quét */}
-              <motion.div
-                className="absolute left-0 right-0 bg-accent"
-                style={{ top: 0, height: 2, boxShadow: "0 0 10px 2px rgba(79,147,232,0.7)" }}
-                animate={{ y: [0, DIE - 2, 0], opacity: [0, 1, 0] }}
-                transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
-              />
-            </div>
-          </div>
-
-          {/* node năng lực nổi phía trên (parallax theo Z) */}
-          {NODES.map((n, i) => (
-            <motion.span
-              key={`node-${i}`}
-              className="absolute rounded-full bg-accent"
-              style={{
-                left: n.x,
-                top: n.y,
-                width: 10,
-                height: 10,
-                transform: `translateZ(${n.z}px)`,
-                boxShadow: "0 0 14px 3px rgba(79,147,232,0.6)",
-              }}
-              animate={{ opacity: [0.35, 1, 0.35] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: n.d }}
-            />
-          ))}
-        </motion.div>
+        <ChipScene leads={leads} />
       </motion.div>
+
+      {/* mini-title */}
+      <motion.div
+        className="absolute left-[4%] top-[6%] flex items-center gap-2 text-accent"
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
+        <Cpu className="h-4 w-4" strokeWidth={2.2} />
+        <span className="font-mono text-[12px] font-semibold uppercase tracking-[0.22em] text-ink/90">Analog-PIM</span>
+      </motion.div>
+
+      {/* leader VUÔNG GÓC (ngang → dọc), điểm gắn die do ChipScene cập nhật mỗi frame */}
+      <motion.svg
+        className="absolute inset-0 h-full w-full overflow-visible"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.9 }}
+      >
+        {CALLOUTS.map((c, i) => (
+          <g key={`lead-${i}`}>
+            <polyline
+              ref={(el) => setLead(i, "poly", el)}
+              points="-100,-100 -100,-100 -100,-100"
+              fill="none"
+              stroke="rgba(255,255,255,0.42)"
+              strokeWidth={1}
+              strokeLinejoin="round"
+            />
+            <circle ref={(el) => setLead(i, "dot", el)} cx={-100} cy={-100} r={3.6} fill="#4f93e8" />
+            <circle ref={(el) => setLead(i, "core", el)} cx={-100} cy={-100} r={1.5} fill="#eaf2fb" />
+          </g>
+        ))}
+      </motion.svg>
+
+      {/* thẻ nhãn legend: nền tối mờ (glassy) cho DỄ ĐỌC trên titanium sáng; treo dưới góc rẽ,
+          tách khỏi line. Vị trí (left/top px) do ChipScene set mỗi frame; top = mép-trên thẻ. */}
+      {CALLOUTS.map((c, i) => (
+        <motion.div
+          key={`lbl-${i}`}
+          ref={(el) => setLead(i, "label", el)}
+          className="absolute"
+          style={{
+            left: -100,
+            top: -100,
+            transform: c.side === "left" ? "translateX(-100%)" : "none",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.45, delay: 2.0 + i * 0.12, ease }}
+        >
+          <div
+            className="rounded-md border border-accent/20 bg-base/80 px-2 py-1 shadow-[0_3px_12px_rgba(0,0,0,0.4)] backdrop-blur-sm"
+            style={{ textAlign: c.side === "left" ? "right" : "left" }}
+          >
+            <div className="whitespace-nowrap font-sans text-[11.5px] font-semibold leading-tight text-ink">{c.label}</div>
+            <div className="whitespace-nowrap font-serif text-[10px] italic leading-snug text-muted">{c.desc}</div>
+          </div>
+        </motion.div>
+      ))}
+
+      {PLUSES.map((p, i) => (
+        <NeonPlus key={`plus-${i}`} {...p} />
+      ))}
     </div>
   );
 }
