@@ -14,7 +14,10 @@ links: [projects/thuyet-trinh-ra-mat-pebble-vina/README.md, planning/2026-06-13-
 ## Câu hỏi mở (chờ trả lời)
 
 - [ ] **Ngày & loại sự kiện?** ra mắt riêng / bên lề triển lãm (Vietnam ETE 15–17/7? Solar & Storage Live 8–9/7?) / gặp nhà đầu tư? → định đoạt độ trang trọng & độ dài.
-- [ ] **Slide 04 — ta có bằng chứng gì thật?** benchmark PIM vs ST/TI có sẵn từ Pebble Square? có pilot/PoC nào đã chạy? (nếu *chưa có gì* → cân nhắc khung slide theo "đã kiểm chứng ở Hàn / MDPI 2024" thay vì pilot VN).
+- [x] **Slide 04 — ta có bằng chứng gì thật?** *(2026-06-14, đã research web)* — **KHÔNG** có benchmark "MINT vs
+  ST/TI" công khai, **KHÔNG** có pilot VN, bài "MDPI 2024" **không tồn tại**. ✅ Bằng chứng dùng được = nguyên lý
+  PIM (học thuật) + chip MINT thật **17,6 TOPS/W** + chuẩn arc-fault UL 1699B/IEC 63027. Khung 3 lớp tách bạch.
+  Chi tiết: `slides/_research-proof.md`.
 - [ ] **Trình bằng tiếng gì?** Việt / Hàn / song ngữ? (CEO Hàn + quan khách Việt) → có thể cần slide song ngữ hoặc phiên dịch.
 - [ ] **Câu định vị 1 dòng cuối cùng** — giữ tagline làm việc hay biến thể cho sự kiện?
 - [ ] **Có demo/hiện vật không?** (chip, bo mạch, video phát hiện hồ quang) — sức nặng hơn slide với phòng hỗn hợp.
@@ -38,5 +41,6 @@ links: [projects/thuyet-trinh-ra-mat-pebble-vina/README.md, planning/2026-06-13-
 ## Nguồn cần tìm / kiểm chứng
 
 - Số liệu cháy do hồ quang ở hệ PV tại VN (cho slide 02) — *chưa có nguồn đáng tin trong repo.*
-- Benchmark PIM vs ST/TI/Microchip (slide 04/99) — hỏi `product-lead`/Pebble Square; tham chiếu MDPI Electronics 2024.
+- Benchmark PIM vs ST/TI/Microchip (slide 04/99) — ⚠️ KHÔNG có số công khai từ Pebble Square; bài "MDPI 2024"
+  KHÔNG tồn tại. Chỉ dùng **so sánh lớp công nghệ PIM vs MCU/edge-GPU (nguồn học thuật)**. Cần đòi số thật từ Pebble Square.
 - Quy mô PV mái/trang trại VN & số DN Hàn có hệ PV (slide 03) — `analyst` (đã có một phần ở `2026-06-09`).

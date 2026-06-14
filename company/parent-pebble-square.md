@@ -22,7 +22,8 @@ links: [company/profile.md, planning/2026-06-09-co-hoi-thi-truong-viet.md, marke
   **Đại học Quốc gia Jeonbuk (JBNU / 전북대학교)**. Pebble Square có liên hệ ĐH Tokyo (theo JETRO,
   CEO làm tiến sĩ tại đây) → đã lập công ty con Tokyo 2025.
 - **Đồng sáng lập / Trưởng kỹ thuật:** **TS. Lee Choong-hyun (이충현)** — người phát triển chip **MINT**
-  (chip Edge AI nền PIM đầu tiên: ~4 triệu khớp thần kinh nhân tạo, ~30 GOPS).
+  (chip Edge AI nền PIM đầu tiên: ~4 triệu khớp thần kinh nhân tạo, ~30 GOPS, **~17,6 TOPS/W**).
+  *(Nguồn CEO mâu thuẫn giữa Bae/Lee — cần xác nhận lại với Pebble Square trước khi dùng đối ngoại.)*
 - **Vốn đã gọi:** ~15 tỷ KRW (gồm khoản đầu tư 2 tỷ KRW từ UTC Investment)
 - **Hợp tác R&D:** MOU với JBNU + nhóm nghiên cứu KAIST (7/2022) về bán dẫn thông minh.
 - **Website:** https://www.pebble-square.com — **Liên hệ:** +82-31-702-7378 · info@pebble-square.com
@@ -78,4 +79,7 @@ Smart home/IoT (2021) → Xử lý ảnh/thị giác (2022) → Xe tự hành (2
 - Web: pebble-square.com/en (trang chủ & /page/21)
 - JETRO — "Pebble Square Inc. Establishes Japanese Subsidiary in Tokyo" (2025)
 - CB Insights / PitchBook — hồ sơ công ty Pebble Square
-- MDPI Electronics 2024 — "Edge AI for Electrical Anomaly Detection Based on Process-In-Memory Chip"
+- SmartTimes / JBNU — chip MINT (~30 GOPS, 17,6 TOPS/W, Analog-PIM)
+- ⚠️ **ĐÃ GỠ:** "MDPI Electronics 2024 — Electrical Anomaly Detection Based on PIM Chip" — **bài này KHÔNG
+  tồn tại đúng tên đó** (kiểm chứng web 2026-06-14). KHÔNG trích trong bất kỳ tài liệu đối ngoại nào.
+  Chi tiết: `projects/thuyet-trinh-ra-mat-pebble-vina/slides/_research-proof.md`.

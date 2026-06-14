@@ -104,10 +104,14 @@ sinh khi làm bài (để truy vết *vì sao chọn cách này*).
 ## 9. Hai tầng: MD (nguồn) ↔ render (trình chiếu)
 
 - **`slides/*.md` = NGUỒN SỰ THẬT** (nội dung + meta + lý do). Sửa nội dung/logic ở đây.
-- **`deck/` = TẦNG TRÌNH CHIẾU CHÍNH THỨC** — app **Next.js + Tailwind v4 + Motion + shadcn**, animation
-  chuyển slide. Nội dung render từ `deck/lib/slides.ts` (mirror MD, giữ nguyên meta để truy vết). Chạy:
-  `cd deck && npm install && npm run dev`. Điều khiển: `← → / Space` · **`m`** bảng meta · **`f`** fullscreen.
-  Chi tiết & hệ thiết kế: `deck/README.md`.
-- **`index.html` = bản demo nhanh** (self-contained, double-click) — giữ lại để xem nhanh không cần build.
-- **Đừng để các nguồn đua nhau:** khi nội dung chốt ở MD, cập nhật `deck/lib/slides.ts` (và `index.html` nếu
-  còn dùng) cho khớp. Về sau có thể viết script sinh `slides.ts` từ front-matter MD để chỉ còn một nguồn.
+- **`deck/` = TẦNG TRÌNH CHIẾU CHÍNH THỨC** — app **Next.js + Tailwind v4 + Motion + shadcn**, **tam ngữ
+  VI/KO/EN**, có khung hình (figure), phụ lục tách khỏi luồng. Render từ `deck/lib/slides.ts` (mirror MD, giữ
+  meta để truy vết). Chạy: `cd deck && npm install && npm run dev`. Điều khiển: `← → / Space` · **`l`** đổi
+  ngôn ngữ · **`m`** bảng meta · **`a`** phụ lục · **`f`** fullscreen. Chi tiết & hệ thiết kế: `deck/README.md`.
+- **`index.html` = ĐÃ NGHỈ HƯU** (2026-06-14) — chỉ còn trang thông báo trỏ về `deck/`. Gỡ để **hết cảnh hai
+  bản render đua nhau** (theme sáng vs tối). Nay chỉ còn MỘT tầng render.
+- **Tách SHOW ↔ working-doc:** trong `slides.ts`, `eyebrow/title/headline/bullets/figure` là tầng SHOW (tam
+  ngữ); `why/notes/need` là working-doc (chỉ panel meta, tiếng Việt) — **không bao giờ render lên slide**.
+- **Một nguồn (về sau):** viết script sinh `slides.ts` từ front-matter MD để chỉ còn một nguồn sự thật.
+- **`slides/_research-proof.md` & `_research-market.md`** = nhật ký research web (2026-06-14) — bằng chứng
+  slide 04 + số liệu slide 02/03/07, kèm nhãn tin cậy ✅/🟡/❌ và mọi nguồn.

@@ -35,7 +35,10 @@ links: [company/parent-pebble-square.md, planning/2026-06-13-khung-thuyet-trinh-
 
 ## 📥 Cần gì để hoàn thiện
 - [ ] **Bằng chứng thật** — `product-lead` kiểm: Pebble Square có benchmark vs ST/TI? có pilot/PoC nào? (CHẶN cả bài)
-- [ ] Nếu chưa có pilot VN → dùng kết quả kiểm chứng ở Hàn / tham chiếu **MDPI Electronics 2024** (arc-fault trên PIM).
+- [ ] Nếu chưa có pilot VN → **khung 3 lớp tách bạch:** nguyên lý PIM tiết kiệm điện (nguồn học thuật) + chip
+  **MINT 17,6 TOPS/W** (để CEO Pebble Square tự nói) + bài toán arc-fault có chuẩn **UL 1699B / IEC 63027**.
+  ⚠️ **KHÔNG** trích "MDPI 2024" (bài không tồn tại); **KHÔNG** claim "benchmark MINT vs ST/TI" (không có số công khai).
+  Xem `_research-proof.md`.
 - [ ] Sơ đồ tích hợp tủ điện/inverter (đặt chi tiết ở slide 99).
 
 ## ⚠️ Lưu ý

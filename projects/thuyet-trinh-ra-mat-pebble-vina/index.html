@@ -1,229 +1,39 @@
 <!DOCTYPE html>
 <!--
-  Thuyết trình ra mắt Pebble Vina — TẦNG TRÌNH CHIẾU (render layer).
-  NGUỒN SỰ THẬT vẫn là các file MD trong folder này (README.md + slides/*.md).
-  File HTML này MIRROR nội dung skeleton từ MD để trình chiếu được; meta giữ nguyên để truy vết.
-  Mỗi slide có: data-* attribute (meta) + khối JSON .why (vì sao slide này) — xem mảng SLIDES bên dưới.
-  Điều khiển: ← → / Space chuyển slide · phím "m" bật/tắt lớp META · "f" toàn màn hình.
+  ⚠️ BẢN NÀY ĐÃ NGHỈ HƯU (2026-06-14).
+  Tầng trình chiếu CHÍNH THỨC giờ là app Next.js trong ./deck/ — tam ngữ (VI/KO/EN), có khung hình,
+  phụ lục tách khỏi luồng chính. Giữ hai bản render đua nhau là lỗi gốc của bản cũ; nay chỉ còn MỘT nguồn.
+  Nội dung sự thật: ./slides/*.md  →  mirror sang ./deck/lib/slides.ts.
 -->
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- META cấp deck -->
-  <meta name="title" content="Thuyết trình ra mắt Pebble Vina">
-  <meta name="author" content="Pebble Vina — GM">
-  <meta name="description" content="Bài giới thiệu Pebble Vina cho phòng hỗn hợp: nhà đầu tư (bác Kim) · CEO Pebble Square · quan khách · tech+non-tech.">
-  <meta name="generator" content="MD source: projects/thuyet-trinh-ra-mat-pebble-vina/slides/*.md">
-  <meta name="status" content="skeleton">
-  <meta name="updated" content="2026-06-14">
-  <title>Thuyết trình ra mắt Pebble Vina</title>
+  <title>Pebble Vina — Deck đã chuyển sang ./deck</title>
   <style>
-    :root{
-      --navy:#0b2a4a; --navy-soft:#163a5f; --accent:#1e6fd9; --gold:#d99a1e;
-      --ink:#11202e; --muted:#6b7c8c; --paper:#f7f9fb; --line:#dde5ec;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-      background:#0a1622;color:var(--ink);overflow:hidden}
-    #deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
-    .slide{position:absolute;width:min(96vw,1100px);height:min(96vh,620px);
-      background:var(--paper);border-radius:14px;box-shadow:0 24px 80px rgba(0,0,0,.45);
-      padding:54px 64px;display:none;flex-direction:column;opacity:0;transition:opacity .25s}
-    .slide.active{display:flex;opacity:1}
-    .slide.cover{background:linear-gradient(135deg,var(--navy),var(--navy-soft));color:#fff}
-    .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:10px}
-    .cover .eyebrow{color:var(--gold)}
-    h1{font-size:40px;line-height:1.12;font-weight:800;letter-spacing:-.01em}
-    .cover h1{font-size:52px}
-    h2{font-size:30px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin-bottom:6px}
-    .headline{font-size:23px;line-height:1.35;font-weight:600;color:var(--navy);margin:8px 0 22px;border-left:4px solid var(--accent);padding-left:16px}
-    .cover .headline{color:#dce8f6;border-color:var(--gold)}
-    ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-top:6px}
-    li{font-size:18px;line-height:1.4;padding-left:26px;position:relative;color:#2b3a47}
-    li::before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;border-radius:2px;background:var(--accent)}
-    .need{display:inline-block;background:#fff4dd;color:#8a5d00;border:1px solid #f0d59a;border-radius:6px;
-      padding:1px 8px;font-size:13px;font-weight:600;margin-left:4px}
-    .warn{margin-top:auto;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
-    .cobrand{margin-top:auto;display:flex;gap:18px;align-items:center;font-size:15px;color:#cfe0f2}
-    .cobrand b{color:#fff}
-    /* chrome */
-    #bar{position:fixed;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.08)}
-    #bar>div{height:100%;background:var(--accent);width:0;transition:width .25s}
-    #hud{position:fixed;bottom:14px;right:18px;color:#9fb3c6;font-size:12px;font-weight:600;letter-spacing:.04em}
-    #hint{position:fixed;bottom:14px;left:18px;color:#54708a;font-size:12px}
-    /* META overlay */
-    #meta{position:fixed;top:0;right:0;width:330px;height:100%;background:#0c1f33;color:#cfe0f2;
-      padding:22px 22px;overflow:auto;transform:translateX(100%);transition:transform .22s;z-index:9;font-size:13px;line-height:1.5}
-    #meta.show{transform:translateX(0)}
-    #meta h3{color:#fff;font-size:15px;margin-bottom:4px}
-    #meta .row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-    #meta .k{color:#7d97b0}
-    #meta .v{color:#fff;font-weight:600;text-align:right}
-    #meta .why{margin-top:14px;color:#bcd0e4}
-    #meta .why b{color:var(--gold)}
-    .tag{display:inline-block;background:rgba(30,111,217,.22);color:#9cc4f5;border-radius:5px;padding:1px 7px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-    .st-skeleton{background:rgba(217,154,30,.2);color:#e9c46a}
+    html,body{height:100%;margin:0}
+    body{display:flex;align-items:center;justify-content:center;background:#081019;
+      color:#e9f0f7;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+    .card{max-width:640px;padding:48px 56px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.012)}
+    .tag{font:600 12px/1 ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:#e0b056}
+    h1{font-size:30px;margin:14px 0 6px;font-weight:700;letter-spacing:-.01em}
+    p{color:#8ba0b4;line-height:1.6;font-size:15px}
+    code{background:rgba(79,147,232,.12);color:#9cc4f5;padding:2px 8px;border-radius:4px;
+      font:500 13px ui-monospace,monospace}
+    .keys{margin-top:18px;font:500 12px ui-monospace,monospace;color:#8ba0b4}
+    .keys b{color:#e9f0f7}
   </style>
 </head>
 <body>
-  <div id="deck"></div>
-  <div id="bar"><div></div></div>
-  <div id="hud"></div>
-  <div id="hint">← →/Space chuyển · <b>m</b> = meta · <b>f</b> = toàn màn hình</div>
-  <aside id="meta"></aside>
-
-  <script>
-  /* =========================================================================
-     SLIDES — NGUỒN DỮ LIỆU (meta + nội dung skeleton), mirror từ slides/*.md
-     Mỗi object = 1 slide. Phần "why" = mục "Vì sao slide này" để truy vết.
-     ========================================================================= */
-  const SLIDES = [
-    { n:0, file:"00-bia.md", nhip:"—", owner:"growth", status:"skeleton", tech:"non", gatDau:"Cả phòng",
-      cover:true, eyebrow:"Pebble Vina × Pebble Square",
-      title:"Pebble Vina",
-      headline:"Công nghệ Hàn cho an toàn điện Việt — phát hiện sớm, ngay tại chỗ.",
-      cobrand:true,
-      need:["Logo/nhận diện","Quyền co-brand (IP)","Tên & ngày sự kiện"],
-      why:"Bìa — đặt khối co-brand theo Hướng C (vay uy tín Hàn) ngay hình ảnh đầu. Nguồn: ADR 0001; khung luận §1 (NT3 honor)." },
-
-    { n:1, file:"01-dinh-vi-chao.md", nhip:0, owner:"growth + GM", status:"skeleton", tech:"non", gatDau:"Cả phòng",
-      eyebrow:"Pebble Vina là ai", title:"Một câu về chúng tôi",
-      headline:"Đối tác chính hãng đưa giải pháp an toàn điện / Edge AI công nghệ Hàn (PIM) vào vận hành thật tại Việt Nam.",
-      bullets:["An toàn điện","Công nghệ Hàn (PIM)","Có người Việt lo"],
-      notes:"Chào & cảm ơn đúng thứ bậc: bác Kim, CEO Pebble Square, quan khách. Đọc câu định vị — gieo mental model chung.",
-      why:"Luận cứ: Tri giác. Nhịp 0. Vai trò BOOKEND (lặp ở slide 09). Honor = chất chịu lực. Nguồn: dinh-vi §1,§3." },
-
-    { n:2, file:"02-noi-dau.md", nhip:1, owner:"growth", status:"skeleton", tech:"non", gatDau:"Cả phòng",
-      eyebrow:"Vấn đề", title:"Cháy do hồ quang & ngừng máy",
-      headline:"Điện mặt trời VN bùng nổ — kèm theo rủi ro cháy do hồ quang và ngừng phát. Một sự cố = dừng sản xuất + mất tài sản + mất uy tín.",
-      bullets:["Hồ quang điện → cháy; sự cố ngầm → ngừng phát","Tổn thất 1 vụ cháy PV","\"Việc\" khách cần: đừng để cháy / dừng chuyền / trượt kiểm định"],
-      need:["1 số liệu cháy PV tại VN (analyst)"],
-      notes:"Dẫn bằng VẤN ĐỀ KINH DOANH, chưa nhắc chip. Không over-claim 'đảm bảo không cháy'.",
-      why:"Luận cứ: Nhu cầu. Nhịp 1. 'Bán kết quả không bán chip'. Nguồn: 2026-06-09 §3; dinh-vi §6." },
-
-    { n:3, file:"03-vi-sao-bay-gio.md", nhip:2, owner:"analyst", status:"skeleton", tech:"nhẹ", gatDau:"Investor, quan khách",
-      eyebrow:"Thời điểm", title:"Vì sao bây giờ",
-      headline:"Ba lực vừa hội tụ: quy định an toàn vào cuộc · làn sóng PV đủ tuổi để rủi ro hiện ra · mật độ doanh nghiệp Hàn tại VN dày lên.",
-      bullets:["Quy định: TCVN 7447-7-712:2019 · QCVN 01:2020/BCT","Bùng nổ PV 2020–2023 → nay vào giai đoạn rủi ro cháy","China+1: cứ điểm điện tử/bán dẫn, khách Hàn dày đặc","Cửa sổ phai khi đối thủ bản địa hóa / khóa kênh EPC"],
-      need:["Số PV lắp đặt + DN Hàn có PV (analyst)","Tình trạng thực thi quy định (A2)"],
-      notes:"Khung 'why now' — điều gì VỪA thay đổi. Nói nhẹ phần cửa sổ (đây là slide động lượng).",
-      why:"Luận cứ: Thế–thời. Nhịp 2. Phương pháp 'Why now' + chất xúc tác. Nguồn: 2026-06-09 §1; khung chiến lược §4." },
-
-    { n:4, file:"04-giai-phap-bang-chung.md", nhip:3, owner:"product-lead", status:"skeleton", tech:"1 điểm tech", gatDau:"CEO Pebble Square",
-      eyebrow:"Giải pháp + bằng chứng ⚠️", title:"Nó hoạt động — và đây là bằng chứng",
-      headline:"Phát hiện sự cố hồ quang NGAY TẠI THIẾT BỊ — điện thấp, độ trễ thấp, không cần cloud — trên chip Analog-PIM của Pebble Square.",
-      bullets:["Sơ đồ: cảm biến → chip PIM tại tủ điện/inverter → cảnh báo sớm","[HÌNH] benchmark PIM vs ST/TI HOẶC số liệu 1 pilot","Đóng khung theo KẾT QUẢ, không theo thông số"],
-      need:["Bằng chứng thật từ Pebble Square (CHẶN cả bài)","MDPI 2024 nếu chưa có pilot VN"],
-      notes:"Vinh danh PIM + gốc học thuật JBNU/KAIST/MINT (gật đầu CEO). Ý tưởng: mời CEO nói 1–2 phút ở đây.",
-      why:"Luận cứ: BẰNG CHỨNG GIẢI PHÁP (mảnh khung luận bổ sung) — cầu nối 'họ cần'→'ta giải được'. Nhịp 3. Slide tối quan trọng: thiếu = hụt lý-do-tin." },
-
-    { n:5, file:"05-vi-sao-la-ta.md", nhip:4, owner:"growth + GM", status:"skeleton", tech:"non", gatDau:"Bác Kim / KOCHAM",
-      eyebrow:"Vì sao là chúng tôi", title:"Pebble Vina làm được",
-      headline:"Công nghệ Hàn cần một đối tác có năng lực thị trường Việt — độc quyền phân phối, mạng lưới KOCHAM, và năng lực bản địa Seoul không cung cấp được.",
-      bullets:["Quyền phân phối độc quyền tại VN (→ ĐNÁ)","Mạng lưới KOCHAM (bác Kim, Phó CT)","Năng lực bản địa: FAE · tuân thủ TCVN/QCVN · bảo hành tại chỗ","Mỗi pilot → case study → mở phân khúc kế (lợi thế tự dày lên)"],
-      need:["Trạng thái độc quyền HĐ (legal)","Năng lực FAE thực tế (operations)"],
-      notes:"Vinh danh bác Kim & KOCHAM (gật đầu investor). Chạm CEO: 'PV là cánh tay Việt/ĐNÁ Seoul không tự dựng'. Nói đúng vai.",
-      why:"Luận cứ: Thế + Người. Nhịp 4. 7 Powers: Cornered Resource + Counter-Positioning. Nguồn: 2026-06-09 §5; khung chiến lược §4–5." },
-
-    { n:6, file:"06-loi-nhuan-kep.md", nhip:5, owner:"cfo", status:"skeleton", tech:"non", gatDau:"Investor",
-      eyebrow:"Lợi nhuận kép", title:"Sinh lợi hai phía",
-      headline:"Cho KHÁCH (ROI dài hạn: tránh cháy, giảm downtime, tuân thủ) và cho PEBBLE VINA (biên phân phối + dịch vụ).",
-      bullets:["Cột HỌ: tổn thất tránh được + né phạt + tuổi thọ tài sản (tính nhiều năm)","Cột TA: biên phân phối + dịch vụ tích hợp/hỗ trợ","Đơn vị kinh tế & đường tới hòa vốn"],
-      need:["Mô hình ROI-khách (cfo)","Giá nhập từ HĐ → biên (cfo + legal)"],
-      notes:"Ngôn ngữ TIỀN & RỦI RO, không thuật ngữ. Không bịa số — chưa có giá nhập thì trình định tính, ghi 'ước tính'.",
-      why:"Luận cứ: Nhu cầu (ROI cho HỌ) + trục Tài chính (biên cho TA). Nhịp 5. Plan cần CẢ HAI. Nguồn: khung chiến lược §2." },
-
-    { n:7, file:"07-dich-den.md", nhip:6, owner:"GM + analyst", status:"skeleton", tech:"non", gatDau:"Investor + CEO",
-      eyebrow:"Tầm nhìn", title:"Chúng ta đi tới đâu",
-      headline:"Từ an toàn điện mặt trời, dựng cây cầu Edge-AI Hàn → Việt → Đông Nam Á — và lớn lên từ nhà phân phối thành công ty giải pháp.",
-      bullets:["Địa lý: VN → Đông Nam Á (mandate độc quyền)","Sản phẩm: arc-fault → dòng Pebble khác","Vai trò: phân phối → công ty giải pháp riêng (Hướng C)"],
-      need:["Quy mô ĐNÁ (analyst)","Mức 'hứa' tầm nhìn khả tín (GM)"],
-      notes:"Gật đầu kép: investor (return lớn) + CEO (PV là cửa ngõ ĐNÁ — đúng chiến lược họ). Neo vào beachhead đã chứng minh.",
-      why:"Luận cứ: TẦM NHÌN (mảnh khung luận bổ sung) — để không bị thấy là 'anh buôn arc-fault nhỏ'. Nhịp 6. Nguồn: mandate; ADR 0001; parent." },
-
-    { n:8, file:"08-rui-ro-hoa-giai.md", nhip:7, owner:"chief-of-staff", status:"skeleton", tech:"non", gatDau:"Investor",
-      eyebrow:"Rủi ro", title:"Nhìn thẳng & cách hóa giải",
-      headline:"Chúng tôi nhìn thẳng vào rủi ro — và đã có cách phòng. (Chỉ rủi ro thị trường/thực thi.)",
-      bullets:["Đối thủ bản địa hóa → counter-positioning (kết quả + hỗ trợ + tuân thủ)","Quy định thực thi yếu → cầu capture (tập đoàn Hàn ép chuẩn)","Tuyển FAE → lộ trình đội hình + đào tạo từ Pebble Square"],
-      need:["Bản 'rủi ro principal' RIÊNG cho gặp nhà đầu tư (không công khai)"],
-      notes:"⚠️ RỦI RO PRINCIPAL KHÔNG lên sân khấu (CEO ngồi dưới) — để gặp riêng, dùng Hướng C làm câu trả lời.",
-      why:"Luận cứ: Refutatio (mảnh khung luận bổ sung). Nhịp 7. Chọn phản biện theo người trong phòng. Nguồn: khung luận §4." },
-
-    { n:9, file:"09-keu-goi-cam-on.md", nhip:8, owner:"growth + GM", status:"skeleton", tech:"non", gatDau:"Cả phòng",
-      eyebrow:"Lời mời", title:"Cùng dựng cây cầu",
-      headline:"Pebble Vina — đối tác chính hãng đưa công nghệ Hàn vào vận hành thật tại Việt Nam. Cùng dựng cây cầu Edge-AI Hàn → Việt → ĐNÁ.",
-      bullets:["Lặp câu định vị slide 01 (đóng vòng)","Lời kêu gọi chung, không-giao-dịch","Cảm ơn + liên hệ"],
-      notes:"Ask CỨNG để gặp riêng: bác Kim (vốn + cửa KOCHAM) · CEO (độc quyền + IP + MDF) · khách (pilot). Đừng biến slide kết thành bảng giá.",
-      why:"Luận cứ: Tri giác (bookend) + The Ask (mảnh khung luận bổ sung). Nhịp 8. Ask mềm sân khấu, cứng gặp riêng. Nguồn: khung luận §0,§5." },
-
-    { n:99, file:"99-phu-luc-ky-thuat.md", nhip:"phụ lục", owner:"product-lead", status:"skeleton", tech:"sâu", gatDau:"Kỹ sư hỏi sau",
-      eyebrow:"Phụ lục — depth-on-demand", title:"Chi tiết kỹ thuật",
-      headline:"KHÔNG trình mặc định — chỉ mở khi được hỏi, hoặc in handout. Thỏa người có tech mà không loãng luồng chính.",
-      bullets:["Benchmark đầy đủ PIM vs ST/TI/Microchip/NVIDIA-edge","Kiến trúc Analog-PIM; MINT (~4M khớp, ~30 GOPS)","Reference design lắp tủ điện/inverter","Ánh xạ tuân thủ TCVN/QCVN","Tham chiếu MDPI 2024; JBNU/KAIST"],
-      need:["Toàn bộ số kỹ thuật (product-lead xác minh)"],
-      notes:"Mọi số phải kiểm chứng được — kỹ sư sẽ soi. Sai một số = mất uy tín cả bài.",
-      why:"Nguyên tắc NT1 'chiều sâu theo yêu cầu' (khung luận §1,§3). Nguồn: parent-pebble-square.md; slide 04." }
-  ];
-
-  /* ----- render ----- */
-  const deck = document.getElementById('deck');
-  SLIDES.forEach((s, i) => {
-    const sec = document.createElement('section');
-    sec.className = 'slide' + (s.cover ? ' cover' : '');
-    // META → data-* attributes (tương đương frontmatter MD)
-    sec.dataset.slide = s.n; sec.dataset.nhip = s.nhip; sec.dataset.owner = s.owner;
-    sec.dataset.status = s.status; sec.dataset.tech = s.tech; sec.dataset.gatDau = s.gatDau;
-    let html = `<div class="eyebrow">${s.eyebrow||''}</div>`;
-    html += s.cover ? `<h1>${s.title}</h1>` : `<h2>${s.title}</h2>`;
-    if (s.headline) html += `<div class="headline">${s.headline}</div>`;
-    if (s.bullets) html += `<ul>${s.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>`;
-    if (s.need) html += `<div class="warn">📥 Cần: ${s.need.map(n=>`<span class="need">${n}</span>`).join(' ')}</div>`;
-    if (s.cobrand) html += `<div class="cobrand"><b>Pebble Vina</b> × <b>Pebble Square</b> &nbsp;·&nbsp; Nhà phân phối ủy quyền chính thức tại Việt Nam</div>`;
-    sec.innerHTML = html;
-    // META máy-đọc: khối JSON "vì sao" (không hiển thị) — truy vết
-    const meta = document.createElement('script');
-    meta.type = 'application/json'; meta.className = 'slide-meta';
-    meta.textContent = JSON.stringify({slide:s.n, nhip:s.nhip, owner:s.owner, status:s.status, gatDau:s.gatDau, file:'slides/'+s.file, why:s.why, notes:s.notes||''});
-    sec.appendChild(meta);
-    sec.appendChild(document.createComment(' Vì sao slide này: ' + s.why + ' '));
-    deck.appendChild(sec);
-  });
-
-  /* ----- navigation + chrome ----- */
-  const slides = [...document.querySelectorAll('.slide')];
-  let cur = 0;
-  const hud = document.getElementById('hud'), bar = document.querySelector('#bar>div'), metaEl = document.getElementById('meta');
-  function paintMeta(){
-    const s = SLIDES[cur];
-    metaEl.innerHTML =
-      `<h3>Slide ${s.n} · nhịp ${s.nhip}</h3>`+
-      `<div class="row"><span class="k">Status</span><span class="v"><span class="tag st-skeleton">${s.status}</span></span></div>`+
-      `<div class="row"><span class="k">Owner</span><span class="v">${s.owner}</span></div>`+
-      `<div class="row"><span class="k">Gật đầu cho</span><span class="v">${s.gatDau}</span></div>`+
-      `<div class="row"><span class="k">Tech</span><span class="v">${s.tech}</span></div>`+
-      `<div class="row"><span class="k">File nguồn</span><span class="v">slides/${s.file}</span></div>`+
-      `<div class="why"><b>🧭 Vì sao slide này</b><br>${s.why}</div>`+
-      (s.notes?`<div class="why"><b>🎤 Lời thoại</b><br>${s.notes}</div>`:'')+
-      (s.need?`<div class="why"><b>📥 Cần</b><br>${s.need.join(' · ')}</div>`:'');
-  }
-  function show(i){
-    cur = Math.max(0, Math.min(slides.length-1, i));
-    slides.forEach((el,k)=>el.classList.toggle('active', k===cur));
-    hud.textContent = `${cur+1} / ${slides.length}  ·  slide ${SLIDES[cur].n}  ·  nhịp ${SLIDES[cur].nhip}`;
-    bar.style.width = ((cur+1)/slides.length*100)+'%';
-    paintMeta();
-  }
-  document.addEventListener('keydown', e=>{
-    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){show(cur+1);e.preventDefault();}
-    else if(e.key==='ArrowLeft'||e.key==='PageUp'){show(cur-1);}
-    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
-    else if(e.key==='m'||e.key==='M'){metaEl.classList.toggle('show');}
-    else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
-  });
-  deck.addEventListener('click', e=>{ if(e.clientX < innerWidth*0.3) show(cur-1); else show(cur+1); });
-  show(0);
-  </script>
+  <div class="card">
+    <div class="tag">Pebble Vina × Pebble Square</div>
+    <h1>Bản trình chiếu đã chuyển sang <code>./deck</code></h1>
+    <p>File <code>index.html</code> này (bản demo nhanh cũ) đã <b>nghỉ hưu</b> để tránh hai bản render đua nhau.
+       Tầng trình chiếu chính thức giờ là app Next.js tam ngữ trong thư mục <code>deck/</code>.</p>
+    <p>Chạy:</p>
+    <p><code>cd deck &amp;&amp; npm install &amp;&amp; npm run dev</code> → <code>http://localhost:3000</code></p>
+    <div class="keys">Điều khiển: <b>← →</b> chuyển · <b>l</b> đổi ngôn ngữ (VI/KO/EN) · <b>m</b> bảng meta ·
+      <b>a</b> phụ lục · <b>f</b> toàn màn hình</div>
+  </div>
 </body>
 </html>

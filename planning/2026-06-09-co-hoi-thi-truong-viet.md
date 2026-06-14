@@ -71,4 +71,5 @@ Khác biệt của Pebble: kiến trúc **Analog-PIM** (điện năng & chi phí
 - Ken Research / TechSci — Vietnam Edge Computing & IoT Market
 - B-Company — Vietnam Smart Home device market
 - insenergy.vn, daidung.com — quy định PCCC & an toàn điện mặt trời VN (TCVN 7447-7-712:2019, QCVN 01:2020/BCT)
-- MDPI Electronics 2024 — Edge AI for Electrical Anomaly Detection on PIM chip
+- ⚠️ ĐÃ GỠ "MDPI Electronics 2024 — Electrical Anomaly Detection on PIM chip": **bài không tồn tại đúng tên đó**
+  (kiểm chứng web 2026-06-14). Thay bằng nguyên lý PIM (học thuật) + chip MINT 17,6 TOPS/W. Xem `projects/thuyet-trinh-ra-mat-pebble-vina/slides/_research-proof.md`.

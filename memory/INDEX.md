@@ -13,12 +13,13 @@
 ## 💡 Bài học / chiến lược (learning)
 - [Mũi nhọn arc-fault / điện mặt trời](beachhead-arc-fault-dien-mat-troi.md) — beachhead đề xuất, chờ GM chốt. ⭐
 - [Hướng kiến trúc thương hiệu = C](huong-kien-truc-thuong-hieu-c.md) — GM chốt 2026-06-13: vay uy tín Hàn, xây tài sản Việt. ⭐
+- [Bằng chứng PIM & nguồn ma MDPI](bang-chung-slide04-pim-mdpi-ma.md) — MINT 17,6 TOPS/W là số THẬT; bài "MDPI 2024" KHÔNG tồn tại, đừng trích. ⭐
 
 ## 🔢 Con số (number)
 - _(chưa có — vd: giá nhập, biên lợi nhuận, chỉ tiêu doanh số sẽ lưu ở đây)_
 
 ## 📅 Sự kiện (event)
-- _(chưa có — vd: kết quả buổi gặp/training với Pebble Square)_
+- [Ra mắt Pebble Vina 19/6/2026](su-kien-ra-mat-19-06-2026.md) — deadline cứng cho deck; phòng hỗn hợp, tam ngữ VI/KO/EN. ⭐
 
 ## ⚠️ Rủi ro (risk)
 - _(chưa có)_
@@ -27,4 +28,4 @@
 - _(chưa có — vd: thuật ngữ PIM/KOCHAM/MINT, mã tiêu chuẩn)_
 
 ---
-*⭐ = importance: high. Tổng: 5 trí nhớ.*
+*⭐ = importance: high. Tổng: 7 trí nhớ.*

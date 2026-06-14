@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  /* Type triad (gán từ next/font ở layout.tsx) */
-  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --font-serif: var(--font-plex-serif), ui-serif, Georgia, "Times New Roman", serif;
+  /* Type triad (gán từ next/font ở layout.tsx). Noto KR phủ Hangul cho chế độ tiếng Hàn. */
+  --font-sans: var(--font-plex-sans), var(--font-noto-kr), ui-sans-serif, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-serif: var(--font-plex-serif), var(--font-noto-serif-kr), ui-serif, Georgia, "Times New Roman", serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Bảng màu "instrument / blueprint kỹ thuật" — dark */

@@ -20,7 +20,7 @@ export function MetaPanel({ s, open }: { s: SlideData; open: boolean }) {
             <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
               slide {String(s.n)} · beat {String(s.nhip)}
             </div>
-            <h3 className="mt-1 font-serif text-2xl font-semibold text-ink">{s.title}</h3>
+            <h3 className="mt-1 font-serif text-2xl font-semibold text-ink">{s.title.vi}</h3>
           </div>
 
           <dl className="flex flex-col">
