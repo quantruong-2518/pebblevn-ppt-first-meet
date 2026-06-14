@@ -76,7 +76,7 @@ export const SLIDES: SlideData[] = [
     eyebrow: L("Vấn đề", "문제", "The problem"),
     title: L("Cháy do hồ quang & ngừng máy", "아크 결함 화재와 가동 중단", "Arc-fault fire & downtime"),
     headline: L(
-      "Điện mặt trời Việt Nam bùng nổ — kèm rủi ro cháy do hồ quang và ngừng phát. Một sự cố = dừng sản xuất, mất tài sản, mất uy tín.",
+      "Điện mặt trời Việt Nam bùng nổ — kéo theo rủi ro cháy do hồ quang và ngừng phát điện. Một sự cố = dừng sản xuất, mất tài sản, mất uy tín.",
       "베트남 태양광은 급성장했고, 그만큼 아크 결함 화재와 발전 중단 위험도 커졌습니다. 한 번의 사고가 생산 중단·자산 손실·신뢰 손상으로 이어집니다.",
       "Vietnam's solar boom brings arc-fault fire and outage risk. One incident means halted production, lost assets, lost trust.",
     ),
@@ -141,7 +141,7 @@ export const SLIDES: SlideData[] = [
     eyebrow: L("Giải pháp + bằng chứng", "솔루션 + 근거", "Solution + proof"),
     title: L("Nó hoạt động — và đây là bằng chứng", "작동합니다 — 그 근거입니다", "It works — and here is the proof"),
     headline: L(
-      "Phát hiện sự cố hồ quang ngay tại thiết bị — điện thấp, độ trễ thấp, không cần cloud — trên chip Analog-PIM của Pebble Square.",
+      "Phát hiện sự cố hồ quang ngay tại thiết bị — công suất thấp, độ trễ thấp, không cần cloud — trên chip Analog-PIM của Pebble Square.",
       "페블스퀘어 아날로그-PIM 칩으로 아크 결함을 기기에서 직접 감지합니다 — 저전력, 저지연, 클라우드 불필요.",
       "Detect arc-faults right on the device — low power, low latency, no cloud — on Pebble Square's Analog-PIM chip.",
     ),
@@ -176,7 +176,7 @@ export const SLIDES: SlideData[] = [
     eyebrow: L("Vì sao là chúng tôi", "왜 우리인가", "Why us"),
     title: L("Pebble Vina làm được", "페블 비나는 해냅니다", "Pebble Vina can deliver"),
     headline: L(
-      "Công nghệ Hàn cần một đối tác có năng lực thị trường Việt — độc quyền phân phối, mạng lưới KOCHAM, và năng lực bản địa mà Seoul không cung cấp được.",
+      "Công nghệ Hàn cần một đối tác mạnh ở thị trường Việt — độc quyền phân phối, mạng lưới KOCHAM, và năng lực bản địa mà Seoul không cung cấp được.",
       "한국의 기술에는 베트남 시장 역량을 갖춘 파트너가 필요합니다 — 독점 총판, KOCHAM 네트워크, 그리고 서울이 제공할 수 없는 현지 역량.",
       "Korean technology needs a partner with Vietnam market capability — exclusive distribution, the KOCHAM network, and local capacity Seoul cannot provide.",
     ),
@@ -246,7 +246,7 @@ export const SLIDES: SlideData[] = [
     figure: {
       kind: "bridge",
       nodes: [L("Hàn Quốc", "한국", "Korea"), L("Việt Nam", "베트남", "Vietnam"), L("Đông Nam Á", "동남아", "SE Asia")],
-      foot: L("Mandate độc quyền VN → ĐNÁ · neo vào beachhead đã chứng minh", "VN → 동남아 독점 권한 · 검증된 거점에 기반", "Exclusive mandate VN → SEA · anchored on a proven beachhead"),
+      foot: L("Mandate độc quyền VN → ĐNÁ · neo vào cứ điểm đã chứng minh", "VN → 동남아 독점 권한 · 검증된 거점에 기반", "Exclusive mandate VN → SEA · anchored on a proven beachhead"),
     },
     bullets: {
       vi: [
