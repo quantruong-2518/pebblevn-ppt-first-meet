@@ -116,6 +116,31 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
         </motion.div>
       );
 
+    case "ladder":
+      return (
+        <motion.div variants={wrap} initial="hidden" animate="show" className="flex flex-col gap-2.5">
+          {/* thang độ chín: xếp từ trên (chín nhất) xuống — mỗi bậc = 1 mảng dịch vụ PS + độ chín thị trường VN */}
+          {figure.rungs.map((r, i) => (
+            <motion.div key={i} variants={rise} className="flex items-stretch gap-3 border border-white/10 bg-white/[0.02]">
+              <div className="flex w-12 shrink-0 items-center justify-center border-r border-white/10 bg-accent/[0.06] font-mono text-lg tabular-nums text-accent/80">
+                {i + 1}
+              </div>
+              <div className="flex flex-1 flex-col gap-1 px-4 py-2.5">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                  <span className="font-sans text-[clamp(1rem,1.4vw,1.2rem)] font-medium leading-snug text-ink">{rich(tx(r.cap))}</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-gold">{tx(r.tier)}</span>
+                </div>
+                <span className="font-sans text-[clamp(0.85rem,1.1vw,0.98rem)] leading-snug text-muted">{tx(r.seg)}</span>
+                <span className="pt-0.5 font-mono text-[11px] leading-relaxed tabular-nums text-ink/70">{r.stat}</span>
+              </div>
+            </motion.div>
+          ))}
+          <motion.span variants={rise} className="pt-0.5 font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
+            {tx(figure.foot)}
+          </motion.span>
+        </motion.div>
+      );
+
     case "bridge":
       return (
         <motion.div variants={wrap} initial="hidden" animate="show" className="flex flex-col gap-4">

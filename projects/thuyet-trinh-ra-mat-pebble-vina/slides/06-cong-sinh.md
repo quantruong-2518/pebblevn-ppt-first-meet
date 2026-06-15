@@ -1,7 +1,7 @@
 ---
-title: Slide 04 — Cộng sinh: không phải mua–bán
-slide: 4
-nhip: 2 (nối tiếp slide 03 — quan hệ với nền tảng đó là gì)
+title: Slide 06 — Cộng sinh: không phải mua–bán
+slide: 6
+nhip: 4 (sau khối nền tảng↔thị trường — quan hệ PV↔PS là gì)
 status: drafting
 owner: GM + chief-of-staff
 tech: non
@@ -10,7 +10,7 @@ updated: 2026-06-15
 links: [slides/03-pebble-square.md, slides/02-dinh-vi-pebble-vina.md, company/parent-pebble-square.md, slides/_archive/2026-06-15-tai-cau-truc-quoc-gia/06-cong-sinh.md]
 ---
 
-# Slide 04 — Cộng sinh: đôi bên cùng thắng
+# Slide 06 — Cộng sinh: đôi bên cùng thắng
 
 > Slide 03 cho thấy Pebble Square **mạnh thế nào**. Câu hỏi tự nhiên kế tiếp của nhà đầu tư: *"Vậy quan hệ
 > của các anh với họ là gì — chỉ là đại lý bán hàng?"* Slide này trả lời: **không phải mua–bán, mà cộng sinh.**

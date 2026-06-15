@@ -40,10 +40,10 @@ Mỗi cột: **trên** = năng lực Pebble Square · **↓** · **dưới** = p
 - *"Một nền tảng — nhiều bài toán; việc của chúng tôi là khớp đúng năng lực vào đúng nhu cầu thị trường."*
 - Nhấn **đòn bẩy KOCHAM**: không phải bốn thị trường rời rạc — là **một mạng lưới khách** mua được cả bốn.
 - **Giữ priority cho bước sau:** *"Chúng tôi sẽ ưu tiên hóa và bắt đầu từ mũi nhọn phù hợp nhất — đó là phần
-  việc chốt cùng Pebble Square và những khách hàng đầu tiên."* (mở đường lên lộ trình slide 06).
+  việc chốt cùng Pebble Square và những khách hàng đầu tiên."* (mở đường lên lộ trình slide 07).
 
 ## 🧭 Vì sao slide này (truy vết)
-- **Vai trò trong mạch:** cầu nối **bề rộng nền tảng** (slide 03) ↔ **lộ trình** (slide 06) — biến "đa năng"
+- **Vai trò trong mạch:** cầu nối **bề rộng nền tảng** (slide 03) ↔ **lộ trình** (slide 07) — biến "đa năng"
   trừu tượng thành **bản đồ hai đầu có số**, mà **KHÔNG khóa sớm** vào một vertical. Hoãn priority = **trung thực**
   (chưa chốt beachhead) + **giữ linh hoạt** + tránh mâu thuẫn nội bộ deck.
 - **Nguồn:** `_research-vn-segments-map.md` (đầu B — phân khúc VN có nhãn ✅/🟡, fetch IMARC 2026-06-15) ·
@@ -61,5 +61,5 @@ Mỗi cột: **trên** = năng lực Pebble Square · **↓** · **dưới** = p
 - **KHÔNG xếp hạng / KHÔNG tô đậm cột nào "đi trước"** — giữ đúng thông điệp "map rồi mới ưu tiên".
 - **Số dùng trên slide đều ✅ verified** (IMARC, fetch 2026-06-15). Machine vision riêng VN **❌ NOT FOUND** →
   cột Vision dùng anchor **Amkor + bán dẫn VN** (✅), không dùng số machine vision toàn cầu như thể là số VN.
-- **Nhất quán với slide 06:** Chân trời 1 hiện gọi tên beachhead "an toàn & sức khỏe thiết bị" → **cần làm mềm**
+- **Nhất quán với slide 07:** Chân trời 1 hiện gọi tên beachhead "an toàn & sức khỏe thiết bị" → **cần làm mềm**
   ("cắm rễ bằng MỘT mũi nhọn") cho khỏi mâu thuẫn với việc slide 05 hoãn priority. *(GM xác nhận.)*

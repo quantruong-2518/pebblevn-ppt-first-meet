@@ -10,12 +10,14 @@
 //
 // XƯƠNG SỐNG (2026-06-15): tái cấu trúc theo "kỷ nguyên vươn mình" (mạch diễn dịch).
 //   00 bìa → 01 đại cục quốc gia (suy ra cần đơn vị tiên phong) → 02 Pebble Vina là ai (định vị hai thì)
-//   → 03 Pebble Square (đối tác/nền tảng) → 04 cộng sinh PV+PS → 05 menu nền tảng → 06 lộ trình → 07 lời mời.
+//   → 03 Pebble Square (đối tác/nền tảng) → 04 thang độ chín thị trường VN → 05 map hai đầu (matrix)
+//   → 06 cộng sinh PV+PS → 07 lộ trình → 08 lời mời.
 //   Khung arc-fault cũ đã archive ở ../slides/_archive/2026-06-15-tai-cau-truc-quoc-gia/.
-//   slides.ts đã đủ 00–07 (arc khép). Bìa (n:0) & tầng UI/figure GIỮ NGUYÊN. CEO PS = Lee Choong-hyun.
-//   Figure: 01 flow · 02 twocol · 03 forces · 04 flow(vòng lặp) · 05 matrix(map hai đầu) · 06 flow · 07 bridge (bookend cây cầu).
+//   slides.ts đã đủ 00–08 (arc khép). Bìa (n:0) & tầng UI/figure GIỮ NGUYÊN. CEO PS = Lee Choong-hyun.
+//   Figure: 01 flow · 02 twocol · 03 forces · 04 ladder(thang độ chín) · 05 matrix(map hai đầu) · 06 flow(vòng lặp cộng sinh) · 07 flow(lộ trình) · 08 bridge (bookend cây cầu).
 //   ⚠️ Mở: slide 05 (2026-06-15) đổi sang MAP hai đầu (năng lực PS ↔ phân khúc VN) + HOÃN priority — KHÔNG còn chốt beachhead ở 05.
-//      → slide 06 Chân trời 1 vẫn gọi tên beachhead 'an toàn & sức khỏe thiết bị' → CẦN làm mềm cho nhất quán (GM xác nhận).
+//      slide 04 (thang độ chín) xếp theo ĐỘ CHÍN THỊ TRƯỜNG (khách quan), KHÔNG phải thứ tự ưu tiên của ta → không đụng stance hoãn-priority của 05.
+//      → slide 07 Chân trời 1 vẫn gọi tên beachhead 'an toàn & sức khỏe thiết bị' → CẦN làm mềm cho nhất quán (GM xác nhận).
 
 export type Lang = "vi" | "ko" | "en";
 export const LANGS: Lang[] = ["vi", "ko", "en"];
@@ -35,6 +37,9 @@ export type Figure =
   // matrix = "map hai đầu": cap (năng lực PS) ↔ seg (phân khúc VN) + stat (số bằng chứng, ASCII).
   // bar = đòn bẩy xuyên suốt (KOCHAM); foot = câu kết. KHÔNG xếp hạng cột nào.
   | { kind: "matrix"; cols: { cap: LText; seg: LText; stat: string }[]; bar: LText; foot: LText }
+  // ladder = "thang độ chín": xếp từ trên (chín nhất) xuống. Mỗi rung = cap (mảng dịch vụ PS) +
+  // seg (phân khúc VN) + stat (số bằng chứng, ASCII) + tier (nhãn độ chín). foot = câu kết khung.
+  | { kind: "ladder"; rungs: { cap: LText; seg: LText; stat: string; tier: LText }[]; foot: LText }
   | { kind: "stat"; value: LText; caption: LText; source?: LText };
 
 export type SlideStatus = "skeleton" | "drafting" | "review" | "done";
@@ -187,7 +192,7 @@ export const SLIDES: SlideData[] = [
       en: ["We set the goal — and make it real, step by step."],
     },
     need: ["GM chốt mức nói 'độc quyền' trên sân khấu", "Native proofread KO/EN"],
-    notes: "ĐỊNH VỊ HAI THÌ (chốt 2026-06-15): cột 'Hôm nay' = cái chứng minh được; cột 'Mục tiêu' (gold) = đích earned. CHƯA ký HĐ với PS → 'độc quyền' nằm ở cột MỤC TIÊU, không phải hiện trạng (CEO PS ngồi dưới). Motif = lời GM, sợi chỉ xuyên deck. Chữ nhấn gradient (2026-06-15): headline = 'Edge-AI' + 'vận hành thật' + 'phát triển'; figure nhấn theo MẠCH ĐỊA LÝ 'Việt Nam độc lập' (Hôm nay) → 'Đông Nam Á' (Mục tiêu). REFRAME HEADLINE (2026-06-15, GM feedback): lý do PV tồn tại = SỨ MỆNH đưa Việt Nam phát triển (nối mạch slide 01), KHÔNG phải 'đưa công nghệ PS vào vận hành' (tránh định vị PV lệ thuộc PS). Edge-AI = phương tiện; PS = đối tác/nền tảng 'cùng làm' (chữ 'cùng' thay 'phụ thuộc'), được tôn vinh riêng ở slide 03. CỐ Ý KHÔNG nhấn 'độc quyền' — giữ MỀM trên sân khấu, đồng bộ stance slide 04. (2026-06-15, GM feedback) Bỏ title 'Một câu về chúng tôi' (vô duyên, ít thông tin) → title định vị 'một công ty VN, một tầm nhìn khu vực'. Mở mỗi cột 2→3 mục: Hôm nay thêm 'kết nối cộng đồng DN Hàn (KOCHAM)'; Mục tiêu thêm 'mở rộng nhiều ứng dụng/một nền tảng' = bậc thang vai trò→bề rộng→khu vực (khớp 3 chân trời slide 06). ⚠️ Dòng KOCHAM nhắc nhẹ mạng lưới Hàn — GM rà mức công khai.",
+    notes: "ĐỊNH VỊ HAI THÌ (chốt 2026-06-15): cột 'Hôm nay' = cái chứng minh được; cột 'Mục tiêu' (gold) = đích earned. CHƯA ký HĐ với PS → 'độc quyền' nằm ở cột MỤC TIÊU, không phải hiện trạng (CEO PS ngồi dưới). Motif = lời GM, sợi chỉ xuyên deck. Chữ nhấn gradient (2026-06-15): headline = 'Edge-AI' + 'vận hành thật' + 'phát triển'; figure nhấn theo MẠCH ĐỊA LÝ 'Việt Nam độc lập' (Hôm nay) → 'Đông Nam Á' (Mục tiêu). REFRAME HEADLINE (2026-06-15, GM feedback): lý do PV tồn tại = SỨ MỆNH đưa Việt Nam phát triển (nối mạch slide 01), KHÔNG phải 'đưa công nghệ PS vào vận hành' (tránh định vị PV lệ thuộc PS). Edge-AI = phương tiện; PS = đối tác/nền tảng 'cùng làm' (chữ 'cùng' thay 'phụ thuộc'), được tôn vinh riêng ở slide 03. CỐ Ý KHÔNG nhấn 'độc quyền' — giữ MỀM trên sân khấu, đồng bộ stance slide 06. (2026-06-15, GM feedback) Bỏ title 'Một câu về chúng tôi' (vô duyên, ít thông tin) → title định vị 'một công ty VN, một tầm nhìn khu vực'. Mở mỗi cột 2→3 mục: Hôm nay thêm 'kết nối cộng đồng DN Hàn (KOCHAM)'; Mục tiêu thêm 'mở rộng nhiều ứng dụng/một nền tảng' = bậc thang vai trò→bề rộng→khu vực (khớp 3 chân trời slide 07). ⚠️ Dòng KOCHAM nhắc nhẹ mạng lưới Hàn — GM rà mức công khai.",
     why: "Điểm hạ cánh của mạch diễn dịch slide 01. Phương pháp định vị hai thì — không hứa viển vông. Nguồn: dinh-vi §3; ADR 0001 (Hướng C).",
   },
 
@@ -228,33 +233,58 @@ export const SLIDES: SlideData[] = [
     why: "Chứng minh nửa 'nền tảng Pebble Square' trong câu thì-hiện-tại slide 02 là THẬT → nâng độ tin cả định vị; đỡ cho nhà đầu tư. Nguồn: _research-pebble-square-services.md (Mục 1–3 ✅); _research-proof.md (specs MINT).",
   },
 
-  // ===== 04 · CỘNG SINH — KHÔNG PHẢI MUA–BÁN (khóa lợi ích hai bên; đỡ rủi ro 'chưa ký HĐ') · figure: twocol cho/được =====
+  // ===== 04 · THANG ĐỘ CHÍN — 4 mảng dịch vụ PS xếp theo độ chín thị trường VN (overview cho matrix 05) · figure: ladder =====
   {
-    n: 4, file: "04-cong-sinh.md", nhip: 2, owner: "GM", status: "drafting", tech: "non", gatDau: "CEO Pebble Square + Nhà đầu tư",
-    eyebrow: L("Quan hệ · Cộng sinh", "관계 · 상생", "The relationship · Symbiosis"),
-    title: L("Không phải mua–bán", "거래가 아닙니다", "Not a buy–sell deal"),
+    n: 4, file: "04-do-chin-thi-truong.md", nhip: 2, owner: "GM + analyst", status: "drafting", tech: "nhẹ", gatDau: "Cả phòng (đặc biệt nhà đầu tư)",
+    eyebrow: L("Độ chín thị trường · Việt Nam", "시장 성숙도 · 베트남", "Market readiness · Vietnam"),
+    title: L("Thị trường Việt Nam chín tới đâu", "베트남 시장은 어디까지 무르익었나", "Where Vietnam is most ready"),
     headline: L(
-      "Một bên có công nghệ, một bên có thị trường và năng lực thực thi. Pebble Square và Pebble Vina khóa vào nhau — mỗi thắng lợi ở Việt Nam khiến cả hai mạnh hơn.",
-      "한쪽은 기술을, 다른 한쪽은 시장과 실행력을 가졌습니다. Pebble Square와 Pebble Vina는 서로 맞물려 있고, 베트남에서의 성공 하나하나가 양쪽 모두를 강하게 만듭니다.",
-      "One side has the technology, the other has the market and execution. Pebble Square and Pebble Vina are interlocked — every win in Vietnam makes both stronger.",
+      "Bốn mảng dịch vụ của Pebble Square gặp thị trường Việt Nam ở *bốn độ chín khác nhau* — xếp từ nơi cầu đã rõ nhất xuống nơi còn đang mở.",
+      "Pebble Square의 네 가지 서비스 영역은 베트남 시장에서 *서로 다른 성숙도*로 만납니다 — 수요가 가장 뚜렷한 곳부터 이제 막 열리는 곳까지.",
+      "Pebble Square's four service areas meet the Vietnamese market at *four different maturity levels* — from where demand is clearest down to where it is just opening.",
     ),
     figure: {
-      kind: "flow",
-      steps: [
-        { label: L("Mỗi pilot thắng ở Việt Nam", "베트남에서 거두는 파일럿 성공", "Each pilot won in Vietnam") },
-        { label: L("De-risk kế hoạch Đông Nam Á của Pebble Square", "Pebble Square 동남아 계획의 리스크 감소", "De-risks Pebble Square's Southeast Asia plan") },
-        { label: L("Pebble Square dồn nguồn lực & ưu tiên lại", "Pebble Square가 자원과 우선순위를 재집중", "Pebble Square refocuses resources & priority") },
-        { label: L("Pebble Vina thắng nhanh hơn", "Pebble Vina가 더 빨리 성공", "Pebble Vina wins faster") },
+      kind: "ladder",
+      rungs: [
+        {
+          cap: L("An ninh · Giám sát video", "온디바이스 보안 · 영상 감시", "Security · video surveillance"),
+          seg: L("CCTV & camera AI cho khu công nghiệp, đô thị", "산업단지·도시용 CCTV & AI 카메라", "CCTV & AI cameras for industrial parks, cities"),
+          stat: "CCTV VN $615M · +17.6%/yr ✅",
+          tier: L("Chín nhất", "가장 성숙", "Most ready"),
+        },
+        {
+          cap: L("Bảo trì dự đoán", "예지보전", "Predictive maintenance"),
+          seg: L("Máy móc nhà máy & an toàn điện (FDI Hàn)", "공장 설비 & 전기 안전 (한국 FDI)", "Factory machinery & electrical safety (Korean FDI)"),
+          stat: "Công nghiệp IoT VN $1.6B · +13%/yr ✅",
+          tier: L("Chín · khớp KOCHAM", "성숙 · KOCHAM 적합", "Ready · fits KOCHAM"),
+        },
+        {
+          cap: L("Thị giác máy · QC sản xuất", "머신 비전 · 제조 QC", "Machine vision · mfg QC"),
+          seg: L("Kiểm lỗi dây chuyền điện tử & bán dẫn", "전자·반도체 라인 결함 검사", "Defect inspection on electronics & semiconductor lines"),
+          stat: "Amkor x3 · bán dẫn VN $7B → $16.6B ✅",
+          tier: L("Đang chín", "성숙 진행 중", "Emerging"),
+        },
+        {
+          cap: L("Giọng nói · âm thanh", "음성 · 사운드", "Voice & sound"),
+          seg: L("Smart home & loa tiếng Việt", "스마트홈 & 베트남어 음성", "Smart home & Vietnamese voice"),
+          stat: "Smart home VN $0.69B → $1.71B · 9.2%/yr ✅",
+          tier: L("Mới nổi", "초기 단계", "Early"),
+        },
       ],
       foot: L(
-        "Vòng quay khóa chặt theo thời gian — không phải hợp đồng phân phối mong manh.",
-        "시간이 갈수록 더 단단히 맞물리는 선순환 — 깨지기 쉬운 총판 계약이 아닙니다.",
-        "A loop that locks tighter over time — not a fragile distribution contract.",
+        "Đây là độ chín của thị trường — chưa phải thứ tự Pebble Vina chọn làm trước.",
+        "이는 시장의 성숙도이며, Pebble Vina가 먼저 착수할 순서는 아닙니다.",
+        "This is the market's readiness — not the order Pebble Vina will tackle them.",
       ),
     },
-    need: ["Trạng thái HĐ độc quyền + điều khoản hỗ trợ (MDF/đào tạo) — legal-counsel", "Xác nhận chiến lược ĐNÁ của PS để chạm CEO đúng — analyst", "Native proofread KO/EN"],
-    notes: "FIGURE ĐỔI twocol→flow (2026-06-15, GM: slide cũ 'nhiều thứ, chưa rõ thông điệp'): hero = VÒNG LẶP cộng sinh — đó mới là cái phân biệt cộng sinh ≠ mua-bán (deal phân phối nào cũng 'mỗi bên có cái bên kia cần', nhưng chỉ cộng sinh mới có vòng khóa chặt theo thời gian). Give/get dời xuống lời thoại, KHÔNG bày lên slide. Mức 'độc quyền' = MỀM CÔNG KHAI: nói 'đối tác phân phối', để 'độc quyền' cho gặp riêng. Không over-claim cam kết PS chưa có HĐ. VN = PoC mô hình lập pháp nhân địa phương (Tokyo 2025). Motif cây cầu trả ở slide 07.",
-    why: "Sau honor nền tảng (03), định nghĩa BẢN CHẤT quan hệ = cộng sinh. THÔNG ĐIỆP = vòng lặp khóa lợi ích hai bên → đỡ rủi ro 'chưa ký HĐ' (quan hệ thật chứng minh bằng vòng lặp, không bằng tờ giấy). Chạm CEO + nhà đầu tư. Nguồn: dinh-vi §2; parent §mô hình mở rộng; 06-cong-sinh (archive).",
+    bullets: {
+      vi: ["Nơi cắm rễ trước sẽ chốt cùng Pebble Square và những khách hàng đầu tiên — xem slide tiếp theo."],
+      ko: ["어디에 먼저 뿌리내릴지는 Pebble Square 및 첫 고객들과 함께 정합니다 — 다음 슬라이드 참조."],
+      en: ["Where we root first is decided with Pebble Square and our first customers — see the next slide."],
+    },
+    need: ["Bổ số machine vision/QC riêng VN (đang dùng anchor Amkor)", "GM xác nhận nhãn độ chín 4 bậc", "Native proofread KO/EN"],
+    notes: "MỚI (2026-06-15, GM): slide overview xếp 4 nhóm service PS theo ĐỘ CHÍN THỊ TRƯỜNG VN (trên→dưới). KHUNG QUAN TRỌNG: 'độ chín thị trường' (khách quan) ≠ 'thứ tự ưu tiên của ta' → foot nói thẳng, KHÔNG đụng stance HOÃN-priority của slide 05 (matrix). Thứ tự: An ninh/CCTV (số sạch nhất, +17.6%) > Bảo trì dự đoán (khớp KOCHAM nhất) > Thị giác/QC (anchor Amkor; số riêng VN còn ❌) > Giọng nói (B2C, CAGR thấp hơn). Healthcare = chân yếu (>90% thiết bị y tế VN nhập) → để lời thoại, không thành bậc. Số đều ✅ từ _research-vn-segments-map.md (IMARC, fetch 2026-06-15). figure ladder mới.",
+    why: "Cho deck một bậc 'answer-first' (thị trường VN chín tới đâu) TRƯỚC khi vào map chi tiết (05), mà vẫn trung thực 'chưa chốt beachhead'. Nguồn: _research-vn-segments-map.md (đầu B, ✅/🟡); _research-pebble-square-services.md (đầu A, 4 nhóm service).",
   },
 
   // ===== 05 · MAP HAI ĐẦU — năng lực PS ↔ phân khúc VN (HOÃN priority) · figure: matrix =====
@@ -309,12 +339,41 @@ export const SLIDES: SlideData[] = [
     },
     need: ["GM xem & chốt khung map (CHƯA cần chốt thứ tự ưu tiên)", "legal đọc TCVN 7447-7-712 + QCVN 01:2020/BCT (arc-fault có/không bắt buộc)", "Bổ số machine vision/QC riêng VN nếu trình nhà đầu tư lớn", "Native proofread KO/EN"],
     notes: "MAP HAI ĐẦU (chốt 2026-06-15, GM): slide đổi vai trò 'menu + chốt beachhead' → 'khớp năng lực PS ↔ phân khúc VN, HOÃN priority'. Figure forces→matrix: 4 cột = 4 nhóm service PS (Sound/Vision/Security/PdM), mỗi cột map xuống 1 phân khúc VN + 1 số ✅ verified; thanh ngang KOCHAM xuyên 4 cột. KHÔNG xếp hạng/không tô cột nào trước — thứ tự ưu tiên là 'chuyện sau' (roadmap/nội bộ). LẰN RANH: arc-fault/an toàn điện nằm trong nhóm PdM như ứng dụng PV KHỞI XƯỚNG, KHÔNG gán PS. Số: smart home/CCTV/IIoT/semis đều ✅ (IMARC, fetch 2026-06-15); machine vision riêng VN ❌ → cột Vision dùng anchor Amkor + bán dẫn VN. Đầu B đầy đủ ở _research-vn-segments-map.md.",
-    why: "Hiện thực hóa 'một nền tảng, nhiều bài toán' bằng cách MAP minh bạch hai đầu (năng lực PS ↔ nhu cầu VN có số) — đặt nền cho lộ trình (06) mà KHÔNG khóa sớm vào một vertical. Hoãn priority = trung thực (chưa chốt beachhead) + giữ linh hoạt. Nguồn: _research-vn-segments-map.md (đầu B, ✅/🟡 có nhãn); _research-pebble-square-services.md (đầu A).",
+    why: "Hiện thực hóa 'một nền tảng, nhiều bài toán' bằng cách MAP minh bạch hai đầu (năng lực PS ↔ nhu cầu VN có số) — đặt nền cho lộ trình (07) mà KHÔNG khóa sớm vào một vertical. Hoãn priority = trung thực (chưa chốt beachhead) + giữ linh hoạt. Nguồn: _research-vn-segments-map.md (đầu B, ✅/🟡 có nhãn); _research-pebble-square-services.md (đầu A).",
   },
 
-  // ===== 06 · LỘ TRÌNH 3 CHÂN TRỜI — hiện thực hóa cột 'Mục tiêu' slide 02 · figure: flow =====
+  // ===== 06 · CỘNG SINH — KHÔNG PHẢI MUA–BÁN (khóa lợi ích hai bên; đỡ rủi ro 'chưa ký HĐ') · figure: flow (vòng lặp cộng sinh) =====
   {
-    n: 6, file: "06-lo-trinh.md", nhip: 4, owner: "GM", status: "drafting", tech: "non", gatDau: "Nhà đầu tư + CEO Pebble Square",
+    n: 6, file: "06-cong-sinh.md", nhip: 4, owner: "GM", status: "drafting", tech: "non", gatDau: "CEO Pebble Square + Nhà đầu tư",
+    eyebrow: L("Quan hệ · Cộng sinh", "관계 · 상생", "The relationship · Symbiosis"),
+    title: L("Không phải mua–bán", "거래가 아닙니다", "Not a buy–sell deal"),
+    headline: L(
+      "Một bên có công nghệ, một bên có thị trường và năng lực thực thi. Pebble Square và Pebble Vina khóa vào nhau — mỗi thắng lợi ở Việt Nam khiến cả hai mạnh hơn.",
+      "한쪽은 기술을, 다른 한쪽은 시장과 실행력을 가졌습니다. Pebble Square와 Pebble Vina는 서로 맞물려 있고, 베트남에서의 성공 하나하나가 양쪽 모두를 강하게 만듭니다.",
+      "One side has the technology, the other has the market and execution. Pebble Square and Pebble Vina are interlocked — every win in Vietnam makes both stronger.",
+    ),
+    figure: {
+      kind: "flow",
+      steps: [
+        { label: L("Mỗi pilot thắng ở Việt Nam", "베트남에서 거두는 파일럿 성공", "Each pilot won in Vietnam") },
+        { label: L("De-risk kế hoạch Đông Nam Á của Pebble Square", "Pebble Square 동남아 계획의 리스크 감소", "De-risks Pebble Square's Southeast Asia plan") },
+        { label: L("Pebble Square dồn nguồn lực & ưu tiên lại", "Pebble Square가 자원과 우선순위를 재집중", "Pebble Square refocuses resources & priority") },
+        { label: L("Pebble Vina thắng nhanh hơn", "Pebble Vina가 더 빨리 성공", "Pebble Vina wins faster") },
+      ],
+      foot: L(
+        "Vòng quay khóa chặt theo thời gian — không phải hợp đồng phân phối mong manh.",
+        "시간이 갈수록 더 단단히 맞물리는 선순환 — 깨지기 쉬운 총판 계약이 아닙니다.",
+        "A loop that locks tighter over time — not a fragile distribution contract.",
+      ),
+    },
+    need: ["Trạng thái HĐ độc quyền + điều khoản hỗ trợ (MDF/đào tạo) — legal-counsel", "Xác nhận chiến lược ĐNÁ của PS để chạm CEO đúng — analyst", "Native proofread KO/EN"],
+    notes: "FIGURE ĐỔI twocol→flow (2026-06-15, GM: slide cũ 'nhiều thứ, chưa rõ thông điệp'): hero = VÒNG LẶP cộng sinh — đó mới là cái phân biệt cộng sinh ≠ mua-bán (deal phân phối nào cũng 'mỗi bên có cái bên kia cần', nhưng chỉ cộng sinh mới có vòng khóa chặt theo thời gian). Give/get dời xuống lời thoại, KHÔNG bày lên slide. Mức 'độc quyền' = MỀM CÔNG KHAI: nói 'đối tác phân phối', để 'độc quyền' cho gặp riêng. Không over-claim cam kết PS chưa có HĐ. VN = PoC mô hình lập pháp nhân địa phương (Tokyo 2025). Motif cây cầu trả ở slide 08.",
+    why: "Sau honor nền tảng (03), định nghĩa BẢN CHẤT quan hệ = cộng sinh. THÔNG ĐIỆP = vòng lặp khóa lợi ích hai bên → đỡ rủi ro 'chưa ký HĐ' (quan hệ thật chứng minh bằng vòng lặp, không bằng tờ giấy). Chạm CEO + nhà đầu tư. Nguồn: dinh-vi §2; parent §mô hình mở rộng; 06-cong-sinh (archive).",
+  },
+
+  // ===== 07 · LỘ TRÌNH 3 CHÂN TRỜI — hiện thực hóa cột 'Mục tiêu' slide 02 · figure: flow =====
+  {
+    n: 7, file: "07-lo-trinh.md", nhip: 5, owner: "GM", status: "drafting", tech: "non", gatDau: "Nhà đầu tư + CEO Pebble Square",
     eyebrow: L("Lộ trình · 3 chân trời", "로드맵 · 3개 지평선", "Roadmap · three horizons"),
     title: L("Lộ trình 3 chân trời", "3개 지평선 로드맵", "A three-horizon path"),
     headline: L(
@@ -354,9 +413,9 @@ export const SLIDES: SlideData[] = [
     why: "Biến cột 'Mục tiêu' (slide 02) thành lộ trình + vẽ motif 'làm từng bước'. Trục ứng dụng mở sang vertical thật PS → trả lời phê bình 'quá hẹp một ứng dụng'. Gật đầu kép investor (return) + CEO (PS bán nhiều hơn 1 ứng dụng qua ta). Nguồn: 07-dich-den (archive); mandate; ADR 0001; _research-market §07.",
   },
 
-  // ===== 07 · LỜI MỜI + CẢM ƠN — bookend, đóng vòng motif 'viên gạch/cây cầu' · figure: bridge =====
+  // ===== 08 · LỜI MỜI + CẢM ƠN — bookend, đóng vòng motif 'viên gạch/cây cầu' · figure: bridge =====
   {
-    n: 7, file: "07-loi-moi.md", nhip: 5, owner: "growth", status: "drafting", tech: "non", gatDau: "Cả phòng",
+    n: 8, file: "08-loi-moi.md", nhip: 6, owner: "growth", status: "drafting", tech: "non", gatDau: "Cả phòng",
     cobrand: true,
     eyebrow: L("Lời mời · Cảm ơn", "초대 · 감사", "Invitation · Thank you"),
     title: L("Cùng dựng cây cầu", "함께 다리를 놓다", "Let's build the bridge together"),
@@ -385,7 +444,7 @@ export const SLIDES: SlideData[] = [
       en: ["Join us — investors, Pebble Square, and our guests — each of you a stone in the bridge.", "With sincere thanks."],
     },
     need: ["Chốt câu định vị bookend cuối (đồng bộ slide 02)", "Thông tin liên hệ + người nhận follow-up từng nhóm", "Native proofread KO/EN"],
-    notes: "Bookend đóng vòng: motif slide 02 (viên gạch/cây cầu) + figure bridge slide 04 + slogan bìa. Ask MỀM trên sân khấu (mời đồng hành); ask CỨNG để gặp riêng — investor (vốn+KOCHAM), CEO (độc quyền/IP/MDF/co-brand), khách (pilot). KHÔNG biến slide kết thành bảng giá. Giữ 'công ty giải pháp'+'độc quyền' ở thì MỤC TIÊU (CEO PS ngồi dưới).",
+    notes: "Bookend đóng vòng: motif slide 02 (viên gạch/cây cầu) + hình bridge của chính slide kết + slogan bìa. Ask MỀM trên sân khấu (mời đồng hành); ask CỨNG để gặp riêng — investor (vốn+KOCHAM), CEO (độc quyền/IP/MDF/co-brand), khách (pilot). KHÔNG biến slide kết thành bảng giá. Giữ 'công ty giải pháp'+'độc quyền' ở thì MỤC TIÊU (CEO PS ngồi dưới).",
     why: "Tri giác đóng vòng (bookend slide 02) + The Ask phân tầng. Ask mềm vì thể loại ra mắt, phòng hỗn hợp → ask cứng để gặp riêng. Nguồn: 10-keu-goi-cam-on (archive); slide 02 (bookend); README §5.",
   },
 ];

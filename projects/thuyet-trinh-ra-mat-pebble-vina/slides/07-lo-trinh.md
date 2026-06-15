@@ -1,7 +1,7 @@
 ---
-title: Slide 06 — Lộ trình 3 chân trời (VN → ĐNÁ)
-slide: 6
-nhip: 4 (hiện thực hóa cột "Mục tiêu" slide 02 + motif "làm từng bước")
+title: Slide 07 — Lộ trình 3 chân trời (VN → ĐNÁ)
+slide: 7
+nhip: 5 (hiện thực hóa cột "Mục tiêu" slide 02 + motif "làm từng bước")
 status: drafting
 owner: GM + analyst
 tech: non
@@ -10,7 +10,7 @@ updated: 2026-06-15
 links: [slides/02-dinh-vi-pebble-vina.md, slides/05-menu-nen-tang.md, slides/_archive/2026-06-15-tai-cau-truc-quoc-gia/07-dich-den.md, company/decisions/0001-huong-kien-truc-thuong-hieu.md]
 ---
 
-# Slide 06 — Lộ trình 3 chân trời
+# Slide 07 — Lộ trình 3 chân trời
 
 > Đây là nơi cột **"Mục tiêu"** của slide 02 thành **con đường có bước đi**, và motif *"đặt mục tiêu — làm cho
 > nó thành hiện thực, từng bước một"* được vẽ ra cụ thể.

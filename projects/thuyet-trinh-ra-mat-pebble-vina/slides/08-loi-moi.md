@@ -1,18 +1,18 @@
 ---
-title: Slide 07 — Lời mời + cảm ơn (đóng vòng, bookend)
-slide: 7
-nhip: 5 (kết — đóng vòng motif "viên gạch đầu tiên / cây cầu")
+title: Slide 08 — Lời mời + cảm ơn (đóng vòng, bookend)
+slide: 8
+nhip: 6 (kết — đóng vòng motif "viên gạch đầu tiên / cây cầu")
 status: drafting
 owner: growth + GM
 tech: non
 gat-dau: Cả phòng
 updated: 2026-06-15
-links: [slides/02-dinh-vi-pebble-vina.md, slides/04-cong-sinh.md, slides/00-bia.md, slides/_archive/2026-06-15-tai-cau-truc-quoc-gia/10-keu-goi-cam-on.md]
+links: [slides/02-dinh-vi-pebble-vina.md, slides/06-cong-sinh.md, slides/00-bia.md, slides/_archive/2026-06-15-tai-cau-truc-quoc-gia/10-keu-goi-cam-on.md]
 ---
 
-# Slide 07 — Cùng dựng cây cầu
+# Slide 08 — Cùng dựng cây cầu
 
-> Slide kết **đóng vòng**: vọng lại motif slide 02 (*"viên gạch đầu tiên của cây cầu"*), hình `bridge` slide 04,
+> Slide kết **đóng vòng**: vọng lại motif slide 02 (*"viên gạch đầu tiên của cây cầu"*), hình `bridge` của chính slide này,
 > và slogan bìa (*"trí tuệ Hàn Quốc, trái tim Việt Nam"*). Kết bằng **cảm xúc + chính danh**, KHÔNG bằng bảng giá.
 
 ## 🎯 Thông điệp chính (bookend — đồng bộ slide 02)
