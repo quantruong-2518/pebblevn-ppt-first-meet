@@ -58,22 +58,30 @@ file định vị), không buzzword, không over-claim — vừa đúng văn hó
 
 ---
 
-## 2. Arc 9 nhịp (đã tái-xếp cho phòng này)
+## 2. Arc 10 nhịp — xương sống "Cây cầu: 2 trụ + 1 con đường" (cập nhật 2026-06-14)
+
+> **Reframe 2026-06-14 (GM):** bản 9 nhịp cũ đặt *bằng chứng công nghệ* (nhịp 3) ở vị trí cao trào → trọng tâm
+> lệch về "cái Pebble Square CÓ". Xương sống mới: **2 TRỤ** (công nghệ Pebble Square + năng lực bản địa Pebble
+> Vina) → **nhịp cầu CỘNG SINH** (nhịp 5, MỚI) → **con đường 3 CHÂN TRỜI** VN→ĐNÁ. Trọng tâm dời về **lộ trình
+> riêng của Pebble Vina + cộng sinh đôi bên cùng thắng**.
 
 | # | Nhịp | Luận cứ gốc | "Gật đầu" cho ai | Tech? | Ai soạn |
 |---|---|---|---|---|---|
-| 0 | **Câu định vị 1 dòng + lời chào honor** — cho cả phòng chung một mental model "PV là ai", chào đúng mực | Tri giác | Cả phòng | non-tech | `growth` + GM |
-| 1 | **Nỗi đau + vì sao điều này quan trọng** — cháy do hồ quang, ngừng máy, bùng nổ PV (hook ai cũng cảm) | Nhu cầu | Cả phòng | non-tech | `growth` |
-| 2 | **Vì sao bây giờ** — quy định TCVN/QCVN + làn sóng PV + China+1 (cửa sổ đang mở) | Thế–thời | Investor, quan khách | nhẹ | `analyst` |
-| 3 | **Giải pháp + 1 bằng chứng nó CHẠY** — phát hiện arc-fault on-device, điện thấp, không cloud; 1 benchmark/pilot | *mới: proof* | **CEO Pebble Square** | 1 điểm tech (sâu ở phụ lục) | `product-lead` |
-| 4 | **Vì sao là TA** — độc quyền + KOCHAM + năng lực bản địa (FAE/tuân thủ/bảo hành) + đội | Thế + Người | **Bác Kim / KOCHAM** | non-tech | `growth` + GM |
-| 5 | **Lợi nhuận kép: cho HỌ (ROI khách) & cho TA (biên/mô hình)** | Nhu cầu + ⟂Tài chính | Investor | non-tech | `cfo` |
-| 6 | **Đích đến: VN→ĐNÁ, arc-fault→dòng khác, phân phối→công ty giải pháp** | *mới: vision* | Investor **+ CEO** (cửa ngõ ĐNÁ) | non-tech | GM + `analyst` |
-| 7 | **Rủi ro & hóa giải** — *chỉ rủi ro thị trường/thực thi* (xem §4 về rủi ro principal) | *mới: refutatio* | Investor (trấn an) | non-tech | `chief-of-staff` |
-| 8 | **Trả lại câu định vị + lời kêu gọi chung** — cùng dựng cầu Edge-AI Hàn→Việt→ĐNÁ | Tri giác + *Ask* | Cả phòng | non-tech | `growth` + GM |
+| 0 | **Câu định vị 1 dòng + lời chào honor** — "PV là công ty giải pháp VN→ĐNÁ"; gieo ẩn dụ cây cầu | Tri giác | Cả phòng | non-tech | `growth` + GM |
+| 1 | **Nỗi đau + vì sao quan trọng** — cháy do hồ quang, ngừng máy, bùng nổ PV (hook ai cũng cảm) | Nhu cầu | Cả phòng | non-tech | `growth` |
+| 2 | **Vì sao bây giờ** — quy định + làn sóng PV + China+1; *cửa sổ mở cho cả hai bên* | Thế–thời | Investor, quan khách | nhẹ | `analyst` |
+| 3 | **Trụ 1 — Năng lực công nghệ (Pebble Square)** — arc-fault on-device, PIM/MINT; *nén khỏi cao trào* | *Trụ 1: proof* | **CEO Pebble Square** | 1 điểm tech (sâu ở phụ lục) | `product-lead` |
+| 4 | **Trụ 2 — Cỗ máy bản địa (Pebble Vina)** — độc quyền + KOCHAM + FAE/tuân thủ; *ngang hàng trụ 1* + câu bắc cầu | *Trụ 2: Thế + Người* | **Bác Kim / KOCHAM** | non-tech | `growth` + GM |
+| 5 | **Cộng sinh — đôi bên cùng thắng (MỚI)** — cho/được hai phía + vòng lặp; VN = PoC cho chiến lược châu Á của PS | *mới: cộng sinh* | **CEO + Investor** | non-tech | GM + `chief-of-staff` |
+| 6 | **Con đường — lộ trình 3 chân trời** — VN cắm rễ → nhân rộng + ra ĐNÁ → hub; phân phối→công ty giải pháp | *vision: lộ trình* | Investor **+ CEO** (cửa ngõ ĐNÁ) | non-tech | GM + `analyst` |
+| 7 | **Lợi nhuận kép** — cho HỌ (ROI khách) & cho TA (biên/mô hình), *lớn lên dọc chân trời* | Nhu cầu + ⟂Tài chính | Investor | non-tech | `cfo` |
+| 8 | **Rủi ro & hóa giải** — *chỉ rủi ro thị trường/thực thi* + lệch pha cộng sinh (bản công khai); xem §4 | *refutatio* | Investor (trấn an) | non-tech | `chief-of-staff` |
+| 9 | **Trả lại câu định vị + lời kêu gọi chung** — cùng dựng cầu Edge-AI Hàn→Việt→ĐNÁ (hình cây cầu) | Tri giác + *Ask* | Cả phòng | non-tech | `growth` + GM |
 
-> **Đóng vòng:** nhịp 0 gieo câu định vị, nhịp 8 trả lại nó sau khi đã chứng minh — kỹ thuật "bookend" giúp cả
+> **Đóng vòng:** nhịp 0 gieo câu định vị, nhịp 9 trả lại nó sau khi đã chứng minh — kỹ thuật "bookend" giúp cả
 > phòng nhớ **một câu** về PV khi ra về.
+> **Nhịp cầu mới (5):** nối Trụ 1 ↔ Trụ 2, kéo logic Hướng C ("ta cần uy tín Hàn, họ cần năng lực bản địa" —
+> `dinh-vi §2`) lên thành một nhịp riêng; trả lời phê bình "thiếu cộng sinh + lộ trình riêng của ta".
 
 ---
 
@@ -118,11 +126,12 @@ file định vị), không buzzword, không over-claim — vừa đúng văn hó
 
 | Phần | Agent | Ghi chú |
 |---|---|---|
-| Thông điệp, câu định vị, tông, nhịp 0/1/4/8 | `growth` | Bám file định vị `2026-06-13` (đã chín) |
-| Bằng chứng kỹ thuật, nhịp 3 + phụ lục | `product-lead` | Xác nhận mọi số với Pebble Square trước |
-| Lợi nhuận kép, nhịp 5 | `cfo` | ROI-khách + biên của ta (cần giá nhập từ HĐ) |
-| Vì sao bây giờ + đích đến, nhịp 2/6 | `analyst` | Luận đề "why now" + quy mô VN→ĐNÁ |
-| Rủi ro/phản đề, nhịp 7 + tách public/riêng | `chief-of-staff` | Phối `legal-counsel` cho phần principal/IP |
+| Thông điệp, câu định vị, tông, nhịp 0/1/4/9 | `growth` | Bám file định vị `2026-06-13` (đã chín) |
+| Trụ 1 — bằng chứng kỹ thuật, nhịp 3 + phụ lục | `product-lead` | Xác nhận mọi số với Pebble Square trước |
+| Cộng sinh, nhịp 5 (MỚI) | GM + `chief-of-staff` | Cho/được hai phía + vòng lặp; cần trạng thái HĐ độc quyền/MDF (`legal`) |
+| Lợi nhuận kép, nhịp 7 | `cfo` | ROI-khách + biên của ta (cần giá nhập từ HĐ); biên lớn lên dọc chân trời |
+| Vì sao bây giờ + lộ trình 3 chân trời, nhịp 2/6 | `analyst` | Luận đề "why now" + lộ trình & quy mô VN→ĐNÁ |
+| Rủi ro/phản đề, nhịp 8 + tách public/riêng | `chief-of-staff` | Phối `legal-counsel` cho phần principal/IP + căn chỉnh cộng sinh |
 | Biên tập tổng + luyện trình + Q&A hai-độ-sâu | `chief-of-staff` + GM | GM là người trình |
 
 ---
@@ -130,9 +139,9 @@ file định vị), không buzzword, không over-claim — vừa đúng văn hó
 ## 7. Quyết định cần GM
 
 - [ ] **Xác nhận thể loại = ra mắt/giới thiệu** (ask cứng để gặp riêng), không phải pitch đóng kín? (y/n)
-- [ ] **Duyệt arc 9 nhịp** làm xương sống bài? (y/n / đổi thứ tự)
-- [ ] **Chốt câu định vị 1 dòng** cho nhịp 0/8 — lấy từ tagline làm việc *"Công nghệ Hàn cho an toàn điện Việt
-  — phát hiện sớm, ngay tại chỗ"* hay biến thể? (cần GM duyệt — file định vị §3)
+- [x] **Duyệt arc 10 nhịp** ("Cây cầu: 2 trụ + 1 con đường", chèn nhịp Cộng sinh) làm xương sống? *(GM chốt 2026-06-14)*
+- [ ] **Chốt câu định vị 1 dòng** cho nhịp 0/9 — bản reframe *"công ty giải pháp Edge-AI cho VN & ĐNÁ, khởi đầu
+  từ an toàn điện, trên nền công nghệ độc quyền Pebble Square"* hay biến thể? (cần GM duyệt — file định vị §3)
 - [ ] **Xác nhận để rủi ro principal RA NGOÀI sân khấu** (gặp riêng nhà đầu tư)? (y/n)
 - [ ] **Bằng chứng nhịp 3:** ta đã có benchmark/pilot data từ Pebble Square chưa, hay cần `product-lead` đi đòi?
   *(Nếu chưa có bằng chứng nào → đây là rủi ro lớn nhất của bài: thuyết trình thiếu "lý-do-tin".)*

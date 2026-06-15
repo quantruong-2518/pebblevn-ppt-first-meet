@@ -2,7 +2,7 @@
 title: Thuyết trình ra mắt Pebble Vina — Chỉ mục & kế hoạch (master index)
 status: in-progress
 owner: GM
-updated: 2026-06-13
+updated: 2026-06-14
 links: [planning/2026-06-13-khung-thuyet-trinh-pebble-vina.md, planning/2026-06-13-khung-chien-luoc-buoc-di-pebble-vina.md, planning/2026-06-13-dinh-vi-thuong-hieu-pebble-vina.md, planning/2026-06-09-co-hoi-thi-truong-viet.md, company/parent-pebble-square.md, company/decisions/0001-huong-kien-truc-thuong-hieu.md]
 ---
 
@@ -24,9 +24,10 @@ links: [planning/2026-06-13-khung-thuyet-trinh-pebble-vina.md, planning/2026-06-
 - **Khán giả (hỗn hợp cấp cao):** nhà đầu tư **bác Kim** (Phó CT KOCHAM) · **CEO Pebble Square** (GS Bae
   Hak-yeol) · **quan khách** · **trộn người có tech / không tech**.
 - **Thể loại:** **ra mắt/giới thiệu** — *không* phải pitch đóng kín. Ask cứng (vốn/độc quyền/pilot) để **gặp riêng**.
-- **Thông điệp lõi (1 câu):** *"Công nghệ Hàn cho an toàn điện Việt — phát hiện sớm, ngay tại chỗ."*
-  (tagline làm việc, chờ GM duyệt — xem `planning/2026-06-13-dinh-vi-... §3`)
-- **Điểm yếu nguy hiểm nhất:** **Slide 04 (bằng chứng nó chạy)** — nếu chưa có benchmark/pilot thật, bài hụt "lý-do-tin".
+- **Thông điệp lõi (1 câu, v2):** *"Pebble Vina — công ty giải pháp Edge-AI cho VN & ĐNÁ, khởi đầu từ an toàn
+  điện, trên nền nền-tảng đa năng độc quyền của Pebble Square."* (tagline làm việc, chờ GM duyệt)
+- **Điểm yếu nguy hiểm nhất:** **Slide 04 (Trụ 1 — nền tảng)** thiếu "lý-do-tin" thật; **+ phải trình PS là nền
+  tảng đa năng**, KHÔNG gán arc-fault cho PS (arc-fault là ứng dụng của Pebble Vina).
 
 ## 2. Vì sao bố cục này (logic gốc — trỏ ra ngoài)
 
@@ -35,26 +36,38 @@ Bài này là **artifact dẫn xuất** từ chuỗi suy luận chiến lược.
 1. **Khung chiến lược** → `planning/2026-06-13-khung-chien-luoc-buoc-di-pebble-vina.md`
    *(4 luận cứ: Nhu cầu → Thế → Người → Tri giác, + trục Tài chính; cỗ máy luận cứ→quyết định→business plan)*
 2. **Khung luận thuyết trình** → `planning/2026-06-13-khung-thuyet-trinh-pebble-vina.md`
-   *(persuasion = 4 luận cứ + bằng chứng + tầm nhìn + phản đề + lời kêu gọi; arc 9 nhịp cho phòng hỗn hợp)*
+   *(persuasion = 4 luận cứ + bằng chứng + tầm nhìn + phản đề + lời kêu gọi; arc 10 nhịp cho phòng hỗn hợp — đã chèn nhịp Cộng sinh 2026-06-14)*
 
 > Tóm gọn: khung chiến lược = *logic để TA quyết*; khung thuyết trình = *logic để THUYẾT PHỤC phòng*; folder
-> này = *thực thi thành slide*. Mỗi slide ↔ một nhịp trong arc 9 nhịp.
+> này = *thực thi thành slide*. Mỗi slide ↔ một nhịp trong arc 10 nhịp.
 
 ## 3. Chỉ mục slide (bảng trạng thái)
+
+> **Xương sống (v2, cập nhật 2026-06-14): "Cây cầu — 2 trụ + 1 con đường".**
+> pain → window → **[Trụ 1: NỀN TẢNG đa năng của Pebble Square]** + **[Trụ 2: cỗ máy bản địa]** → **[nhịp cầu
+> CỘNG SINH]** → **[con đường 3 CHÂN TRỜI VN→ĐNÁ]** → kinh tế → rủi ro → kêu gọi. Arc 10 nhịp (đã chèn Cộng sinh).
+>
+> **Sửa lớn v2 (sau nghiên cứu `slides/_research-pebble-square-services.md`):** Pebble Square là **nền tảng
+> Edge-AI đa năng** (3 trụ Sound/Vision/Security + Failure Analysis; họ chip MOCHA→MINT→PAPAYA; "all-weather
+> chip") — **KHÔNG** phải công ty arc-fault. **arc-fault/an toàn điện = ứng dụng beachhead do Pebble Vina khởi
+> xướng** (không phải sản phẩm của PS) → sống ở slide 07, không phải slide 04. Trục sản phẩm của lộ trình mở rộng
+> sang các vertical thật của PS. Khung v1 (khóa vào arc-fault) đã archive: `slides/_archive/2026-06-14-v1-cay-cau-arcfault/`.
+> Bìa (00) + tầng UI/figure **giữ nguyên**. *(Tầng render `deck/lib/slides.ts` còn ở v1 — sẽ cập nhật sau khi GM chốt khung md v2.)*
 
 | # | File | Nhịp arc | Luận cứ gốc | "Gật đầu" cho | Tech | Owner | Status |
 |---|---|---|---|---|---|---|---|
 | 00 | [slides/00-bia.md](slides/00-bia.md) | — (bìa) | — | Cả phòng | non | `growth` | skeleton |
-| 01 | [slides/01-dinh-vi-chao.md](slides/01-dinh-vi-chao.md) | 0 | Tri giác | Cả phòng | non | `growth`+GM | skeleton |
+| 01 | [slides/01-dinh-vi-chao.md](slides/01-dinh-vi-chao.md) | 0 | Tri giác (định vị + cầu) | Cả phòng | non | `growth`+GM | skeleton |
 | 02 | [slides/02-noi-dau.md](slides/02-noi-dau.md) | 1 | Nhu cầu | Cả phòng | non | `growth` | skeleton |
 | 03 | [slides/03-vi-sao-bay-gio.md](slides/03-vi-sao-bay-gio.md) | 2 | Thế–thời | Investor, quan khách | nhẹ | `analyst` | skeleton |
-| 04 | [slides/04-giai-phap-bang-chung.md](slides/04-giai-phap-bang-chung.md) | 3 | *proof (mới)* | **CEO Pebble Square** | 1 điểm | `product-lead` | skeleton ⚠️ |
-| 05 | [slides/05-vi-sao-la-ta.md](slides/05-vi-sao-la-ta.md) | 4 | Thế + Người | **Bác Kim/KOCHAM** | non | `growth`+GM | skeleton |
-| 06 | [slides/06-loi-nhuan-kep.md](slides/06-loi-nhuan-kep.md) | 5 | Nhu cầu + Tài chính | Investor | non | `cfo` | skeleton |
-| 07 | [slides/07-dich-den.md](slides/07-dich-den.md) | 6 | *vision (mới)* | Investor + CEO | non | GM+`analyst` | skeleton |
-| 08 | [slides/08-rui-ro-hoa-giai.md](slides/08-rui-ro-hoa-giai.md) | 7 | *refutatio (mới)* | Investor | non | `chief-of-staff` | skeleton |
-| 09 | [slides/09-keu-goi-cam-on.md](slides/09-keu-goi-cam-on.md) | 8 | Tri giác + *Ask* | Cả phòng | non | `growth`+GM | skeleton |
-| 99 | [slides/99-phu-luc-ky-thuat.md](slides/99-phu-luc-ky-thuat.md) | phụ lục | proof (sâu) | Kỹ sư hỏi sau | sâu | `product-lead` | skeleton |
+| 04 | [slides/04-giai-phap-bang-chung.md](slides/04-giai-phap-bang-chung.md) | 3 | **Trụ 1: Nền tảng đa năng** | **CEO Pebble Square** | 1 điểm | `product-lead` | skeleton ⚠️ |
+| 05 | [slides/05-vi-sao-la-ta.md](slides/05-vi-sao-la-ta.md) | 4 | **Trụ 2: Bản địa** | **Bác Kim/KOCHAM** | non | `growth`+GM | skeleton |
+| 06 | [slides/06-cong-sinh.md](slides/06-cong-sinh.md) | 5 | **Cộng sinh (mới)** | CEO + Investor | non | GM+`chief-of-staff` | skeleton |
+| 07 | [slides/07-dich-den.md](slides/07-dich-den.md) | 6 | *Lộ trình 3 chân trời* | Investor + CEO | non | GM+`analyst` | skeleton |
+| 08 | [slides/08-loi-nhuan-kep.md](slides/08-loi-nhuan-kep.md) | 7 | Nhu cầu + Tài chính | Investor | non | `cfo` | skeleton |
+| 09 | [slides/09-rui-ro-hoa-giai.md](slides/09-rui-ro-hoa-giai.md) | 8 | Refutatio | Investor | non | `chief-of-staff` | skeleton |
+| 10 | [slides/10-keu-goi-cam-on.md](slides/10-keu-goi-cam-on.md) | 9 | Tri giác + *Ask* | Cả phòng | non | `growth`+GM | skeleton |
+| 99 | [slides/99-phu-luc-ky-thuat.md](slides/99-phu-luc-ky-thuat.md) | phụ lục | proof (sâu) + số lộ trình | Kỹ sư hỏi sau | sâu | `product-lead` | skeleton |
 
 ## 4. Nguyên tắc trình bày (nhắc nhanh — chi tiết ở khung luận §1)
 
@@ -62,21 +75,22 @@ Bài này là **artifact dẫn xuất** từ chuỗi suy luận chiến lược.
    luồng (slide 04), chi tiết kỹ thuật ở phụ lục (slide 99).
 2. **"Cái gật đầu" cho từng VIP** (cột "gật đầu" ở bảng trên) — mà bài không vỡ vụn.
 3. **Honor là chất chịu lực:** tôn vinh công nghệ Pebble Square + CEO; tôn vinh KOCHAM/bác Kim; tông kỹ-sư-nói-với-kỹ-sư.
-4. **Rủi ro principal KHÔNG nói trên sân khấu** (CEO của họ ngồi dưới) — để gặp riêng nhà đầu tư. Xem slide 08.
+4. **Rủi ro principal KHÔNG nói trên sân khấu** (CEO của họ ngồi dưới) — để gặp riêng nhà đầu tư. Xem slide 09.
 
 ## 5. Kế hoạch làm (ai điền gì, thứ tự, phụ thuộc)
 
 **Thứ tự đề xuất (rủi-ro-trước):**
-1. **Slide 04 trước hết** — `product-lead` kiểm: Pebble Square đã có benchmark/pilot dùng được chưa? *(chặn cả bài)*
-2. **Slide 01 + 09** — `growth` chốt câu định vị (bookend) cùng GM.
-3. **Slide 02, 03, 07** — `analyst` (nỗi đau, vì sao bây giờ, đích đến).
-4. **Slide 05** — `growth` + GM (vì sao là ta + honor KOCHAM).
-5. **Slide 06** — `cfo` (cần giá nhập từ hợp đồng → có thể chờ).
-6. **Slide 08** — `chief-of-staff` (rủi ro, tách public/riêng).
+1. **Slide 04 (Trụ 1) trước hết** — `product-lead` kiểm: Pebble Square đã có benchmark/pilot dùng được chưa? *(chặn cả bài)*
+2. **Slide 01 + 10** — `growth` chốt câu định vị (bookend) cùng GM.
+3. **Slide 02, 03, 07** — `analyst` (nỗi đau, vì sao bây giờ, lộ trình 3 chân trời).
+4. **Slide 05 + 06** — `growth`/GM (Trụ 2 bản địa) + GM/`chief-of-staff` (Cộng sinh — cần trạng thái HĐ độc quyền).
+5. **Slide 08** — `cfo` (lợi nhuận kép; cần giá nhập từ hợp đồng → có thể chờ).
+6. **Slide 09** — `chief-of-staff` (rủi ro, tách public/riêng).
 7. **Biên tập tổng + luyện trình + Q&A hai-độ-sâu** — `chief-of-staff` + GM.
 
-**Phụ thuộc dữ liệu (blocker):** Slide 04 & 99 cần **số kỹ thuật** từ Pebble Square; Slide 06 cần **giá nhập**
-từ hợp đồng (`[CẦN ĐIỀN]`). Không có hai thứ này thì hai slide đó chỉ là khung rỗng.
+**Phụ thuộc dữ liệu (blocker):** Slide 04 & 99 cần **số kỹ thuật** từ Pebble Square; Slide 08 cần **giá nhập**
+từ hợp đồng (`[CẦN ĐIỀN]`); Slide 06 (cộng sinh) cần **điều khoản độc quyền/MDF/đào tạo**. Không có thì các
+slide đó chỉ là khung rỗng.
 
 ## 6. Nghiên cứu & brainstorm
 
@@ -86,7 +100,7 @@ sinh khi làm bài (để truy vết *vì sao chọn cách này*).
 ## 7. Việc cần GM quyết
 
 - [ ] **Ngày & bối cảnh sự kiện** (`[CẦN ĐIỀN]`) — để đặt nhịp công việc & deadline.
-- [ ] **Duyệt câu định vị 1 dòng** cho slide 01/09 (bookend).
+- [ ] **Duyệt câu định vị 1 dòng** cho slide 01/10 (bookend) — bản reframe "công ty giải pháp VN→ĐNÁ".
 - [ ] **Xác nhận thể loại = ra mắt** (ask cứng để gặp riêng)?
 - [ ] **Bằng chứng slide 04:** đã có benchmark/pilot từ Pebble Square chưa, hay cần đi đòi?
 - [ ] **Cho phép giao các slide cho agent** theo §5?
@@ -116,5 +130,7 @@ sinh khi làm bài (để truy vết *vì sao chọn cách này*).
 - **Tách SHOW ↔ working-doc:** trong `slides.ts`, `eyebrow/title/headline/bullets/figure` là tầng SHOW (tam
   ngữ); `why/notes/need` là working-doc (chỉ panel meta, tiếng Việt) — **không bao giờ render lên slide**.
 - **Một nguồn (về sau):** viết script sinh `slides.ts` từ front-matter MD để chỉ còn một nguồn sự thật.
-- **`slides/_research-proof.md` & `_research-market.md`** = nhật ký research web (2026-06-14) — bằng chứng
-  slide 04 + số liệu slide 02/03/07, kèm nhãn tin cậy ✅/🟡/❌ và mọi nguồn.
+- **`slides/_research-proof.md` · `_research-market.md` · `_research-pebble-square-services.md`** = nhật ký
+  research web (2026-06-14) — bằng chứng slide 04 + số liệu thị trường + **TOÀN BỘ sản phẩm/ứng dụng Pebble
+  Square** (họ chip, vertical, honor hooks, đính chính CEO), kèm nhãn tin cậy ✅/🟡/❌ và mọi nguồn (gồm báo Hàn).
+- **`slides/_archive/`** = các khung deck cũ đã thay (vd `2026-06-14-v1-cay-cau-arcfault/` — bản còn khóa vào arc-fault).

@@ -91,7 +91,7 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
             {figure.nodes.map((nd, i) => (
               <div key={i} className="flex flex-1 items-center">
                 <motion.div variants={rise} className="flex flex-col items-center gap-2">
-                  <span className={`h-4 w-4 rounded-full ${i === 1 ? "bg-gold" : "bg-accent"}`} />
+                  <span className={`h-4 w-4 rounded-full ${i === (figure.gold ?? 1) ? "bg-gold" : "bg-accent"}`} />
                   <span className="whitespace-nowrap font-sans text-[clamp(1rem,1.5vw,1.3rem)] font-medium text-ink">{tx(nd)}</span>
                 </motion.div>
                 {i < figure.nodes.length - 1 && (

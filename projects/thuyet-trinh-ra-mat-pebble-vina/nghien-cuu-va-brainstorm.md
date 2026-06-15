@@ -31,6 +31,20 @@ links: [projects/thuyet-trinh-ra-mat-pebble-vina/README.md, planning/2026-06-13-
 
 ## Quyết định đã chốt (có lý do)
 
+- ✅ **2026-06-14 (v2) — Pebble Square = NỀN TẢNG đa năng; arc-fault = ứng dụng beachhead của Pebble Vina.**
+  *Vì:* nghiên cứu sâu (`slides/_research-pebble-square-services.md`, gồm báo Hàn) cho thấy bản v1 vẫn khóa quá
+  hẹp vào arc-fault, mà arc-fault **không hề là sản phẩm của Pebble Square** (không có ở bất kỳ nguồn nào của họ).
+  PS thực ra có **họ chip MOCHA→MINT→PAPAYA** + 3 trụ Sound/Vision/Security + Failure Analysis ("all-weather
+  chip"). *Quyết:* slide 04 trình PS là nền tảng đa năng; arc-fault chuyển sang slide 07 như ứng dụng beachhead;
+  trục sản phẩm của lộ trình mở rộng sang vertical thật của PS. **Beachhead cụ thể đang để ngỏ** (ô dù "an toàn +
+  sức khỏe thiết bị nhà máy Hàn" — arc-fault cờ đầu + bảo trì dự đoán lõi — là đề xuất, GM chưa chốt). Khung v1
+  đã archive. *Đính chính chờ xác nhận PS:* CEO có thể là Lee Choong-hyun (không phải Bae); tránh số doanh thu.
+- ✅ **2026-06-14 — Đổi xương sống sang "Cây cầu: 2 trụ + 1 con đường".** *Vì:* GM phê bình bản cũ quá tập trung
+  vào "cái Pebble Square CÓ" (chip/tech ở vị trí cao trào nhịp 3) và thiếu **lộ trình riêng của Pebble Vina + sự
+  cộng sinh**. Reframe: nén tech thành **Trụ 1**, nâng năng lực bản địa thành **Trụ 2**, **thêm nhịp Cộng sinh
+  (slide 06)**, biến "đích đến" thành **lộ trình 3 chân trời VN→ĐNÁ** (slide 07). Lộ trình **định hướng**, không
+  cam kết ngày/số cứng trên sân khấu (chưa ký độc quyền, chưa có pilot tên). Arc 9→10 nhịp. Bìa + UI/figure giữ
+  nguyên. (Nguồn: khung luận §2 đã cập nhật; README §3; ADR 0001; dinh-vi §2.)
 - ✅ **2026-06-13 — Thể loại = ra mắt/giới thiệu, ask cứng để gặp riêng.** *Vì:* phòng có CEO đối tác + quan
   khách, không phù hợp ép một quyết định giao dịch tại chỗ. (Nguồn: khung luận §0.)
 - ✅ **2026-06-13 — Rủi ro principal KHÔNG lên sân khấu.** *Vì:* CEO Pebble Square hiện diện; nói "họ có thể bị

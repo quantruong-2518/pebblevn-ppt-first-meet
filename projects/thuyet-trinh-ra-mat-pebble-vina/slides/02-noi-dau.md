@@ -1,37 +1,42 @@
 ---
-title: Slide 02 — Nỗi đau + vì sao điều này quan trọng
+title: Slide 02 — Nỗi đau: an toàn & gián đoạn vận hành ở nhà máy
 slide: 2
 nhip: 1
 status: skeleton
 owner: growth
 tech: non
 gat-dau: Cả phòng
-updated: 2026-06-13
-links: [planning/2026-06-09-co-hoi-thi-truong-viet.md, planning/2026-06-13-khung-chien-luoc-buoc-di-pebble-vina.md]
+updated: 2026-06-14
+links: [planning/2026-06-09-co-hoi-thi-truong-viet.md, projects/thuyet-trinh-ra-mat-pebble-vina/slides/_research-market.md]
 ---
 
-# Slide 02 — Vấn đề: cháy do hồ quang & ngừng máy
+# Slide 02 — Nỗi đau
 
 ## 🎯 Thông điệp chính
-> Điện mặt trời Việt Nam bùng nổ — và cùng với nó là **rủi ro cháy do hồ quang điện** và **ngừng phát ngoài
-> kế hoạch**. Một sự cố = dừng sản xuất + mất tài sản + mất uy tín.
+> Nhà máy tại Việt Nam đối mặt hai nỗi đau đắt giá và CÙNG GỐC: **sự cố an toàn** (cháy do hồ quang điện) và
+> **dừng máy ngoài kế hoạch** (thiết bị hỏng không báo trước). Một sự cố = dừng sản xuất, mất tài sản, mất uy tín.
 
 ## 🖼 Nội dung slide (skeleton)
-- Câu chuyện nỗi đau (hook ai cũng cảm): hồ quang điện → cháy; sự cố ngầm → ngừng phát.
-- [SỐ: tổn thất 1 vụ cháy PV / tỉ lệ sự cố] — `[CẦN nguồn đáng tin — xem brainstorm]`.
-- "Việc" khách cần (JTBD): *đừng để nhà máy cháy · đừng để chuyền dừng · qua được kiểm định an toàn.*
+- **Hook sắc nhất (ví dụ):** điện mặt trời bùng nổ → rủi ro **cháy do hồ quang DC**. Stat **38%** vụ cháy PV đến
+  từ lỗi lắp đặt/đấu nối (TÜV Rheinland + Fraunhofer ISE).
+- **Mở rộng cùng gốc:** thiết bị/máy móc hỏng đột ngột → **dừng chuyền**; cả hai đều là **bất thường phát hiện
+  được sớm tại chỗ** trước khi thành thảm họa.
+- **Điều khách cần (JTBD):** đừng để cháy, **đừng dừng máy**, đừng trượt kiểm định.
 
 ## 🎤 Lời thoại
-- Dẫn bằng **vấn đề kinh doanh**, chưa nhắc chip. Để cả phòng (kể cả không-tech) thấy "đây là vấn đề thật, đắt tiền".
+- Dẫn bằng VẤN ĐỀ KINH DOANH (tiền & rủi ro), chưa nhắc chip. Arc-fault là **ví dụ mở màn**, nhưng gợi rằng nỗi
+  đau rộng hơn: an toàn + sức khỏe thiết bị → bắc cầu cho beachhead "giám sát an toàn & thiết bị nhà máy" (slide 07).
 
 ## 🧭 Vì sao slide này (truy vết)
-- **Luận cứ gốc:** Nhu cầu (ai cần ta, vì sao đau). **Nhịp 1.**
-- **Nguyên tắc:** "bán kết quả, không bán chip" — dẫn bằng nỗi đau, PIM là lý-do-tin (để slide 04).
-- **Nguồn:** `2026-06-09 §3` (beachhead arc-fault); `dinh-vi §6` (trụ thông điệp); khung chiến lược §3.
+- **Luận cứ gốc:** Nhu cầu. **Nhịp 1.** "Bán kết quả không bán chip."
+- **Reframe v2 (2026-06-14):** mở nỗi đau từ riêng arc-fault → **ô dù "an toàn + gián đoạn vận hành"** (khớp năng
+  lực Failure Analysis thật của Pebble Square), nhưng giữ arc-fault làm ví dụ trực quan nhất.
+- **Nguồn:** `2026-06-09 §3`; `_research-market.md` (stat 38%).
 
 ## 📥 Cần gì để hoàn thiện
-- [ ] **1 số liệu đáng tin** về cháy/sự cố PV tại VN (hoặc khu vực) — `analyst` tìm nguồn.
-- [ ] (tùy chọn) 1 ảnh/ví dụ thực tế.
+- [ ] legal-counsel đọc bản gốc TCVN/QCVN (gỡ giả định A2).
+- [ ] (tùy beachhead) số/ví dụ chi phí dừng máy ở nhà máy Hàn tại VN — `analyst`.
 
 ## ⚠️ Lưu ý
-- **Không over-claim** ("đảm bảo không cháy") — lĩnh vực an toàn nhạy cảm pháp lý. Nói "rủi ro", "phát hiện sớm".
+- KHÔNG over-claim "đảm bảo không cháy". Số quốc tế (chưa có thống kê cháy PV riêng VN).
+- Mức "mở rộng nỗi đau" phụ thuộc beachhead GM chốt (slide 07) — nếu beachhead = arc-fault đơn thì giữ arc-fault là hook chính.
