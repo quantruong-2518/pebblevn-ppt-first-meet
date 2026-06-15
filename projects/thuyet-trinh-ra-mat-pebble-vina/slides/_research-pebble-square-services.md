@@ -14,6 +14,19 @@ links: [company/parent-pebble-square.md, projects/thuyet-trinh-ra-mat-pebble-vin
 
 ---
 
+## 🔄 Cập nhật 2026-06-15 (GM cung cấp Company History chính thức + re-fetch /page/21)
+- **Timeline chính thức (2021–2025)** đã được wire vào `company/parent-pebble-square.md` (mục "Cột mốc chính
+  thức") — nâng các mốc NDA SK hynix · JV Saudi · MEISEI · PoC giọng nói · 양산 MINT · KPAS 2025 · PS Japan
+  lên **✅ từ chính history của họ**.
+- **/page/21 (WebFetch verbatim):** cấu trúc 3 tầng — chip Analog-PIM ("AI Chip Family"; Crossbar Array;
+  256-State Synaptic Cell 8-bit; Ultra-Low Power/Low Latency/Compact) + Pebble AI Studio (SDK) + AI Accelerator
+  → On-Device **Sound/Vision/Security** → **AI-Driven Failure Analysis** (Risk Management + Fault Analysis cho
+  "automated robots and machinery"). **Không** có arc/solar — xác nhận lại Phát hiện #1.
+- **PAPAYA absent:** Company History chính thức **dừng ở gen-2 MINT**, KHÔNG nhắc PAPAYA → hạ PAPAYA xuống 🟡
+  "có ở etnews 2024 nhưng chưa vào history chính thức"; **không** đưa lên slide đối ngoại như sự thật đã công bố.
+
+---
+
 ## ⚠️ 5 PHÁT HIỆN LỚN NHẤT (đọc trước)
 
 1. **arc-fault / hồ quang / điện mặt trời / an toàn điện = KHÔNG xuất hiện ở BẤT KỲ nguồn nào của Pebble

@@ -1,16 +1,20 @@
 // NGUỒN DỮ LIỆU slide (meta + nội dung) — mirror từ ../slides/*.md.
 //
-// HAI TẦNG TÁCH BẠCH (đừng trộn — đây là lỗi gốc của bản cũ):
+// HAI TẦNG TÁCH BẠCH (đừng trộn):
 //   • TẦNG SHOW   = eyebrow/title/headline/bullets/figure  → HIỂN THỊ cho khán giả. Tam ngữ {vi,ko,en}.
 //   • WORKING-DOC = why/notes/need + meta (owner/status/…)  → CHỈ panel meta (phím "m"). Tiếng Việt nội bộ.
 // need/why/notes KHÔNG bao giờ render lên slide.
 //
 // Tam ngữ: tiếng Việt là gốc; KO trang trọng (존댓말); EN chỉ cho khái niệm/thuật ngữ chuẩn.
-// Khi nội dung chốt ở file MD, cập nhật ở đây cho khớp (xem README §9).
+// KO/EN của slide 01–04 là BẢN DRAFT — cần native proofread trước sự kiện.
 //
-// XƯƠNG SỐNG (2026-06-14): "Cây cầu — 2 trụ + 1 con đường".
-//   pain → window → [Trụ 1 công nghệ] + [Trụ 2 bản địa] → [nhịp cầu CỘNG SINH] → [con đường 3 CHÂN TRỜI VN→ĐNÁ]
-//   → kinh tế → rủi ro → kêu gọi. Bìa (n:0) & tầng UI/figure GIỮ NGUYÊN.
+// XƯƠNG SỐNG (2026-06-15): tái cấu trúc theo "kỷ nguyên vươn mình" (mạch diễn dịch).
+//   00 bìa → 01 đại cục quốc gia (suy ra cần đơn vị tiên phong) → 02 Pebble Vina là ai (định vị hai thì)
+//   → 03 Pebble Square (đối tác/nền tảng) → 04 cộng sinh PV+PS → 05 menu nền tảng → 06 lộ trình → 07 lời mời.
+//   Khung arc-fault cũ đã archive ở ../slides/_archive/2026-06-15-tai-cau-truc-quoc-gia/.
+//   slides.ts đã đủ 00–07 (arc khép). Bìa (n:0) & tầng UI/figure GIỮ NGUYÊN. CEO PS = Lee Choong-hyun.
+//   Figure: 01 flow · 02 twocol · 03 forces · 04 flow(vòng lặp) · 05 forces · 06 flow · 07 bridge (bookend cây cầu).
+//   ⚠️ Mở: GM chốt BEACHHEAD Chân trời 1 (slide 05/06 đang mặc định 'an toàn & sức khỏe thiết bị nhà máy').
 
 export type Lang = "vi" | "ko" | "en";
 export const LANGS: Lang[] = ["vi", "ko", "en"];
@@ -21,7 +25,7 @@ export type LText = Record<Lang, string>;
 /** Danh sách bullet đa ngữ. */
 export type LList = Record<Lang, string[]>;
 
-/** Khung hình — biến điệu thị giác để bài không phải 11 slide cùng khuôn. */
+/** Khung hình — biến điệu thị giác để bài không phải cùng một khuôn. */
 export type Figure =
   | { kind: "forces"; items: { label: LText; sub: LText }[] }
   | { kind: "flow"; steps: { label: LText; sub?: LText }[]; foot: LText }
@@ -93,444 +97,263 @@ export const SLIDES: SlideData[] = [
     ),
     event: L("Lễ ra mắt · 19.06.2026", "런칭 · 2026.06.19", "Launch · 19 Jun 2026"),
     need: ["Logo/nhận diện", "Quyền co-brand (IP)", "Xác nhận slogan", "Native proofread KO/EN (slogan + presenter)"],
-    notes: "Bìa: hero 3D 'die' Analog-PIM (đúng sản phẩm gốc). Slogan brand-level (não Hàn + tim Việt), KHÔNG khóa vào arc-fault vì chip Pebble Square làm nhiều hơn. Đã gỡ lặp tên thương hiệu: 'Pebble Vina' chỉ ở tiêu đề, 'Pebble Square' chỉ ở dòng co-brand. Slogan chờ GM duyệt; KO/EN cần native proofread.",
-    why: "Bìa — vay uy tín Hàn (Hướng C) qua slogan 'não Hàn, tim Việt' + die 3D. Co-brand gọn 1 dòng. Nguồn: ADR 0001; khung luận §1 (NT3 honor).",
+    notes: "Bìa: hero 3D 'die' Analog-PIM. ⚠️ Dòng co-brand đang ghi 'phân phối ủy quyền chính thức' — nhưng CHƯA ký HĐ với Pebble Square (2026-06-15). GM đã chốt GIỮ NGUYÊN bìa → để nguyên, nhưng gắn cờ để rà trước sự kiện.",
+    why: "Bìa — vay uy tín Hàn (Hướng C) qua slogan 'não Hàn, tim Việt' + die 3D. Nguồn: ADR 0001.",
   },
 
-  // ===== 01 · ĐỊNH VỊ + CHÀO (bookend với 10) =====
+  // ===== 01 · KỶ NGUYÊN VƯƠN MÌNH (mạch diễn dịch: đại cục → suy ra → Pebble Vina) · figure: flow =====
   {
-    n: 1, file: "01-dinh-vi-chao.md", nhip: 0, owner: "growth + GM", status: "skeleton", tech: "non", gatDau: "Cả phòng",
-    eyebrow: L("Pebble Vina là ai", "페블 비나는", "Who we are"),
+    n: 1, file: "01-ky-nguyen-vuon-minh.md", nhip: "mở đầu", owner: "GM", status: "drafting", tech: "non", gatDau: "Cả phòng (khán giả Việt)",
+    eyebrow: L("Bối cảnh · Kỷ nguyên mới", "시대적 배경 · 새로운 시대", "Context · A new era"),
+    title: L("Kỷ nguyên vươn mình của Việt Nam", "도약하는 베트남의 시대", "Vietnam's era of national rising"),
+    headline: L(
+      "Việt Nam đang bước vào kỷ nguyên vươn mình của dân tộc — công cuộc hiện đại hóa đất nước được Tổng Bí thư Tô Lâm cùng lãnh đạo Đảng, Nhà nước coi trọng và thúc đẩy.",
+      "베트남은 민족의 도약 시대에 들어서고 있습니다 — 국가 현대화 과업을 또 럼 서기장과 당·국가 지도부가 중시하고 적극 추진하고 있습니다.",
+      "Vietnam is entering an era of national rising — the country's modernization is valued and actively driven by General Secretary Tô Lâm and the Party and State leadership.",
+    ),
+    figure: {
+      kind: "flow",
+      steps: [
+        {
+          label: L("Bán dẫn & AI", "반도체와 AI", "Semiconductors & AI"),
+          sub: L("ngành trọng yếu", "핵심 전략 산업", "strategic priority sectors"),
+        },
+        {
+          label: L("Đơn vị tiên phong", "선도 기업", "Pioneers"),
+          sub: L("đưa công nghệ vào thực tế", "기술을 현장에 도입", "putting technology into practice"),
+        },
+        {
+          label: L("Giá trị", "가치", "The value"),
+          sub: L("cải tiến ngành cũ · tạo ngành mới", "기존 산업 혁신 · 새 산업 창출", "renew old industries · create new ones"),
+        },
+      ],
+      foot: L("Đó là lý do Pebble Vina ra đời.", "그것이 바로 Pebble Vina가 탄생한 이유입니다.", "That is why Pebble Vina was born."),
+    },
+    bullets: {
+      vi: ["Theo Nghị quyết 57-NQ/TW và Chiến lược phát triển công nghiệp bán dẫn quốc gia đến 2030."],
+      ko: ["결의 제57호와 2030 국가 반도체 산업 발전 전략에 근거합니다."],
+      en: ["Per Resolution 57-NQ/TW and the national Semiconductor Industry Strategy to 2030."],
+    },
+    need: ["GM duyệt câu chữ chính trị", "Native proofread KO/EN"],
+    notes: "Mạch DIỄN DỊCH kiểu Việt (GM, 2026-06-15): đại cục quốc gia → suy ra cần đơn vị tiên phong → hạ cánh Pebble Vina. LẰN RANH: KHÔNG ngụ ý lãnh đạo bảo trợ PV — chỉ dẫn chủ trương quốc gia rồi TA tự đáp lời. Chức danh đã xác minh: Tổng Bí thư khóa XIV (đương nhiệm). Nguồn NQ57 (22/12/2024) + QĐ1018 (21/9/2024).",
+    why: "Khung luận GM: mở deck bằng diễn dịch quốc gia — nâng PV thành 'đáp lời nhu cầu quốc gia', giải thế khó 'chưa ký HĐ/chưa chọn vertical' (biện minh ở tầm sứ mệnh). Nuốt luôn 'why now'.",
+  },
+
+  // ===== 02 · PEBBLE VINA LÀ AI (định vị HAI THÌ — điểm hạ cánh của slide 01) · figure: twocol =====
+  {
+    n: 2, file: "02-dinh-vi-pebble-vina.md", nhip: 0, owner: "GM", status: "drafting", tech: "non", gatDau: "Cả phòng",
+    eyebrow: L("Pebble Vina là ai", "Pebble Vina는", "Who we are"),
     title: L("Một câu về chúng tôi", "한 문장으로", "In one sentence"),
     headline: L(
-      "Công ty giải pháp Edge-AI cho Việt Nam và Đông Nam Á — khởi đầu từ an toàn điện, trên nền công nghệ độc quyền của Pebble Square (Hàn Quốc).",
-      "베트남과 동남아를 위한 엣지 AI 솔루션 기업 — 전기 안전에서 출발해, 페블스퀘어(한국)의 독점 기술 위에 세웁니다.",
-      "An Edge-AI solutions company for Vietnam and Southeast Asia — starting from electrical safety, built on Pebble Square's (Korea) exclusive technology.",
-    ),
-    bullets: {
-      vi: ["An toàn điện", "Công nghệ Hàn (PIM)", "Có người Việt lo"],
-      ko: ["전기 안전", "한국 기술 (PIM)", "베트남 현지 지원"],
-      en: ["Electrical safety", "Korean tech (PIM)", "A local team in Vietnam"],
-    },
-    notes: "Chào & cảm ơn đúng thứ bậc: bác Kim, CEO Pebble Square (GS Bae Hak-yeol), quan khách. Đọc câu định vị — gieo mental model chung: ta DỰNG một doanh nghiệp Việt (không chỉ nhập hàng), khởi đầu từ an toàn điện, đi xa tới ĐNÁ. Đây là ĐẦU cây cầu. 'Công ty giải pháp' = đích đến (Hướng C), không phải tuyên bố ta đã là vậy hôm nay.",
-    why: "Luận cứ: Tri giác. Nhịp 0. BOOKEND (lặp ở slide 10). Reframe 2026-06-14: từ thụ động 'đối tác đưa công nghệ Hàn vào VN' → chủ động 'công ty giải pháp dựng nghiệp VN→ĐNÁ' (đặt lộ trình của TA làm nhân vật chính). Gieo ẩn dụ cây cầu ngay nhịp 0. Nguồn: dinh-vi §1,§3.",
-  },
-
-  // ===== 01b · BẢN ĐỒ HÀNH TRÌNH (agenda = cây cầu) · NAV ngoài arc · figure: bridge =====
-  {
-    n: "1b", file: "01b-ban-do-hanh-trinh.md", nhip: "—", owner: "growth + GM", status: "skeleton", tech: "non", gatDau: "Cả phòng",
-    eyebrow: L("Lộ trình hôm nay", "오늘 갈 길", "Today's route"),
-    title: L("Cây cầu ta sẽ đi qua", "오늘 건널 다리", "The bridge we'll cross"),
-    headline: L(
-      "Từ công nghệ Hàn Quốc (Pebble Square) sang vận hành thật tại Việt Nam (Pebble Vina) — và xa hơn, ra Đông Nam Á.",
-      "한국 기술(페블스퀘어)에서 베트남 현장(페블 비나)으로 — 그리고 동남아로.",
-      "From Korean technology (Pebble Square) to real operations in Vietnam (Pebble Vina) — and onward to Southeast Asia.",
+      "Pebble Vina ra đời để đưa công nghệ Edge-AI của Pebble Square (Hàn Quốc) vào vận hành thật tại Việt Nam.",
+      "Pebble Vina는 Pebble Square(한국)의 엣지 AI 기술을 베트남 현장에 실제로 도입하기 위해 설립되었습니다.",
+      "Pebble Vina was founded to bring Pebble Square's (Korea) Edge-AI technology into real operation in Vietnam.",
     ),
     figure: {
-      kind: "bridge",
-      nodes: [
-        L("Ai", "누구", "Who"),
-        L("Nỗi đau", "문제", "Pain"),
-        L("Giải pháp", "해법", "Solution"),
-        L("Cộng sinh", "공생", "Symbiosis"),
-        L("3 chân trời", "세 지평", "3 horizons"),
-        L("Lời mời", "초대", "Invitation"),
-      ],
-      foot: L(
-        "Hai trụ Hàn ↔ Việt · một con đường · cùng đi",
-        "한국 ↔ 베트남 두 기둥 · 하나의 길 · 함께",
-        "Two pillars Korea ↔ Vietnam · one road · walked together",
-      ),
-      gold: 5,
+      kind: "twocol",
+      left: {
+        head: L("Hôm nay", "오늘", "Today"),
+        items: [
+          L("Một công ty Việt Nam độc lập", "독립된 베트남 기업", "An independent Vietnamese company"),
+          L("Bắt đầu từ bài toán cấp thiết nhất", "가장 시급한 과제부터 시작", "Starting with the most urgent problem"),
+        ],
+      },
+      right: {
+        head: L("Mục tiêu", "목표", "Our goal"),
+        items: [
+          L("Đối tác phân phối độc quyền của Pebble Square", "Pebble Square 독점 총판 파트너", "Pebble Square's exclusive distribution partner"),
+          L("Công ty giải pháp Edge-AI cho Đông Nam Á", "동남아를 위한 엣지 AI 솔루션 기업", "An Edge-AI solutions company for Southeast Asia"),
+        ],
+      },
     },
     bullets: {
-      vi: ["① An toàn điện — mũi nhọn mở thị trường", "② Việt Nam → Đông Nam Á", "③ Pebble Square — nền tảng đa năng"],
-      ko: ["① 전기 안전 — 베트남 진입점", "② 베트남 → 동남아", "③ 페블스퀘어 — 다목적 플랫폼"],
-      en: ["① Electrical safety — beachhead in Vietnam", "② Vietnam → Southeast Asia", "③ Pebble Square — a versatile platform"],
+      vi: ["Đặt mục tiêu — và làm cho nó thành hiện thực, từng bước một."],
+      ko: ["목표를 세우고, 한 걸음씩 현실로 만듭니다."],
+      en: ["We set the goal — and make it real, step by step."],
     },
-    notes: "Slide ĐỊNH HƯỚNG (nav), ngoài arc nhịp — đặt sau chào (01), trước nội dung (02). Agenda dựng THÀNH ẩn dụ cây cầu: vừa định hướng vừa gieo metaphor. Lời thoại: 'Trong (X) phút, mời quý vị đi cùng tôi qua cây cầu này' → điểm nhanh các trạm → móc bookend slide 10. ĐỪNG liệt kê đủ 10 mục (lộ bài). 3 chân trời ở bullets là PREVIEW — phụ thuộc GM chốt beachhead (HANDOFF §3).",
-    why: "Nhu cầu GM: agenda giúp khách hình dung dễ hơn — giải bằng bản đồ cây cầu thay vì danh sách (giữ cảm xúc lễ ra mắt). Đồng bộ xương sống v2 '2 trụ + 1 con đường + 3 chân trời'. Bookend kép với slide 07 (3 chân trời) & 10 (bridge). Tái dùng figure 'bridge' sẵn có — KHÔNG thêm Figure kind mới.",
+    need: ["GM chốt mức nói 'độc quyền' trên sân khấu", "Native proofread KO/EN"],
+    notes: "ĐỊNH VỊ HAI THÌ (chốt 2026-06-15): cột 'Hôm nay' = cái chứng minh được; cột 'Mục tiêu' (gold) = đích earned. CHƯA ký HĐ với PS → 'độc quyền' nằm ở cột MỤC TIÊU, không phải hiện trạng (CEO PS ngồi dưới). Motif = lời GM, sợi chỉ xuyên deck.",
+    why: "Điểm hạ cánh của mạch diễn dịch slide 01. Phương pháp định vị hai thì — không hứa viển vông. Nguồn: dinh-vi §3; ADR 0001 (Hướng C).",
   },
 
-  // ===== 02 · NỖI ĐAU =====
+  // ===== 03 · PEBBLE SQUARE — NỀN TẢNG TA CHỌN (honor; chứng minh nửa "nền tảng PS" của slide 02) · figure: forces =====
   {
-    n: 2, file: "02-noi-dau.md", nhip: 1, owner: "growth", status: "skeleton", tech: "non", gatDau: "Cả phòng",
-    eyebrow: L("Vấn đề", "문제", "The problem"),
-    title: L("Cháy do hồ quang & ngừng máy", "아크 결함 화재와 가동 중단", "Arc-fault fire & downtime"),
+    n: 3, file: "03-pebble-square.md", nhip: 1, owner: "product-lead", status: "drafting", tech: "1 điểm (số MINT)", gatDau: "CEO Pebble Square",
+    eyebrow: L("Nền tảng · Pebble Square", "플랫폼 · Pebble Square", "The platform · Pebble Square"),
+    title: L("Nền tảng ta chọn", "우리가 선택한 기술", "The platform we chose"),
     headline: L(
-      "Điện mặt trời Việt Nam bùng nổ — kèm rủi ro cháy do hồ quang và ngừng phát. Một sự cố = dừng sản xuất, mất tài sản, mất uy tín.",
-      "베트남 태양광은 급성장했고, 그만큼 아크 결함 화재와 발전 중단 위험도 커졌습니다. 한 번의 사고가 생산 중단·자산 손실·신뢰 손상으로 이어집니다.",
-      "Vietnam's solar boom brings arc-fault fire and outage risk. One incident means halted production, lost assets, lost trust.",
-    ),
-    figure: {
-      kind: "stat",
-      value: L("38%", "38%", "38%"),
-      caption: L(
-        "vụ cháy điện mặt trời đến từ lỗi lắp đặt / đấu nối — và hồ quang điện một chiều là nguyên nhân hàng đầu",
-        "태양광 화재가 시공·결선 불량에서 비롯되며, DC 아크 결함이 가장 큰 원인입니다",
-        "of PV fires trace to installation / wiring faults — and DC arc-faults are the leading cause",
-      ),
-      source: L("Khảo sát 210 vụ · TÜV Rheinland + Fraunhofer ISE", "210건 조사 · TÜV Rheinland + Fraunhofer ISE", "210-case study · TÜV Rheinland + Fraunhofer ISE"),
-    },
-    bullets: {
-      vi: [
-        "Hiếm nhưng hậu quả lớn: một vụ cháy = mất tài sản, dừng chuyền, gián đoạn doanh thu",
-        "Điều khách cần: đừng để cháy, đừng dừng máy, đừng trượt kiểm định",
-      ],
-      ko: [
-        "드물지만 치명적: 한 번의 화재 = 자산 손실 · 라인 정지 · 매출 중단",
-        "고객이 원하는 것: 화재 없이, 멈춤 없이, 검사 통과",
-      ],
-      en: [
-        "Rare but catastrophic: one fire = lost assets, halted line, lost revenue",
-        "What customers need: no fire, no downtime, pass inspection",
-      ],
-    },
-    need: ["legal-counsel đọc bản gốc TCVN/QCVN (gỡ giả định A2)"],
-    notes: "Dẫn bằng VẤN ĐỀ KINH DOANH, chưa nhắc chip. Khung 'đuôi rủi ro hậu quả cao' (hiếm nhưng mất nhà máy), nguyên nhân #1 = hồ quang DC. KHÔNG nêu 'thiệt hại trung bình 1 vụ cháy' (không có số tin cậy). KHÔNG over-claim 'đảm bảo không cháy'. Số quốc tế (chưa có thống kê cháy PV riêng VN).",
-    why: "Luận cứ: Nhu cầu. Nhịp 1. 'Bán kết quả không bán chip'. Nguồn: 2026-06-09 §3; dinh-vi §6.",
-  },
-
-  // ===== 03 · VÌ SAO BÂY GIỜ (figure: 3 lực hội tụ) =====
-  {
-    n: 3, file: "03-vi-sao-bay-gio.md", nhip: 2, owner: "analyst", status: "skeleton", tech: "nhẹ", gatDau: "Investor, quan khách",
-    eyebrow: L("Thời điểm", "시점", "Why now"),
-    title: L("Vì sao bây giờ", "왜 지금인가", "Why now"),
-    headline: L(
-      "Ba lực vừa hội tụ cùng lúc — cửa sổ đang mở cho cả hai bên.",
-      "세 가지 흐름이 지금 동시에 만났습니다 — 양쪽 모두에게 기회의 창이 열려 있습니다.",
-      "Three forces are converging at once — the window is open for both sides.",
+      "Pebble Vina không chọn một con chip — chọn nền tảng Analog-PIM đa năng của Pebble Square (Hàn Quốc, 2021): công nghệ thật, đo được, đã được thị trường công nhận.",
+      "Pebble Vina는 칩 하나가 아니라, Pebble Square(한국, 2021)의 다목적 Analog-PIM 플랫폼을 선택했습니다 — 실재하고, 측정되며, 시장에서 검증된 기술입니다.",
+      "Pebble Vina didn't pick a single chip — we chose Pebble Square's multi-purpose Analog-PIM platform (Korea, 2021): technology that is real, measured, and market-recognized.",
     ),
     figure: {
       kind: "forces",
       items: [
         {
-          label: L("Quy định an toàn vào cuộc", "안전 규제 본격화", "Safety regulation arrives"),
-          sub: L("TCVN 7447-7-712:2019 · QCVN 01:2020/BCT", "TCVN 7447-7-712:2019 · QCVN 01:2020/BCT", "TCVN 7447-7-712:2019 · QCVN 01:2020/BCT"),
+          label: L("Nền tảng đa năng", "다목적 플랫폼", "A multi-purpose platform"),
+          sub: L("On-Device: Sound · Vision · Security + Failure Analysis", "온디바이스: Sound · Vision · Security + Failure Analysis", "On-Device: Sound · Vision · Security + Failure Analysis"),
         },
         {
-          label: L("Làn sóng PV đủ tuổi → rủi ro hiện ra", "태양광 노후화 → 위험 표면화", "Aging PV fleet → risk surfaces"),
-          sub: L("9,58 GW · ~102.000 hệ mái nhà (2021) — nay đã 5–6 tuổi", "9.58 GW · 약 102,000개 옥상 시스템 (2021) — 5~6년 차", "9.58 GW · ~102,000 rooftop systems (2021) — now 5–6 yrs old"),
+          label: L("Công nghệ đo được", "측정 가능한 성능", "Measurable performance"),
+          sub: L("MINT · 4M synapse · 30 GOPS · 17,6 TOPS/W · Analog-PIM", "MINT · 시냅스 400만 · 30 GOPS · 17.6 TOPS/W · Analog-PIM", "MINT · 4M synapses · 30 GOPS · 17.6 TOPS/W · Analog-PIM"),
         },
         {
-          label: L("Doanh nghiệp Hàn tại VN dày lên", "베트남 내 한국 기업 밀집", "Korean firms cluster in Vietnam"),
-          sub: L("~10.000 DN Hàn · FDI Hàn >92 tỷ USD (#1 tại VN)", "한국 기업 ~10,000개 · 한국 FDI 920억$+ (1위)", "~10,000 Korean firms · Korean FDI >$92bn (#1)"),
+          label: L("Đã được công nhận", "검증된 신뢰", "Proven & recognized"),
+          sub: L("JV Saudi–NEOM · KGCCI 2024 · NDA SK hynix · ETRI · PS Japan", "사우디 JV–NEOM · KGCCI 2024 · SK하이닉스 NDA · ETRI · PS Japan", "Saudi JV–NEOM · KGCCI 2024 · SK hynix NDA · ETRI · PS Japan"),
         },
       ],
     },
-    need: ["legal-counsel: TCVN/QCVN có bắt buộc AFCI/hồ quang không? (giả định A2)"],
-    notes: "Khung 'why now' — điều gì VỪA thay đổi. Ghi '~10.000 DN Hàn' KHÔNG ghi '10.000 hội viên KOCHAM' (chưa kiểm chứng). KHÔNG tuyên bố 'luật VN bắt buộc chống hồ quang' — chưa kiểm chứng điều khoản gốc. Sắc thái cộng sinh (2026-06-14): cửa sổ mở cho CẢ HAI bên — VN cần giải pháp ngay, Pebble Square cũng đang mở ra châu Á ngay (Tokyo 2025) → thời điểm khớp để dựng cầu cùng nhau (bắc sang slide 06). 'Cửa sổ phai' để trong notes, KHÔNG lên sân khấu.",
-    why: "Luận cứ: Thế–thời. Nhịp 2. 'Why now' + chất xúc tác. Thêm sắc thái 'cửa sổ cho cả hai bên' để dẫn sang nhịp cộng sinh. Nguồn: 2026-06-09 §1; khung chiến lược §4.",
+    bullets: {
+      vi: ["Họ chip Analog-PIM: MOCHA (2021) → MINT (gen-2, sản xuất hàng loạt 2023)."],
+      ko: ["Analog-PIM 칩 제품군: MOCHA (2021) → MINT (2세대, 2023 양산)."],
+      en: ["Analog-PIM chip family: MOCHA (2021) → MINT (gen-2, mass-produced in 2023)."],
+    },
+    need: ["Xác nhận chính tả KO + chức danh CEO Lee Choong-hyun với PS", "Xin PS cho trích spec PAPAYA (nếu dùng số)", "Native proofread KO/EN"],
+    notes: "HONOR cho CEO PS ngồi dưới. CEO = Lee Choong-hyun (이충현) — GM chốt 2026-06-15 (hồ sơ nội bộ cũ ghi ngược, đã sửa). LẰN RANH: (1) KHÔNG gán arc-fault cho PS — đó là góc của ta, để dành slide 'menu'; (2) KHÔNG số doanh thu (−86% YoY, cờ đỏ); (3) KHÔNG trình '100× GPU/Jetson' như benchmark độc lập — là claim của PS. Nước cờ: để CEO tự nói số sâu. Số MINT ✅ verified.",
+    why: "Chứng minh nửa 'nền tảng Pebble Square' trong câu thì-hiện-tại slide 02 là THẬT → nâng độ tin cả định vị; đỡ cho nhà đầu tư. Nguồn: _research-pebble-square-services.md (Mục 1–3 ✅); _research-proof.md (specs MINT).",
   },
 
-  // ===== 04 · TRỤ 1 — NĂNG LỰC CÔNG NGHỆ (Pebble Square) — figure: flow =====
+  // ===== 04 · CỘNG SINH — KHÔNG PHẢI MUA–BÁN (khóa lợi ích hai bên; đỡ rủi ro 'chưa ký HĐ') · figure: twocol cho/được =====
   {
-    n: 4, file: "04-giai-phap-bang-chung.md", nhip: 3, owner: "product-lead", status: "skeleton", tech: "1 điểm tech", gatDau: "CEO Pebble Square",
-    eyebrow: L("Trụ 1 · Năng lực công nghệ", "기둥 1 · 기술 역량", "Pillar 1 · The technology"),
-    title: L("Công nghệ Pebble Square", "페블스퀘어의 기술", "Pebble Square's technology"),
+    n: 4, file: "04-cong-sinh.md", nhip: 2, owner: "GM", status: "drafting", tech: "non", gatDau: "CEO Pebble Square + Nhà đầu tư",
+    eyebrow: L("Quan hệ · Cộng sinh", "관계 · 상생", "The relationship · Symbiosis"),
+    title: L("Không phải mua–bán", "거래가 아닙니다", "Not a buy–sell deal"),
     headline: L(
-      "Trụ thứ nhất là công nghệ: phát hiện hồ quang ngay tại thiết bị — điện thấp, độ trễ thấp, không cần cloud — trên chip Analog-PIM của Pebble Square.",
-      "첫 번째 기둥은 기술입니다: 페블스퀘어 아날로그-PIM 칩으로 아크 결함을 기기에서 직접 감지합니다 — 저전력, 저지연, 클라우드 불필요.",
-      "The first pillar is the technology: detect arc-faults right on the device — low power, low latency, no cloud — on Pebble Square's Analog-PIM chip.",
+      "Một bên có công nghệ, một bên có thị trường và năng lực thực thi. Pebble Square và Pebble Vina khóa vào nhau — mỗi thắng lợi ở Việt Nam khiến cả hai mạnh hơn.",
+      "한쪽은 기술을, 다른 한쪽은 시장과 실행력을 가졌습니다. Pebble Square와 Pebble Vina는 서로 맞물려 있고, 베트남에서의 성공 하나하나가 양쪽 모두를 강하게 만듭니다.",
+      "One side has the technology, the other has the market and execution. Pebble Square and Pebble Vina are interlocked — every win in Vietnam makes both stronger.",
     ),
     figure: {
       kind: "flow",
       steps: [
-        { label: L("Cảm biến", "센서", "Sensor"), sub: L("dòng / hồ quang", "전류 / 아크", "current / arc") },
-        { label: L("Chip PIM", "PIM 칩", "PIM chip"), sub: L("tại tủ điện / inverter", "배전반 / 인버터 내", "in the panel / inverter") },
-        { label: L("Cảnh báo sớm", "조기 경보", "Early alert"), sub: L("trước khi thành cháy", "화재 이전에", "before it becomes a fire") },
+        { label: L("Mỗi pilot thắng ở Việt Nam", "베트남에서 거두는 파일럿 성공", "Each pilot won in Vietnam") },
+        { label: L("De-risk kế hoạch Đông Nam Á của Pebble Square", "Pebble Square 동남아 계획의 리스크 감소", "De-risks Pebble Square's Southeast Asia plan") },
+        { label: L("Pebble Square dồn nguồn lực & ưu tiên lại", "Pebble Square가 자원과 우선순위를 재집중", "Pebble Square refocuses resources & priority") },
+        { label: L("Pebble Vina thắng nhanh hơn", "Pebble Vina가 더 빨리 성공", "Pebble Vina wins faster") },
       ],
-      foot: L("Xử lý on-device · không gửi dữ liệu lên cloud", "온디바이스 처리 · 클라우드 전송 없음", "On-device · no data sent to the cloud"),
+      foot: L(
+        "Vòng quay khóa chặt theo thời gian — không phải hợp đồng phân phối mong manh.",
+        "시간이 갈수록 더 단단히 맞물리는 선순환 — 깨지기 쉬운 총판 계약이 아닙니다.",
+        "A loop that locks tighter over time — not a fragile distribution contract.",
+      ),
     },
-    bullets: {
-      vi: [
-        "Nền tảng thật: chip MINT của Pebble Square — 17,6 TOPS/W, Analog-PIM (đo được)",
-        "Bài toán có chuẩn rõ ràng: arc-fault PV theo UL 1699B / IEC 63027",
-      ],
-      ko: [
-        "검증된 기반: 페블스퀘어 MINT 칩 — 17.6 TOPS/W, 아날로그-PIM (실측)",
-        "명확한 표준: PV 아크 결함 UL 1699B / IEC 63027",
-      ],
-      en: [
-        "Real foundation: Pebble Square MINT — 17.6 TOPS/W, Analog-PIM (measured)",
-        "Well-defined problem: PV arc-fault per UL 1699B / IEC 63027",
-      ],
-    },
-    need: ["Email Pebble Square: PoC/benchmark arc-fault + quyền trích dẫn", "Xác nhận CEO (Bae/Lee) + có bài PIM-anomaly thật (DOI) không?"],
-    notes: "Khung 3 LỚP TÁCH BẠCH (không ghép): (1) nguyên lý PIM tiết kiệm điện [học thuật] + (2) chip MINT thật, 17,6 TOPS/W [để CEO Pebble Square tự nói] + (3) arc-fault có chuẩn UL 1699B/IEC 63027. ⚠️ KHÔNG nói 'MINT đã benchmark arc-fault vs ST/TI' (không có số công khai). ⚠️ KHÔNG trích 'MDPI 2024' — bài đó KHÔNG tồn tại. Mời CEO nói 1–2 phút (podium honor). Reframe 2026-06-14: NÉN khỏi vị trí cao trào cũ → chỉ là 1 TRỤ ngang hàng trụ bản địa (05); đừng để 'phình' lại.",
-    why: "Luận cứ: Năng lực công nghệ = TRỤ 1. Nhịp 3. Reframe: hạ khỏi cao trào (con chip không còn là nhân vật chính), vẫn giữ honor + CEO nói. Nguồn: parent-pebble-square.md; khung luận §1 (NT1), §3.",
+    need: ["Trạng thái HĐ độc quyền + điều khoản hỗ trợ (MDF/đào tạo) — legal-counsel", "Xác nhận chiến lược ĐNÁ của PS để chạm CEO đúng — analyst", "Native proofread KO/EN"],
+    notes: "FIGURE ĐỔI twocol→flow (2026-06-15, GM: slide cũ 'nhiều thứ, chưa rõ thông điệp'): hero = VÒNG LẶP cộng sinh — đó mới là cái phân biệt cộng sinh ≠ mua-bán (deal phân phối nào cũng 'mỗi bên có cái bên kia cần', nhưng chỉ cộng sinh mới có vòng khóa chặt theo thời gian). Give/get dời xuống lời thoại, KHÔNG bày lên slide. Mức 'độc quyền' = MỀM CÔNG KHAI: nói 'đối tác phân phối', để 'độc quyền' cho gặp riêng. Không over-claim cam kết PS chưa có HĐ. VN = PoC mô hình lập pháp nhân địa phương (Tokyo 2025). Motif cây cầu trả ở slide 07.",
+    why: "Sau honor nền tảng (03), định nghĩa BẢN CHẤT quan hệ = cộng sinh. THÔNG ĐIỆP = vòng lặp khóa lợi ích hai bên → đỡ rủi ro 'chưa ký HĐ' (quan hệ thật chứng minh bằng vòng lặp, không bằng tờ giấy). Chạm CEO + nhà đầu tư. Nguồn: dinh-vi §2; parent §mô hình mở rộng; 06-cong-sinh (archive).",
   },
 
-  // ===== 05 · TRỤ 2 — NĂNG LỰC BẢN ĐỊA (Pebble Vina) =====
+  // ===== 05 · MENU NỀN TẢNG — MỘT NỀN TẢNG, NHIỀU BÀI TOÁN VN (beachhead sống ở đây) · figure: forces =====
   {
-    n: 5, file: "05-vi-sao-la-ta.md", nhip: 4, owner: "growth + GM", status: "skeleton", tech: "non", gatDau: "Bác Kim / KOCHAM",
-    eyebrow: L("Trụ 2 · Năng lực bản địa", "기둥 2 · 현지 역량", "Pillar 2 · Local capability"),
-    title: L("Cỗ máy thực thi của Pebble Vina", "페블 비나의 실행 엔진", "Pebble Vina's execution engine"),
+    n: 5, file: "05-menu-nen-tang.md", nhip: 3, owner: "GM", status: "drafting", tech: "nhẹ", gatDau: "Cả phòng (khách có nhà máy)",
+    eyebrow: L("Ứng dụng · Bài toán Việt Nam", "응용 · 베트남의 과제", "Applications · Vietnam's problems"),
+    title: L("Một nền tảng, nhiều bài toán", "하나의 플랫폼, 여러 과제", "One platform, many problems"),
     headline: L(
-      "Trụ thứ hai là Pebble Vina: độc quyền phân phối, mạng lưới KOCHAM, và năng lực bản địa mà Seoul không cung cấp được. Công nghệ chỉ thắng khi có người đưa nó chạy thật.",
-      "두 번째 기둥은 페블 비나입니다: 독점 총판, KOCHAM 네트워크, 그리고 서울이 제공할 수 없는 현지 역량. 기술은 현장에서 실제로 돌릴 사람이 있어야 이깁니다.",
-      "The second pillar is Pebble Vina: exclusive distribution, the KOCHAM network, and local capacity Seoul cannot provide. Technology only wins when someone makes it run for real.",
-    ),
-    bullets: {
-      vi: [
-        "Quyền phân phối độc quyền tại Việt Nam (→ Đông Nam Á)",
-        "Mạng lưới KOCHAM — cộng đồng doanh nghiệp Hàn tại VN (bác Kim, Phó Chủ tịch)",
-        "Năng lực bản địa: FAE · tuân thủ TCVN/QCVN · bảo hành tại chỗ",
-        "Mỗi pilot thành một case study — lợi thế tự dày lên",
-        "Họ cần thị trường của ta — ta cần công nghệ của họ",
-      ],
-      ko: [
-        "베트남 독점 총판 권리 (→ 동남아)",
-        "KOCHAM 네트워크 — 베트남 내 한국 기업 커뮤니티 (김 부회장)",
-        "현지 역량: FAE · TCVN/QCVN 준수 · 현장 보증",
-        "파일럿마다 사례가 되어 — 우위가 스스로 두터워집니다",
-        "그들에겐 우리의 시장이, 우리에겐 그들의 기술이 필요합니다",
-      ],
-      en: [
-        "Exclusive distribution rights in Vietnam (→ Southeast Asia)",
-        "The KOCHAM network — Korean business community in Vietnam (Vice Chairman Kim)",
-        "Local capacity: FAE · TCVN/QCVN compliance · on-site warranty",
-        "Each pilot becomes a case study — the advantage compounds",
-        "They need our market — we need their technology",
-      ],
-    },
-    need: ["Trạng thái độc quyền HĐ (legal)", "Năng lực FAE thực tế (operations)"],
-    notes: "Vinh danh bác Kim & KOCHAM (gật đầu investor). Reframe 2026-06-14: NÂNG ngang hàng trụ công nghệ (04) — không có cỗ máy bản địa, chip giỏi mấy cũng nằm trong kho → đó là lý do Pebble Square CẦN một Pebble Vina. Bullet cuối là câu BẮC CẦU sang nhịp cộng sinh (slide 06). Nói đúng vai (trung thực = uy tín).",
-    why: "Luận cứ: Thế + Người = TRỤ 2. Nhịp 4. 7 Powers: Cornered Resource + Counter-Positioning. Reframe: nâng ngang trụ 1 + thêm câu bắc cầu sang cộng sinh. Nguồn: 2026-06-09 §5; khung chiến lược §4–5.",
-  },
-
-  // ===== 06 · CỘNG SINH — nhịp cầu giữa hai trụ (MỚI) · figure: 2 cột cho/được =====
-  {
-    n: 6, file: "06-cong-sinh.md", nhip: 5, owner: "GM + chief-of-staff", status: "skeleton", tech: "non", gatDau: "CEO Pebble Square + Investor",
-    eyebrow: L("Cộng sinh", "공생", "Symbiosis"),
-    title: L("Đôi bên cùng thắng", "양쪽 모두 이기는 구조", "A win-win that compounds"),
-    headline: L(
-      "Đây không phải quan hệ mua–bán. Mỗi bên cho cái bên kia không tự có — và mỗi thắng lợi ở Việt Nam khiến cả hai mạnh hơn.",
-      "단순한 매매 관계가 아닙니다. 서로가 갖지 못한 것을 주고받으며, 베트남에서의 승리는 양쪽 모두를 더 강하게 만듭니다.",
-      "This is not a buyer–seller deal. Each side gives what the other lacks — and every win in Vietnam makes both stronger.",
+      "Một nền tảng Edge-AI — nhiều bài toán Việt Nam giải được. Pebble Vina bắt đầu từ bài toán cấp thiết nhất: an toàn & sức khỏe thiết bị trong nhà máy.",
+      "하나의 엣지 AI 플랫폼으로 베트남의 여러 과제를 풀 수 있습니다. Pebble Vina는 가장 시급한 과제 — 공장 설비의 안전과 상태 관리 — 부터 시작합니다.",
+      "One Edge-AI platform, many Vietnamese problems it can solve. Pebble Vina starts with the most urgent: the safety & health of factory equipment.",
     ),
     figure: {
-      kind: "twocol",
-      left: {
-        head: L("Pebble Square", "페블스퀘어", "Pebble Square"),
-        items: [
-          L("CHO ta: chip MINT (PIM) · IP & R&D · đào tạo · hỗ trợ marketing", "우리에게: MINT 칩(PIM) · IP·R&D · 교육 · 마케팅 지원", "Gives us: MINT chip (PIM) · IP & R&D · training · marketing support"),
-          L("ĐƯỢC từ ta: cửa vào VN · bản địa hóa · bàn đạp ra Đông Nam Á", "우리에게서: 베트남 진입 · 현지화 · 동남아 발판", "Gains from us: entry to VN · localization · a springboard into SE Asia"),
-        ],
-      },
-      right: {
-        head: L("Pebble Vina", "페블 비나", "Pebble Vina"),
-        items: [
-          L("CHO họ: pháp nhân VN · KOCHAM · đội FAE · tuân thủ · pilot", "그들에게: 베트남 법인 · KOCHAM · FAE · 준수 · 파일럿", "Gives them: a VN entity · KOCHAM · FAE team · compliance · pilots"),
-          L("ĐƯỢC từ họ: công nghệ đẳng cấp · uy tín Hàn · độc quyền VN→ĐNÁ", "그들에게서: 세계 수준 기술 · 한국 신뢰 · VN→동남아 독점권", "Gains from them: world-class tech · Korean credibility · VN→SEA exclusivity"),
-        ],
-      },
+      kind: "forces",
+      items: [
+        {
+          label: L("An toàn điện & năng lượng", "전기 안전 & 에너지", "Electrical safety & energy"),
+          sub: L("Giám sát hồ quang/arc-fault · điện mặt trời · tủ điện", "아크 결함 감지 · 태양광 · 배전반", "Arc-fault monitoring · solar · switchboards"),
+        },
+        {
+          label: L("Sản xuất & bảo trì dự đoán", "제조 & 예지보전", "Manufacturing & predictive maintenance"),
+          sub: L("Anomaly · Failure Analysis (năng lực lõi Pebble Square)", "이상 탐지 · Failure Analysis (Pebble Square 핵심 역량)", "Anomaly · Failure Analysis (Pebble Square's core capability)"),
+        },
+        {
+          label: L("Giọng nói · IoT · an ninh dân dụng", "음성 · IoT · 생활 보안", "Voice · IoT · home security"),
+          sub: L("Sound · Security On-Device (Pebble Square đã PoC)", "Sound · Security 온디바이스 (Pebble Square PoC 보유)", "Sound · Security On-Device (Pebble Square has PoCs)"),
+        },
+      ],
     },
     bullets: {
-      vi: [
-        "Vòng lặp: mỗi pilot thắng ở VN → de-risk kế hoạch châu Á của Pebble Square → họ đầu tư lại → ta thắng nhanh hơn",
-        "Việt Nam là bằng-chứng-khái-niệm cho chiến lược Đông Nam Á của Pebble Square",
-      ],
-      ko: [
-        "선순환: 베트남의 파일럿 성공 → 페블스퀘어의 아시아 전략 리스크 감소 → 재투자 → 더 빠른 승리",
-        "베트남은 페블스퀘어 동남아 전략의 개념 증명(PoC)입니다",
-      ],
-      en: [
-        "Flywheel: each VN pilot win → de-risks Pebble Square's Asia plan → they reinvest → we win faster",
-        "Vietnam is the proof of concept for Pebble Square's Southeast Asia strategy",
-      ],
+      vi: ["Cờ đầu: an toàn & sức khỏe thiết bị cho nhà máy (qua mạng KOCHAM) — arc-fault là mũi nhọn kéo quy định, bảo trì dự đoán là lõi khớp năng lực Pebble Square."],
+      ko: ["선봉: 공장 설비의 안전과 상태 관리 (KOCHAM 네트워크 경유) — 아크 결함은 규제를 끄는 창끝, 예지보전은 Pebble Square 역량과 맞닿는 핵심."],
+      en: ["Spearhead: safety & health of factory equipment (via KOCHAM) — arc-fault is the regulatory tip, predictive maintenance is the core matching Pebble Square's strength."],
     },
-    need: ["Trạng thái HĐ độc quyền + điều khoản MDF/đào tạo (legal)", "Xác nhận chiến lược ĐNÁ của Pebble Square (analyst đọc parent)"],
-    notes: "SLIDE MỚI (2026-06-14) — nhịp cầu nối Trụ 1 (công nghệ) ↔ Trụ 2 (bản địa). Trả lời trực tiếp phê bình GM: bản cũ chỉ nói 'họ cần ta', chưa nói 'ta cần họ' và thiếu vòng lặp đôi bên cùng thắng. Chạm CEO: PV là proof-of-concept cho mô hình lập pháp nhân địa phương của họ (như Tokyo 2025). ⚠️ KHÔNG over-claim mức cam kết của Pebble Square (MDF/đào tạo/đầu tư lại) khi chưa có trong hợp đồng — trình ở mức 'định hướng quan hệ', ghi rõ cái nào đã chốt / đang đàm phán.",
-    why: "Luận cứ MỚI: Cộng sinh (nhịp cầu). Nhịp 5. Kéo logic Hướng C (ta cần uy tín Hàn, họ cần năng lực bản địa) từ dinh-vi §2 lên sân khấu. Nguồn: dinh-vi §2; parent §mô hình mở rộng (Tokyo/Đại học Tokyo); ADR 0001; mandate-phan-phoi-doc-quyen.md.",
+    need: ["GM CHỐT beachhead (đang mặc định 'an toàn & sức khỏe thiết bị nhà máy')", "legal đọc TCVN 7447-7-712 + QCVN 01:2020/BCT (có/không AFCI)", "Native proofread KO/EN"],
+    notes: "Beachhead = ĐỀ XUẤT research (ô dù an toàn+sức khỏe thiết bị; arc-fault cờ đầu + PdM lõi) — GM CHỐT. LẰN RANH: (1) arc-fault = ứng dụng PV khởi xướng, KHÔNG gán PS; ô ❷❸ mới là vertical PS tự claim; (2) KHÔNG nói 'luật VN bắt buộc arc-fault' (chuẩn VN chưa có); (3) KHÔNG trình arc-fault như 'phát minh' — Huawei/Solis/SolarEdge đã có, khác biệt = on-device + Analog-PIM siêu tiết kiệm điện.",
+    why: "Cầu nối bề rộng nền tảng (03) ↔ lộ trình (06): biến 'đa năng' thành bài toán VN cụ thể; nơi beachhead sống (không khóa toàn deck vào arc-fault). Hiện thực hóa 'chọn đúng bài toán VN cần nhất' (slide 02). Nguồn: _research-pebble-square-services (Mục 1–2,4); _research-proof (chuẩn arc-fault); 07-dich-den (archive).",
   },
 
-  // ===== 07 · CON ĐƯỜNG — LỘ TRÌNH 3 CHÂN TRỜI (figure: flow 3 chân trời) =====
+  // ===== 06 · LỘ TRÌNH 3 CHÂN TRỜI — hiện thực hóa cột 'Mục tiêu' slide 02 · figure: flow =====
   {
-    n: 7, file: "07-dich-den.md", nhip: 6, owner: "GM + analyst", status: "skeleton", tech: "non", gatDau: "Investor + CEO",
-    eyebrow: L("Con đường", "여정", "The road"),
-    title: L("Ba chân trời: VN → Đông Nam Á", "세 지평: 베트남 → 동남아", "Three horizons: VN → SE Asia"),
+    n: 6, file: "06-lo-trinh.md", nhip: 4, owner: "GM", status: "drafting", tech: "non", gatDau: "Nhà đầu tư + CEO Pebble Square",
+    eyebrow: L("Lộ trình · 3 chân trời", "로드맵 · 3개 지평선", "Roadmap · three horizons"),
+    title: L("Lộ trình 3 chân trời", "3개 지평선 로드맵", "A three-horizon path"),
     headline: L(
-      "Con đường qua cây cầu có ba chân trời — cắm rễ Việt Nam, nhân rộng và bước ra khu vực, rồi thành hub Đông Nam Á. Mỗi chân trời, ta lớn từ nhà phân phối thành công ty giải pháp.",
-      "다리를 건너는 길은 세 지평으로 — 베트남에 뿌리내리고, 확장하며 지역으로 나아가, 동남아 허브가 됩니다. 단계마다 총판에서 솔루션 기업으로 성장합니다.",
-      "The road across the bridge has three horizons — root in Vietnam, scale and step into the region, then become the Southeast Asia hub. At each, we grow from distributor to solutions company.",
+      "Đặt mục tiêu — rồi đi từng bước: cắm rễ ở Việt Nam bằng một mũi nhọn, mở rộng ứng dụng theo nền tảng đa năng, rồi vươn ra Đông Nam Á.",
+      "목표를 세우고 한 걸음씩: 하나의 과제로 베트남에 뿌리내리고, 다목적 플랫폼을 따라 응용을 넓힌 뒤, 동남아로 확장합니다.",
+      "Set the goal, then move step by step: root in Vietnam with one spearhead, broaden applications across the platform, then expand into Southeast Asia.",
     ),
     figure: {
       kind: "flow",
       steps: [
         {
-          label: L("Chân trời 1 · Cắm rễ VN", "지평 1 · 베트남 정착", "Horizon 1 · Root in VN"),
-          sub: L("pilot nhà máy Hàn → case study → chứng nhận · co-brand ~70/30", "한국 공장 파일럿 → 사례 → 인증 · 코브랜드 ~70/30", "Korean-plant pilot → case study → certification · co-brand ~70/30"),
+          label: L("Chân trời 1 — Cắm rễ VN", "지평선 1 — 베트남 정착", "Horizon 1 — Root in Vietnam"),
+          sub: L("Beachhead: an toàn & sức khỏe thiết bị · pilot → case study", "비치헤드: 설비 안전·상태 관리 · 파일럿 → 사례", "Beachhead: equipment safety & health · pilot → case study"),
         },
         {
-          label: L("Chân trời 2 · Nhân rộng + ra ĐNÁ", "지평 2 · 확장 + 동남아 진출", "Horizon 2 · Scale + into SEA"),
-          sub: L("kênh EPC & O&M · thêm dòng sản phẩm · pilot ĐNÁ đầu tiên · co-brand ~40/60", "EPC·O&M 채널 · 제품 라인 추가 · 첫 동남아 파일럿 · 코브랜드 ~40/60", "EPC & O&M channels · more product lines · first SEA pilot · co-brand ~40/60"),
+          label: L("Chân trời 2 — Mở rộng + ra ĐNÁ", "지평선 2 — 확장 + 동남아", "Horizon 2 — Broaden + into SEA"),
+          sub: L("Thêm vertical PS (vision · voice · an ninh) + pilot ĐNÁ đầu tiên", "PS 버티컬 추가 (비전·음성·보안) + 첫 동남아 파일럿", "Add PS verticals (vision · voice · security) + first SEA pilot"),
         },
         {
-          label: L("Chân trời 3 · Hub Đông Nam Á", "지평 3 · 동남아 허브", "Horizon 3 · SEA hub"),
-          sub: L("nhiều dòng sản phẩm · brand riêng · công ty giải pháp · co-brand ~10/90", "다중 제품 라인 · 독자 브랜드 · 솔루션 기업 · 코브랜드 ~10/90", "Multiple product lines · own brand · solutions company · co-brand ~10/90"),
+          label: L("Chân trời 3 — Hub Đông Nam Á", "지평선 3 — 동남아 허브", "Horizon 3 — SEA hub"),
+          sub: L("Đa giải pháp · brand riêng · công ty giải pháp đúng nghĩa", "다중 솔루션 · 독자 브랜드 · 진정한 솔루션 기업", "Multi-solution · own brand · a true solutions company"),
         },
       ],
-      foot: L("Mandate độc quyền VN → ĐNÁ · ba trục lớn lên cùng nhau: địa lý · sản phẩm · vai trò", "VN → 동남아 독점 권한 · 세 축이 함께 성장: 지역 · 제품 · 역할", "Exclusive mandate VN → SEA · three axes grow together: geography · product · role"),
+      foot: L(
+        "Mandate VN → ĐNÁ · 3 trục cùng lên: địa lý · ứng dụng · vai trò (phân phối → giải pháp).",
+        "베트남 → 동남아 권한 · 세 축 동반 성장: 지리 · 응용 · 역할 (총판 → 솔루션).",
+        "Mandate VN → SEA · three axes rising together: geography · applications · role (distributor → solutions).",
+      ),
     },
     bullets: {
-      vi: ["Thị trường PV Đông Nam Á ~38 → 93 GW (2025–2030, ước tính)"],
-      ko: ["동남아 태양광 시장 ~38 → 93 GW (2025–2030, 추정)"],
-      en: ["SE Asia PV market ~38 → 93 GW (2025–2030, est.)"],
+      vi: ["Bối cảnh: điện mặt trời Đông Nam Á ~38 → 93 GW vào 2030 (ước tính) — thị trường để mở rộng."],
+      ko: ["배경: 동남아 태양광 ~38 → 93 GW (2030, 추정) — 확장할 시장."],
+      en: ["Context: Southeast Asia solar ~38 → 93 GW by 2030 (estimate) — room to expand."],
     },
-    need: ["Chốt nước ĐNÁ ưu tiên (Thái Lan? Indonesia?) + lý do (analyst)", "Truy báo cáo gốc Mordor (số ĐNÁ là ước tính)", "Mức 'hứa' tầm nhìn khả tín (GM)"],
-    notes: "Gật đầu kép: investor (return lớn) + CEO (mỗi chân trời ta đi = một bước mở rộng châu Á của họ). Reframe 2026-06-14: từ '3 trục trừu tượng' (liệt kê phẳng) → 'lộ trình 3 chân trời định hướng' (có thứ tự + tiến hóa co-brand theo Hướng C). ĐỊNH HƯỚNG, KHÔNG chốt quý/doanh số trên sân khấu (chưa ký độc quyền, chưa có pilot tên) — số sâu để phụ lục 99/gặp riêng. Co-brand %/chân trời là định hướng tương đối (ADR 0001), không phải số hợp đồng.",
-    why: "Luận cứ: TẦM NHÌN — để không bị thấy là 'anh buôn arc-fault nhỏ'. Nhịp 6. Reframe: phần GM thấy THIẾU NHẤT — lộ trình riêng của Pebble Vina. Nguồn: mandate; ADR 0001 (Hướng C 3 pha co-brand); parent §lộ trình mở rộng; dinh-vi §4 (GTM nhà máy Hàn→EPC→O&M).",
+    need: ["GM chốt beachhead Chân trời 1 (đồng bộ slide 05)", "Chốt nước ĐNÁ ưu tiên + thứ tự vertical CT2 — analyst", "Native proofread KO/EN"],
+    notes: "Định hướng KHÔNG cam kết cứng — nói theo chân trời, KHÔNG quý/doanh số. Co-brand 3 pha (ADR 0001, Hướng C): ~70/30→40/60→10/90 = spine chiến lược NỘI BỘ, không cần lên sân khấu. Số ĐNÁ là 🟡 ƯỚC TÍNH (Mordor, gián tiếp) — truy báo cáo gốc trước khi trình nhà đầu tư lớn. Mở ứng dụng phải bám vertical PS tự claim, KHÔNG mượn Syntiant/Mythic làm sản phẩm PS.",
+    why: "Biến cột 'Mục tiêu' (slide 02) thành lộ trình + vẽ motif 'làm từng bước'. Trục ứng dụng mở sang vertical thật PS → trả lời phê bình 'quá hẹp một ứng dụng'. Gật đầu kép investor (return) + CEO (PS bán nhiều hơn 1 ứng dụng qua ta). Nguồn: 07-dich-den (archive); mandate; ADR 0001; _research-market §07.",
   },
 
-  // ===== 08 · LỢI NHUẬN KÉP (figure: 2 cột) — biên lớn lên dọc chân trời =====
+  // ===== 07 · LỜI MỜI + CẢM ƠN — bookend, đóng vòng motif 'viên gạch/cây cầu' · figure: bridge =====
   {
-    n: 8, file: "08-loi-nhuan-kep.md", nhip: 7, owner: "cfo", status: "skeleton", tech: "non", gatDau: "Investor",
-    eyebrow: L("Lợi nhuận kép", "이중 수익", "Profit on both sides"),
-    title: L("Sinh lợi hai phía", "양쪽 모두에 이익", "Value for both sides"),
-    headline: L(
-      "Một giao dịch, hai phía cùng thắng: khách giảm rủi ro & chi phí, Pebble Vina có biên phân phối & dịch vụ — và biên lớn lên dọc con đường.",
-      "한 거래로 양쪽이 모두 이깁니다: 고객은 위험과 비용을 줄이고, 페블 비나는 총판 마진과 서비스 수익을 얻습니다 — 그리고 마진은 여정을 따라 커집니다.",
-      "One deal, two winners: customers cut risk and cost, Pebble Vina earns distribution margin and services — and margin grows along the road.",
-    ),
-    figure: {
-      kind: "twocol",
-      left: {
-        head: L("Cho KHÁCH", "고객에게", "For the CUSTOMER"),
-        items: [
-          L("Tránh tổn thất do cháy & sự cố", "화재·사고 손실 방지", "Avoided fire & incident losses"),
-          L("Giảm ngừng máy → giữ sản lượng", "가동 중단 감소 → 발전량 유지", "Less downtime → kept output"),
-          L("Đạt tuân thủ, kéo dài tuổi thọ tài sản", "규제 준수, 자산 수명 연장", "Compliance, longer asset life"),
-        ],
-      },
-      right: {
-        head: L("Cho PEBBLE VINA", "페블 비나에게", "For PEBBLE VINA"),
-        items: [
-          L("Biên phân phối độc quyền", "독점 총판 마진", "Exclusive distribution margin"),
-          L("Doanh thu dịch vụ tích hợp & hỗ trợ", "통합·지원 서비스 매출", "Integration & support revenue"),
-          L("Hợp đồng O&M lặp lại", "반복 O&M 계약", "Recurring O&M contracts"),
-        ],
-      },
-    },
-    bullets: {
-      vi: ["Biên lớn lên theo chân trời: H1 phân phối → H2 thêm dịch vụ & O&M → H3 giải pháp / IP"],
-      ko: ["마진은 지평을 따라 성장: H1 총판 → H2 서비스·O&M 추가 → H3 솔루션 / IP"],
-      en: ["Margin grows by horizon: H1 distribution → H2 + services & O&M → H3 solutions / IP"],
-    },
-    need: ["Mô hình ROI-khách (cfo)", "Giá nhập từ HĐ → biên (cfo + legal)"],
-    notes: "Ngôn ngữ TIỀN & RỦI RO, không thuật ngữ. Không bịa số — chưa có giá nhập thì trình định tính, ghi 'ước tính'. Reframe 2026-06-14: đặt SAU lộ trình (07) + gắn biên/role tăng theo chân trời ('kinh tế đi theo con đường'), thay vì bảng biên tĩnh.",
-    why: "Luận cứ: Nhu cầu (ROI cho HỌ) + trục Tài chính (biên cho TA). Nhịp 7. Plan cần CẢ HAI. Reframe: gắn vào 3 chân trời. Nguồn: khung chiến lược §2.",
-  },
-
-  // ===== 09 · RỦI RO & HÓA GIẢI =====
-  {
-    n: 9, file: "09-rui-ro-hoa-giai.md", nhip: 8, owner: "chief-of-staff", status: "skeleton", tech: "non", gatDau: "Investor",
-    eyebrow: L("Rủi ro", "리스크", "Risk"),
-    title: L("Nhìn thẳng & cách hóa giải", "정면으로 보고, 대응합니다", "We face it, and we have answers"),
-    headline: L(
-      "Chúng tôi nhìn thẳng vào rủi ro thị trường & thực thi — và đã có cách phòng.",
-      "시장과 실행의 리스크를 정면으로 보고, 대비책을 갖추었습니다.",
-      "We look market and execution risk in the eye — and we are prepared.",
-    ),
-    bullets: {
-      vi: [
-        "Đối thủ bản địa hóa → ta bán kết quả + hỗ trợ + tuân thủ (khó sao chép)",
-        "Quy định thực thi còn yếu → tập đoàn Hàn ép chuẩn nội bộ (không chờ luật)",
-        "Tuyển FAE → lộ trình đội hình + đào tạo từ Pebble Square",
-        "Lợi ích hai bên có thể lệch → căn chỉnh qua hợp đồng độc quyền + nhịp review chung",
-      ],
-      ko: [
-        "경쟁사의 현지화 → 우리는 결과 + 지원 + 준수를 판매 (모방 어려움)",
-        "규제 집행 미흡 → 한국 대기업의 내부 기준이 견인 (법을 기다리지 않음)",
-        "FAE 채용 → 인력 로드맵 + 페블스퀘어 교육",
-        "양측 이해관계 어긋남 → 독점 계약 + 공동 점검 주기로 정렬",
-      ],
-      en: [
-        "Competitor localization → we sell outcomes + support + compliance (hard to copy)",
-        "Weak enforcement → Korean groups enforce internal standards (no need to wait for law)",
-        "FAE hiring → staffing roadmap + training from Pebble Square",
-        "Interests can diverge → aligned via the exclusive contract + a joint review cadence",
-      ],
-    },
-    need: ["Bản 'rủi ro principal' RIÊNG cho gặp nhà đầu tư (không công khai)"],
-    notes: "⚠️ RỦI RO PRINCIPAL KHÔNG lên sân khấu (CEO ngồi dưới) — để gặp riêng, dùng Hướng C làm câu trả lời. Bổ sung 2026-06-14: thêm dòng rủi ro 'lệch pha cộng sinh' ở bản AN TOÀN công khai (căn chỉnh lợi ích qua cấu trúc quan hệ) — vì slide 06 đã nâng cộng sinh thành trọng tâm. KHÔNG đụng chuyện M&A/thể diện principal.",
-    why: "Luận cứ: Refutatio. Nhịp 8. Chọn phản biện theo người trong phòng. Bổ sung dòng cộng sinh (an toàn công khai). Nguồn: khung luận §4; ADR 0001.",
-  },
-
-  // ===== 10 · LỜI KÊU GỌI + CẢM ƠN (bookend với 01) · figure: bridge =====
-  {
-    n: 10, file: "10-keu-goi-cam-on.md", nhip: 9, owner: "growth + GM", status: "skeleton", tech: "non", gatDau: "Cả phòng",
+    n: 7, file: "07-loi-moi.md", nhip: 5, owner: "growth", status: "drafting", tech: "non", gatDau: "Cả phòng",
     cobrand: true,
-    eyebrow: L("Lời mời", "초대", "The invitation"),
-    title: L("Cùng dựng cây cầu", "함께 다리를 놓읍시다", "Let's build the bridge"),
+    eyebrow: L("Lời mời · Cảm ơn", "초대 · 감사", "Invitation · Thank you"),
+    title: L("Cùng dựng cây cầu", "함께 다리를 놓다", "Let's build the bridge together"),
     headline: L(
-      "Pebble Vina — công ty giải pháp Edge-AI cho Việt Nam và Đông Nam Á, khởi đầu từ an toàn điện. Cùng nhau dựng cây cầu Hàn → Việt → Đông Nam Á.",
-      "페블 비나 — 전기 안전에서 출발하는, 베트남과 동남아를 위한 엣지 AI 솔루션 기업. 한국 → 베트남 → 동남아 다리를 함께 놓읍시다.",
-      "Pebble Vina — an Edge-AI solutions company for Vietnam and Southeast Asia, starting from electrical safety. Let's build the bridge Korea → Vietnam → SE Asia together.",
+      "Pebble Vina đặt mục tiêu trở thành công ty giải pháp Edge-AI cho Việt Nam và Đông Nam Á — và sẽ làm cho nó thành hiện thực, từng bước một. Hôm nay là viên gạch đầu tiên.",
+      "Pebble Vina는 베트남과 동남아를 위한 엣지 AI 솔루션 기업을 목표로 하며, 한 걸음씩 현실로 만들어 가겠습니다. 오늘이 그 첫 번째 벽돌입니다.",
+      "Pebble Vina aims to become an Edge-AI solutions company for Vietnam and Southeast Asia — and will make it real, step by step. Today is the first stone.",
     ),
     figure: {
       kind: "bridge",
-      nodes: [L("Hàn Quốc", "한국", "Korea"), L("Việt Nam", "베트남", "Vietnam"), L("Đông Nam Á", "동남아", "SE Asia")],
-      foot: L("Hai trụ · một con đường · cùng đi", "두 기둥 · 하나의 길 · 함께", "Two pillars · one road · walked together"),
+      nodes: [
+        L("Hàn Quốc", "한국", "Korea"),
+        L("Việt Nam", "베트남", "Vietnam"),
+        L("Đông Nam Á", "동남아", "Southeast Asia"),
+      ],
+      foot: L(
+        "Edge-AI: trí tuệ Hàn → vận hành Việt → vươn ra Đông Nam Á.",
+        "엣지 AI: 한국의 두뇌 → 베트남의 현장 → 동남아로.",
+        "Edge-AI: a Korean brain → run in Vietnam → reaching Southeast Asia.",
+      ),
+      gold: 1,
     },
     bullets: {
-      vi: [
-        "Pebble Vina — công ty giải pháp Edge-AI cho Việt Nam & Đông Nam Á",
-        "Lời mời chung: cùng dựng cây cầu Edge-AI Hàn → Việt → Đông Nam Á",
-        "Xin cảm ơn — và mong được đồng hành",
-      ],
-      ko: [
-        "페블 비나 — 베트남과 동남아를 위한 엣지 AI 솔루션 기업",
-        "함께하자는 초대: 한국 → 베트남 → 동남아 엣지 AI 다리",
-        "감사합니다 — 함께하길 바랍니다",
-      ],
-      en: [
-        "Pebble Vina — an Edge-AI solutions company for Vietnam & SE Asia",
-        "A shared invitation: build the Edge-AI bridge Korea → Vietnam → SE Asia",
-        "Thank you — we hope to walk this road together",
-      ],
+      vi: ["Mời quý vị đồng hành — nhà đầu tư, Pebble Square, và quý khách — mỗi người một viên gạch của cây cầu.", "Xin trân trọng cảm ơn."],
+      ko: ["함께해 주시길 초대합니다 — 투자자, Pebble Square, 그리고 귀빈 여러분 — 각자가 다리의 벽돌 하나입니다.", "진심으로 감사드립니다."],
+      en: ["Join us — investors, Pebble Square, and our guests — each of you a stone in the bridge.", "With sincere thanks."],
     },
-    notes: "Ask CỨNG để gặp riêng: bác Kim (vốn + cửa KOCHAM) · CEO (độc quyền + IP + MDF) · khách (pilot). Đừng biến slide kết thành bảng giá. Bổ sung 2026-06-14: gắn figure bridge (cả cây cầu) đóng vòng ẩn dụ; cập nhật câu bookend cho khớp slide 01 đã reframe (công ty giải pháp VN→ĐNÁ).",
-    why: "Luận cứ: Tri giác (bookend) + The Ask. Nhịp 9. Ask mềm sân khấu, cứng gặp riêng. Đóng vòng ẩn dụ cây cầu. Nguồn: khung luận §0,§5; slide 01.",
-  },
-
-  // ===== 99 · PHỤ LỤC (appendix — KHÔNG nằm trong luồng chính) =====
-  {
-    n: 99, file: "99-phu-luc-ky-thuat.md", nhip: "phụ lục", owner: "product-lead", status: "skeleton", tech: "sâu", gatDau: "Kỹ sư hỏi sau",
-    appendix: true,
-    eyebrow: L("Phụ lục — depth-on-demand", "부록 — 요청 시 심화", "Appendix — depth on demand"),
-    title: L("Chi tiết kỹ thuật", "기술 상세", "Technical detail"),
-    headline: L(
-      "Không trình mặc định — chỉ mở khi được hỏi, hoặc in handout. Thỏa người có tech mà không loãng luồng chính.",
-      "기본 발표 제외 — 질문이 있을 때만 또는 핸드아웃. 기술 청중을 만족시키되 본 흐름은 흐리지 않습니다.",
-      "Not shown by default — opened on request, or printed as a handout.",
-    ),
-    bullets: {
-      vi: [
-        "Nguyên lý Analog-PIM & hiệu năng MINT: ~4M khớp · ~30 GOPS · 17,6 TOPS/W",
-        "So sánh lớp công nghệ PIM vs MCU/edge-GPU (nguồn học thuật)",
-        "Chuẩn arc-fault: UL 1699B · IEC 63027 · TCVN 11855-1:2017 · QCVN 01:2020/BCT",
-        "Reference design lắp tủ điện/inverter; gốc học thuật JBNU/KAIST",
-        "Số sâu lộ trình (gặp riêng/handout): mốc quý 3 chân trời · đơn vị kinh tế · thứ tự nước ĐNÁ · cơ chế căn chỉnh lợi ích",
-      ],
-      ko: [
-        "아날로그-PIM 원리 & MINT 성능: ~4M 시냅스 · ~30 GOPS · 17.6 TOPS/W",
-        "PIM vs MCU/edge-GPU 기술 계층 비교 (학술 출처)",
-        "아크 결함 표준: UL 1699B · IEC 63027 · TCVN 11855-1:2017 · QCVN 01:2020/BCT",
-        "배전반/인버터 레퍼런스 디자인; JBNU/KAIST 학술 기반",
-        "로드맵 상세 (별도 미팅/핸드아웃): 3지평 분기 마일스톤 · 단위 경제성 · 동남아 국가 순서 · 이해관계 정렬 메커니즘",
-      ],
-      en: [
-        "Analog-PIM principle & MINT performance: ~4M synapses · ~30 GOPS · 17.6 TOPS/W",
-        "PIM vs MCU/edge-GPU technology-layer comparison (academic sources)",
-        "Arc-fault standards: UL 1699B · IEC 63027 · TCVN 11855-1:2017 · QCVN 01:2020/BCT",
-        "Reference design for panel/inverter; JBNU/KAIST academic roots",
-        "Roadmap deep numbers (private/handout): quarterly milestones · unit economics · SEA country order · interest-alignment mechanism",
-      ],
-    },
-    need: ["Toàn bộ số kỹ thuật (product-lead xác minh với Pebble Square)", "Số sâu lộ trình: cfo + legal + analyst"],
-    notes: "Mọi số phải kiểm chứng được — kỹ sư sẽ soi. KHÔNG có benchmark 'MINT vs ST/TI' công khai → chỉ trình so sánh LỚP công nghệ PIM (học thuật). KHÔNG trích 'MDPI 2024' (bài không tồn tại). Sai một số = mất uy tín cả bài. Bổ sung 2026-06-14: thêm 'số sâu lộ trình' — tầng số liệu (không phải tầng sân khấu).",
-    why: "Nguyên tắc NT1 'chiều sâu theo yêu cầu' (khung luận §1,§3). Chứa số sâu của lộ trình/kinh tế (slide 07/08) cho gặp riêng. Nguồn: parent-pebble-square.md; slide 04.",
+    need: ["Chốt câu định vị bookend cuối (đồng bộ slide 02)", "Thông tin liên hệ + người nhận follow-up từng nhóm", "Native proofread KO/EN"],
+    notes: "Bookend đóng vòng: motif slide 02 (viên gạch/cây cầu) + figure bridge slide 04 + slogan bìa. Ask MỀM trên sân khấu (mời đồng hành); ask CỨNG để gặp riêng — investor (vốn+KOCHAM), CEO (độc quyền/IP/MDF/co-brand), khách (pilot). KHÔNG biến slide kết thành bảng giá. Giữ 'công ty giải pháp'+'độc quyền' ở thì MỤC TIÊU (CEO PS ngồi dưới).",
+    why: "Tri giác đóng vòng (bookend slide 02) + The Ask phân tầng. Ask mềm vì thể loại ra mắt, phòng hỗn hợp → ask cứng để gặp riêng. Nguồn: 10-keu-goi-cam-on (archive); slide 02 (bookend); README §5.",
   },
 ];
 

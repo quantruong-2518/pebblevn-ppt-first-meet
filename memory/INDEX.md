@@ -4,7 +4,7 @@
 > Khi thêm/sửa/xóa một trí nhớ, cập nhật bảng này. Cách dùng: xem `README.md`.
 
 ## 👤 Người (person)
-- [Lãnh đạo Pebble Square](pebble-square-leadership.md) — CEO Bae Hak-yeol (GS JBNU) + CTO Lee Choong-hyun (chip MINT). ⭐
+- [Lãnh đạo Pebble Square](pebble-square-leadership.md) — CEO Lee Choong-hyun (chip MINT); đồng sáng lập học thuật GS Bae Hak-yeol (JBNU). *(đính chính 2026-06-15)* ⭐
 - [Nhà đầu tư bác Kim](investor-bac-kim-kocham.md) — Phó CT KOCHAM, mạng lưới DN Hàn tại VN. ⭐
 
 ## 🤝 Cam kết / thỏa thuận (agreement)
