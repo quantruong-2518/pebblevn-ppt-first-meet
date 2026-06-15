@@ -13,8 +13,9 @@
 //   → 03 Pebble Square (đối tác/nền tảng) → 04 cộng sinh PV+PS → 05 menu nền tảng → 06 lộ trình → 07 lời mời.
 //   Khung arc-fault cũ đã archive ở ../slides/_archive/2026-06-15-tai-cau-truc-quoc-gia/.
 //   slides.ts đã đủ 00–07 (arc khép). Bìa (n:0) & tầng UI/figure GIỮ NGUYÊN. CEO PS = Lee Choong-hyun.
-//   Figure: 01 flow · 02 twocol · 03 forces · 04 flow(vòng lặp) · 05 forces · 06 flow · 07 bridge (bookend cây cầu).
-//   ⚠️ Mở: GM chốt BEACHHEAD Chân trời 1 (slide 05/06 đang mặc định 'an toàn & sức khỏe thiết bị nhà máy').
+//   Figure: 01 flow · 02 twocol · 03 forces · 04 flow(vòng lặp) · 05 matrix(map hai đầu) · 06 flow · 07 bridge (bookend cây cầu).
+//   ⚠️ Mở: slide 05 (2026-06-15) đổi sang MAP hai đầu (năng lực PS ↔ phân khúc VN) + HOÃN priority — KHÔNG còn chốt beachhead ở 05.
+//      → slide 06 Chân trời 1 vẫn gọi tên beachhead 'an toàn & sức khỏe thiết bị' → CẦN làm mềm cho nhất quán (GM xác nhận).
 
 export type Lang = "vi" | "ko" | "en";
 export const LANGS: Lang[] = ["vi", "ko", "en"];
@@ -31,6 +32,9 @@ export type Figure =
   | { kind: "flow"; steps: { label: LText; sub?: LText }[]; foot: LText }
   | { kind: "twocol"; left: { head: LText; items: LText[] }; right: { head: LText; items: LText[] } }
   | { kind: "bridge"; nodes: LText[]; foot: LText; gold?: number }
+  // matrix = "map hai đầu": cap (năng lực PS) ↔ seg (phân khúc VN) + stat (số bằng chứng, ASCII).
+  // bar = đòn bẩy xuyên suốt (KOCHAM); foot = câu kết. KHÔNG xếp hạng cột nào.
+  | { kind: "matrix"; cols: { cap: LText; seg: LText; stat: string }[]; bar: LText; foot: LText }
   | { kind: "stat"; value: LText; caption: LText; source?: LText };
 
 export type SlideStatus = "skeleton" | "drafting" | "review" | "done";
@@ -154,9 +158,9 @@ export const SLIDES: SlideData[] = [
     eyebrow: L("Pebble Vina là ai", "Pebble Vina는", "Who we are"),
     title: L("Một công ty Việt Nam, một tầm nhìn khu vực", "베트남 기업, 지역을 향한 비전", "A Vietnamese company, a regional vision"),
     headline: L(
-      "Pebble Vina ra đời để đưa công nghệ *Edge-AI* của Pebble Square (Hàn Quốc) vào *vận hành thật* tại Việt Nam.",
-      "Pebble Vina는 Pebble Square(한국)의 *엣지 AI* 기술을 베트남 현장에 *실제로* 도입하기 위해 설립되었습니다.",
-      "Pebble Vina was founded to bring Pebble Square's (Korea) *Edge-AI* technology into *real operation* in Vietnam.",
+      "Pebble Vina ra đời để đưa *Edge-AI* vào *vận hành thật*, chung tay đưa Việt Nam *phát triển* — cùng nền tảng hàng đầu từ Pebble Square.",
+      "Pebble Vina는 *엣지 AI*를 베트남에 *실제로* 도입해 베트남의 *발전*에 함께하고자 설립되었습니다 — Pebble Square의 선도 플랫폼과 함께.",
+      "Pebble Vina was founded to put *Edge-AI* into *real operation* — joining hands to help Vietnam *grow*, together with Pebble Square's leading platform.",
     ),
     figure: {
       kind: "twocol",
@@ -183,7 +187,7 @@ export const SLIDES: SlideData[] = [
       en: ["We set the goal — and make it real, step by step."],
     },
     need: ["GM chốt mức nói 'độc quyền' trên sân khấu", "Native proofread KO/EN"],
-    notes: "ĐỊNH VỊ HAI THÌ (chốt 2026-06-15): cột 'Hôm nay' = cái chứng minh được; cột 'Mục tiêu' (gold) = đích earned. CHƯA ký HĐ với PS → 'độc quyền' nằm ở cột MỤC TIÊU, không phải hiện trạng (CEO PS ngồi dưới). Motif = lời GM, sợi chỉ xuyên deck. Chữ nhấn gradient (2026-06-15): headline = 'Edge-AI' + 'vận hành thật'; figure nhấn theo MẠCH ĐỊA LÝ 'Việt Nam độc lập' (Hôm nay) → 'Đông Nam Á' (Mục tiêu). CỐ Ý KHÔNG nhấn 'độc quyền' — giữ MỀM trên sân khấu, đồng bộ stance slide 04. (2026-06-15, GM feedback) Bỏ title 'Một câu về chúng tôi' (vô duyên, ít thông tin) → title định vị 'một công ty VN, một tầm nhìn khu vực'. Mở mỗi cột 2→3 mục: Hôm nay thêm 'kết nối cộng đồng DN Hàn (KOCHAM)'; Mục tiêu thêm 'mở rộng nhiều ứng dụng/một nền tảng' = bậc thang vai trò→bề rộng→khu vực (khớp 3 chân trời slide 06). ⚠️ Dòng KOCHAM nhắc nhẹ mạng lưới Hàn — GM rà mức công khai.",
+    notes: "ĐỊNH VỊ HAI THÌ (chốt 2026-06-15): cột 'Hôm nay' = cái chứng minh được; cột 'Mục tiêu' (gold) = đích earned. CHƯA ký HĐ với PS → 'độc quyền' nằm ở cột MỤC TIÊU, không phải hiện trạng (CEO PS ngồi dưới). Motif = lời GM, sợi chỉ xuyên deck. Chữ nhấn gradient (2026-06-15): headline = 'Edge-AI' + 'vận hành thật' + 'phát triển'; figure nhấn theo MẠCH ĐỊA LÝ 'Việt Nam độc lập' (Hôm nay) → 'Đông Nam Á' (Mục tiêu). REFRAME HEADLINE (2026-06-15, GM feedback): lý do PV tồn tại = SỨ MỆNH đưa Việt Nam phát triển (nối mạch slide 01), KHÔNG phải 'đưa công nghệ PS vào vận hành' (tránh định vị PV lệ thuộc PS). Edge-AI = phương tiện; PS = đối tác/nền tảng 'cùng làm' (chữ 'cùng' thay 'phụ thuộc'), được tôn vinh riêng ở slide 03. CỐ Ý KHÔNG nhấn 'độc quyền' — giữ MỀM trên sân khấu, đồng bộ stance slide 04. (2026-06-15, GM feedback) Bỏ title 'Một câu về chúng tôi' (vô duyên, ít thông tin) → title định vị 'một công ty VN, một tầm nhìn khu vực'. Mở mỗi cột 2→3 mục: Hôm nay thêm 'kết nối cộng đồng DN Hàn (KOCHAM)'; Mục tiêu thêm 'mở rộng nhiều ứng dụng/một nền tảng' = bậc thang vai trò→bề rộng→khu vực (khớp 3 chân trời slide 06). ⚠️ Dòng KOCHAM nhắc nhẹ mạng lưới Hàn — GM rà mức công khai.",
     why: "Điểm hạ cánh của mạch diễn dịch slide 01. Phương pháp định vị hai thì — không hứa viển vông. Nguồn: dinh-vi §3; ADR 0001 (Hướng C).",
   },
 
@@ -253,41 +257,59 @@ export const SLIDES: SlideData[] = [
     why: "Sau honor nền tảng (03), định nghĩa BẢN CHẤT quan hệ = cộng sinh. THÔNG ĐIỆP = vòng lặp khóa lợi ích hai bên → đỡ rủi ro 'chưa ký HĐ' (quan hệ thật chứng minh bằng vòng lặp, không bằng tờ giấy). Chạm CEO + nhà đầu tư. Nguồn: dinh-vi §2; parent §mô hình mở rộng; 06-cong-sinh (archive).",
   },
 
-  // ===== 05 · MENU NỀN TẢNG — MỘT NỀN TẢNG, NHIỀU BÀI TOÁN VN (beachhead sống ở đây) · figure: forces =====
+  // ===== 05 · MAP HAI ĐẦU — năng lực PS ↔ phân khúc VN (HOÃN priority) · figure: matrix =====
   {
     n: 5, file: "05-menu-nen-tang.md", nhip: 3, owner: "GM", status: "drafting", tech: "nhẹ", gatDau: "Cả phòng (khách có nhà máy)",
-    eyebrow: L("Ứng dụng · Bài toán Việt Nam", "응용 · 베트남의 과제", "Applications · Vietnam's problems"),
-    title: L("Một nền tảng, nhiều bài toán", "하나의 플랫폼, 여러 과제", "One platform, many problems"),
+    eyebrow: L("Cách tiếp cận · Năng lực gặp nhu cầu", "접근 방식 · 역량과 수요", "Our approach · Capability meets demand"),
+    title: L("Khớp nền tảng với thị trường Việt", "플랫폼을 베트남 시장에 맞추다", "Matching the platform to Vietnam"),
     headline: L(
-      "Một nền tảng Edge-AI — nhiều bài toán Việt Nam giải được. Pebble Vina bắt đầu từ bài toán cấp thiết nhất: an toàn & sức khỏe thiết bị trong nhà máy.",
-      "하나의 엣지 AI 플랫폼으로 베트남의 여러 과제를 풀 수 있습니다. Pebble Vina는 가장 시급한 과제 — 공장 설비의 안전과 상태 관리 — 부터 시작합니다.",
-      "One Edge-AI platform, many Vietnamese problems it can solve. Pebble Vina starts with the most urgent: the safety & health of factory equipment.",
+      "Pebble Square là một nền tảng Edge-AI đa năng. Việc của Pebble Vina là khớp từng năng lực vào đúng phân khúc thị trường Việt Nam đang có nhu cầu thật.",
+      "Pebble Square는 다목적 엣지 AI 플랫폼입니다. Pebble Vina의 역할은 각 역량을 실제 수요가 있는 베트남 시장 부문에 맞추는 것입니다.",
+      "Pebble Square is a multi-purpose Edge-AI platform. Pebble Vina's job is to match each capability to the Vietnamese market segments with real demand.",
     ),
     figure: {
-      kind: "forces",
-      items: [
+      kind: "matrix",
+      cols: [
         {
-          label: L("An toàn điện & năng lượng", "전기 안전 & 에너지", "Electrical safety & energy"),
-          sub: L("Giám sát hồ quang/arc-fault · điện mặt trời · tủ điện", "아크 결함 감지 · 태양광 · 배전반", "Arc-fault monitoring · solar · switchboards"),
+          cap: L("Giọng nói & âm thanh", "음성 & 사운드", "Voice & sound"),
+          seg: L("Smart home & loa tiếng Việt", "스마트홈 & 베트남어 음성", "Smart home & Vietnamese voice"),
+          stat: "Smart home VN $0.69B → $1.71B · 9.2%/yr",
         },
         {
-          label: L("Sản xuất & bảo trì dự đoán", "제조 & 예지보전", "Manufacturing & predictive maintenance"),
-          sub: L("Anomaly · Failure Analysis (năng lực lõi Pebble Square)", "이상 탐지 · Failure Analysis (Pebble Square 핵심 역량)", "Anomaly · Failure Analysis (Pebble Square's core capability)"),
+          cap: L("Thị giác máy", "머신 비전", "Machine vision"),
+          seg: L("QC kiểm lỗi sản xuất điện tử", "전자 제조 QC 검사", "Electronics-mfg QC inspection"),
+          stat: "Amkor x3 · VN semis $7B → $16.6B",
         },
         {
-          label: L("Giọng nói · IoT · an ninh dân dụng", "음성 · IoT · 생활 보안", "Voice · IoT · home security"),
-          sub: L("Sound · Security On-Device (Pebble Square đã PoC)", "Sound · Security 온디바이스 (Pebble Square PoC 보유)", "Sound · Security On-Device (Pebble Square has PoCs)"),
+          cap: L("An ninh tại chỗ", "온디바이스 보안", "On-device security"),
+          seg: L("Giám sát video & camera AI", "영상 감시 & AI 카메라", "Video surveillance & AI cameras"),
+          stat: "CCTV VN $615M · +17.6%/yr",
+        },
+        {
+          cap: L("Bảo trì dự đoán", "예지보전", "Predictive maintenance"),
+          seg: L("Máy móc nhà máy & an toàn điện", "공장 설비 & 전기 안전", "Factory machinery & electrical safety"),
+          stat: "Industrial IoT VN $1.6B → $5.2B · +13%/yr",
         },
       ],
+      bar: L(
+        "KOCHAM · ~10.000 doanh nghiệp Hàn tại Việt Nam — một mạng lưới khách, cả bốn nhu cầu.",
+        "KOCHAM · 베트남 내 한국 기업 ~1만 곳 — 하나의 고객망, 네 가지 수요 모두.",
+        "KOCHAM · ~10,000 Korean firms in Vietnam — one customer network, all four needs.",
+      ),
+      foot: L(
+        "Một nền tảng → nhiều bài toán Việt Nam. Ưu tiên cái nào trước là bước kế tiếp.",
+        "하나의 플랫폼 → 베트남의 여러 과제. 무엇을 먼저 할지는 다음 단계입니다.",
+        "One platform → many Vietnamese problems. Which to prioritize is the next step.",
+      ),
     },
     bullets: {
-      vi: ["Cờ đầu: an toàn & sức khỏe thiết bị cho nhà máy (qua mạng KOCHAM) — arc-fault là mũi nhọn kéo quy định, bảo trì dự đoán là lõi khớp năng lực Pebble Square."],
-      ko: ["선봉: 공장 설비의 안전과 상태 관리 (KOCHAM 네트워크 경유) — 아크 결함은 규제를 끄는 창끝, 예지보전은 Pebble Square 역량과 맞닿는 핵심."],
-      en: ["Spearhead: safety & health of factory equipment (via KOCHAM) — arc-fault is the regulatory tip, predictive maintenance is the core matching Pebble Square's strength."],
+      vi: ["Bốn nhóm — bốn thị trường Việt Nam thật, đều đang tăng hai chữ số mỗi năm (số liệu có nguồn)."],
+      ko: ["네 그룹 — 모두 실재하는 베트남 시장이며, 매년 두 자릿수로 성장합니다 (출처 있는 수치)."],
+      en: ["Four groups — four real Vietnamese markets, each growing double-digits a year (sourced figures)."],
     },
-    need: ["GM CHỐT beachhead (đang mặc định 'an toàn & sức khỏe thiết bị nhà máy')", "legal đọc TCVN 7447-7-712 + QCVN 01:2020/BCT (có/không AFCI)", "Native proofread KO/EN"],
-    notes: "Beachhead = ĐỀ XUẤT research (ô dù an toàn+sức khỏe thiết bị; arc-fault cờ đầu + PdM lõi) — GM CHỐT. LẰN RANH: (1) arc-fault = ứng dụng PV khởi xướng, KHÔNG gán PS; ô ❷❸ mới là vertical PS tự claim; (2) KHÔNG nói 'luật VN bắt buộc arc-fault' (chuẩn VN chưa có); (3) KHÔNG trình arc-fault như 'phát minh' — Huawei/Solis/SolarEdge đã có, khác biệt = on-device + Analog-PIM siêu tiết kiệm điện.",
-    why: "Cầu nối bề rộng nền tảng (03) ↔ lộ trình (06): biến 'đa năng' thành bài toán VN cụ thể; nơi beachhead sống (không khóa toàn deck vào arc-fault). Hiện thực hóa 'chọn đúng bài toán VN cần nhất' (slide 02). Nguồn: _research-pebble-square-services (Mục 1–2,4); _research-proof (chuẩn arc-fault); 07-dich-den (archive).",
+    need: ["GM xem & chốt khung map (CHƯA cần chốt thứ tự ưu tiên)", "legal đọc TCVN 7447-7-712 + QCVN 01:2020/BCT (arc-fault có/không bắt buộc)", "Bổ số machine vision/QC riêng VN nếu trình nhà đầu tư lớn", "Native proofread KO/EN"],
+    notes: "MAP HAI ĐẦU (chốt 2026-06-15, GM): slide đổi vai trò 'menu + chốt beachhead' → 'khớp năng lực PS ↔ phân khúc VN, HOÃN priority'. Figure forces→matrix: 4 cột = 4 nhóm service PS (Sound/Vision/Security/PdM), mỗi cột map xuống 1 phân khúc VN + 1 số ✅ verified; thanh ngang KOCHAM xuyên 4 cột. KHÔNG xếp hạng/không tô cột nào trước — thứ tự ưu tiên là 'chuyện sau' (roadmap/nội bộ). LẰN RANH: arc-fault/an toàn điện nằm trong nhóm PdM như ứng dụng PV KHỞI XƯỚNG, KHÔNG gán PS. Số: smart home/CCTV/IIoT/semis đều ✅ (IMARC, fetch 2026-06-15); machine vision riêng VN ❌ → cột Vision dùng anchor Amkor + bán dẫn VN. Đầu B đầy đủ ở _research-vn-segments-map.md.",
+    why: "Hiện thực hóa 'một nền tảng, nhiều bài toán' bằng cách MAP minh bạch hai đầu (năng lực PS ↔ nhu cầu VN có số) — đặt nền cho lộ trình (06) mà KHÔNG khóa sớm vào một vertical. Hoãn priority = trung thực (chưa chốt beachhead) + giữ linh hoạt. Nguồn: _research-vn-segments-map.md (đầu B, ✅/🟡 có nhãn); _research-pebble-square-services.md (đầu A).",
   },
 
   // ===== 06 · LỘ TRÌNH 3 CHÂN TRỜI — hiện thực hóa cột 'Mục tiêu' slide 02 · figure: flow =====

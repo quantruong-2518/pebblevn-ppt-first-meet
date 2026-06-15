@@ -1,53 +1,65 @@
 ---
-title: Slide 05 — Một nền tảng, nhiều bài toán (menu + beachhead)
+title: Slide 05 — Khớp nền tảng với thị trường Việt (map hai đầu, hoãn priority)
 slide: 5
-nhip: 3 (nền tảng đa năng slide 03 → hạ xuống bài toán Việt Nam cụ thể)
+nhip: 3 (nền tảng đa năng slide 03 → khớp vào nhu cầu thị trường VN có số)
 status: drafting
 owner: GM + analyst
 tech: nhẹ
 gat-dau: Cả phòng (đặc biệt khách có nhà máy)
 updated: 2026-06-15
-links: [slides/03-pebble-square.md, slides/02-dinh-vi-pebble-vina.md, slides/_research-pebble-square-services.md, slides/_research-proof.md]
+links: [slides/03-pebble-square.md, slides/02-dinh-vi-pebble-vina.md, slides/_research-pebble-square-services.md, slides/_research-vn-segments-map.md]
 ---
 
-# Slide 05 — Một nền tảng, nhiều bài toán Việt Nam
+# Slide 05 — Khớp nền tảng với thị trường Việt Nam
 
-> Slide 03 cho thấy nền tảng **đa năng**. Slide này hiện thực hóa câu *"chọn đúng bài toán Việt Nam cần nhất
-> để bắt đầu"* (slide 02): bày **menu** bài toán VN nền tảng giải được, rồi **chỉ mũi nhọn** ta khởi đầu.
+> Slide 03 cho thấy nền tảng **đa năng** của Pebble Square. Slide này hiện thực hóa câu *"chọn đúng bài toán
+> Việt Nam cần nhất"* (slide 02) bằng cách **map minh bạch HAI ĐẦU**: từng **năng lực Pebble Square** ↔ một
+> **phân khúc thị trường VN có nhu cầu thật (kèm số)**. **CHƯA công bố thứ tự ưu tiên** — chọn mũi nhọn nào đi
+> trước là **bước kế tiếp** (roadmap/nội bộ). Tránh khóa sớm cả deck vào một vertical.
 
 ## 🎯 Thông điệp chính
-> Một nền tảng Edge-AI — **nhiều bài toán Việt Nam** giải được. Pebble Vina **bắt đầu từ bài toán cấp thiết
-> nhất: an toàn & sức khỏe thiết bị trong nhà máy.**
+> Pebble Square là một nền tảng Edge-AI **đa năng**. Việc của Pebble Vina là **khớp từng năng lực vào đúng
+> phân khúc thị trường Việt Nam đang có nhu cầu thật.**
 
-## 🖼 Nội dung slide — figure `forces`: 3 nhóm bài toán VN
-- **❶ An toàn điện & năng lượng** — giám sát **hồ quang/arc-fault** · điện mặt trời · tủ điện. *(Ứng dụng do
-  Pebble Vina khởi xướng cho thị trường VN — KHÔNG phải sản phẩm có sẵn của Pebble Square.)*
-- **❷ Sản xuất & bảo trì dự đoán** — anomaly / **Failure Analysis** (năng lực **lõi** Pebble Square tự claim).
-- **❸ Giọng nói · IoT · an ninh dân dụng** — **Sound · Security** On-Device (Pebble Square đã có PoC: đèn nhận
-  diện giọng nói, Home-IoT MEISEI).
-- **Bullet — cờ đầu:** beachhead = **an toàn & sức khỏe thiết bị cho nhà máy** (vào qua mạng **KOCHAM**) —
-  arc-fault là **mũi nhọn kéo quy định**, bảo trì dự đoán là **lõi khớp năng lực thật** của Pebble Square.
+## 🖼 Nội dung slide — figure `matrix` (map hai đầu): 4 cột năng lực PS → phân khúc VN + số
+Mỗi cột: **trên** = năng lực Pebble Square · **↓** · **dưới** = phân khúc VN khớp + 1 số bằng chứng (✅ verified).
+
+| Năng lực PS (đầu A) | Phân khúc VN khớp (đầu B) | Số bằng chứng (nhãn) |
+|---|---|---|
+| **Giọng nói & âm thanh** (Sound On-Device) | Smart home & loa tiếng Việt | Smart home VN **$0,69B → $1,71B**, CAGR 9,2% ✅ |
+| **Thị giác máy** (Vision On-Device) | QC kiểm lỗi sản xuất điện tử | Amkor Bắc Ninh **×3** (2025) · bán dẫn VN **$7B → $16,6B** ✅ |
+| **An ninh tại chỗ** (Security On-Device) | Giám sát video & camera AI | CCTV VN **$615M** (2025), CAGR **17,6%** ✅ |
+| **Bảo trì dự đoán** (Failure Analysis/PdM) | Máy móc nhà máy & an toàn điện | Công nghiệp IoT VN **$1,6B → $5,2B**, CAGR **13%** ✅ |
+
+- **Thanh ngang xuyên 4 cột — đòn bẩy:** **KOCHAM · ~10.000 doanh nghiệp Hàn tại VN** — *một mạng lưới khách,
+  cả bốn nhu cầu*. (Một khách nhà máy Hàn có thể mua QC vision + bảo trì dự đoán + an ninh + Home-IoT giọng nói.)
+- **Câu kết (foot):** *Một nền tảng → nhiều bài toán Việt Nam. Ưu tiên cái nào trước là bước kế tiếp.*
+- **Bullet:** Bốn nhóm — **bốn thị trường Việt Nam thật, đều tăng hai chữ số mỗi năm** (số liệu có nguồn).
 
 ## 🎤 Lời thoại
-- *"Một nền tảng — nhiều bài toán; ta chọn bài toán Việt Nam cần nhất để bắt đầu."* (nối lại câu slide 02).
-- Đóng khung beachhead = **đuôi rủi ro hậu quả cao** (hiếm nhưng mất nhà máy), KHÔNG "PV dễ cháy".
-- Mở đường lên lộ trình (slide 06): từ một mũi nhọn → mở thêm các trụ ứng dụng thật của Pebble Square.
+- *"Một nền tảng — nhiều bài toán; việc của chúng tôi là khớp đúng năng lực vào đúng nhu cầu thị trường."*
+- Nhấn **đòn bẩy KOCHAM**: không phải bốn thị trường rời rạc — là **một mạng lưới khách** mua được cả bốn.
+- **Giữ priority cho bước sau:** *"Chúng tôi sẽ ưu tiên hóa và bắt đầu từ mũi nhọn phù hợp nhất — đó là phần
+  việc chốt cùng Pebble Square và những khách hàng đầu tiên."* (mở đường lên lộ trình slide 06).
 
 ## 🧭 Vì sao slide này (truy vết)
-- **Vai trò trong mạch:** cầu nối giữa **bề rộng nền tảng** (slide 03) và **đích/lộ trình** (slide 06) — biến
-  "đa năng" trừu tượng thành **bài toán VN cụ thể**, và là nơi **beachhead** sống (không còn khóa toàn deck vào arc-fault).
-- **Nguồn:** `_research-pebble-square-services.md` (Mục 1–2 vertical thật PS; Mục 4 không gian ứng dụng) ·
-  `_research-proof.md` (chuẩn arc-fault UL 1699B / IEC 63027) · archived `07-dich-den.md` (beachhead).
+- **Vai trò trong mạch:** cầu nối **bề rộng nền tảng** (slide 03) ↔ **lộ trình** (slide 06) — biến "đa năng"
+  trừu tượng thành **bản đồ hai đầu có số**, mà **KHÔNG khóa sớm** vào một vertical. Hoãn priority = **trung thực**
+  (chưa chốt beachhead) + **giữ linh hoạt** + tránh mâu thuẫn nội bộ deck.
+- **Nguồn:** `_research-vn-segments-map.md` (đầu B — phân khúc VN có nhãn ✅/🟡, fetch IMARC 2026-06-15) ·
+  `_research-pebble-square-services.md` (đầu A — 4 nhóm service PS đã verify).
 
 ## 📥 Cần gì để hoàn thiện
-- [ ] **GM CHỐT BEACHHEAD** (đang để mặc định "an toàn & sức khỏe thiết bị nhà máy"): ô dù này? hay arc-fault
-  đơn? hay thêm beachhead thứ 2 (voice/Home-IoT PS đã PoC)? — *research đề xuất ô dù; GM quyết.*
-- [ ] `legal-counsel` đọc bản gốc **TCVN 7447-7-712:2019 + QCVN 01:2020/BCT** → có/không điều khoản AFCI/hồ quang.
+- [ ] **GM xem & chốt KHUNG MAP** (chưa cần chốt thứ tự ưu tiên — đó là chuyện sau).
+- [ ] `legal-counsel` đọc bản gốc **TCVN 7447-7-712:2019 + QCVN 01:2020/BCT** → arc-fault/AFCI có/không bắt buộc.
+- [ ] Bổ **số machine vision/QC riêng VN** (hiện chỉ có toàn cầu/APAC + anchor Amkor) nếu trình nhà đầu tư lớn.
 - [ ] Native proofread KO/EN.
 
 ## ⚠️ Lưu ý (LẰN RANH AN TOÀN)
-- **arc-fault = ứng dụng Pebble Vina khởi xướng**, KHÔNG gán cho Pebble Square (CEO PS ngồi dưới). Ô ❷❸ mới là
-  vertical **PS tự claim** — nói đúng vai.
-- **KHÔNG** tuyên bố *"luật VN bắt buộc arc-fault/AFCI"* — chuẩn VN **chưa có** mục này (cơ hội đón đầu, không phải nghĩa vụ đã có).
-- **KHÔNG** trình arc-fault như "phát minh" — Huawei/Solis/SolarEdge đã thương mại hóa; khác biệt của ta là
-  **on-device, siêu tiết kiệm điện nhờ Analog-PIM, chạy ngay trong tủ/inverter**.
+- **arc-fault / an toàn điện** nằm trong cột **Bảo trì dự đoán** như **ứng dụng Pebble Vina khởi xướng** — KHÔNG
+  gán cho Pebble Square (CEO PS ngồi dưới). Lõi PS tự claim ở cột này = **Failure Analysis cho máy móc/robot**.
+- **KHÔNG xếp hạng / KHÔNG tô đậm cột nào "đi trước"** — giữ đúng thông điệp "map rồi mới ưu tiên".
+- **Số dùng trên slide đều ✅ verified** (IMARC, fetch 2026-06-15). Machine vision riêng VN **❌ NOT FOUND** →
+  cột Vision dùng anchor **Amkor + bán dẫn VN** (✅), không dùng số machine vision toàn cầu như thể là số VN.
+- **Nhất quán với slide 06:** Chân trời 1 hiện gọi tên beachhead "an toàn & sức khỏe thiết bị" → **cần làm mềm**
+  ("cắm rễ bằng MỘT mũi nhọn") cho khỏi mâu thuẫn với việc slide 05 hoãn priority. *(GM xác nhận.)*

@@ -85,6 +85,37 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
         </motion.div>
       );
 
+    case "matrix":
+      return (
+        <motion.div variants={wrap} initial="hidden" animate="show" className="flex flex-col gap-3">
+          {/* 4 cột: trên = năng lực Pebble Square · ↓ · dưới = phân khúc VN + số bằng chứng */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {figure.cols.map((c, i) => (
+              <motion.div key={i} variants={rise} className="flex flex-col border border-white/10 bg-white/[0.02]">
+                <div className="flex flex-col gap-0.5 border-b border-white/10 bg-accent/[0.06] px-4 py-2.5">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent/70">Pebble Square</span>
+                  <span className="font-sans text-[clamp(0.95rem,1.25vw,1.12rem)] font-medium leading-snug text-ink">{tx(c.cap)}</span>
+                </div>
+                <span className="py-1 text-center font-mono text-sm text-accent/60" aria-hidden>↓</span>
+                <div className="flex flex-1 flex-col gap-2 px-4 pb-3">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">Vietnam</span>
+                  <span className="font-sans text-[clamp(0.9rem,1.2vw,1.05rem)] font-medium leading-snug text-ink/90">{tx(c.seg)}</span>
+                  <span className="mt-auto pt-1 font-mono text-[11px] leading-relaxed tabular-nums text-muted">{c.stat}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          {/* đòn bẩy xuyên suốt — KOCHAM */}
+          <motion.div variants={rise} className="flex items-center gap-3 border-l-2 border-gold bg-gold/[0.06] px-4 py-2.5">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+            <span className="font-sans text-[clamp(0.9rem,1.2vw,1.05rem)] leading-snug text-ink/90">{tx(figure.bar)}</span>
+          </motion.div>
+          <motion.span variants={rise} className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
+            {tx(figure.foot)}
+          </motion.span>
+        </motion.div>
+      );
+
     case "bridge":
       return (
         <motion.div variants={wrap} initial="hidden" animate="show" className="flex flex-col gap-4">

@@ -18,8 +18,9 @@ links: [planning/2026-06-13-dinh-vi-thuong-hieu-pebble-vina.md, company/decision
 ## 🎯 Thông điệp chính (1 câu cả phòng nhớ)
 
 > **Câu lớn (thì hiện tại — sứ mệnh, đúng 100% hôm nay):**
-> Pebble Vina là **công ty Việt Nam** ra đời để đưa **nền tảng Edge-AI của Pebble Square (Hàn Quốc)**
-> vào **vận hành thật tại Việt Nam**. *(ý "bắt đầu từ bài toán cấp thiết nhất" chuyển xuống cột "Hôm nay")*
+> Pebble Vina ra đời để đưa **Edge-AI** vào **vận hành thật**, chung tay đưa **Việt Nam phát triển** —
+> cùng nền tảng hàng đầu từ Pebble Square. *(lý do tồn tại = sứ mệnh đưa VN phát triển, nối mạch slide 01;
+> Edge-AI = phương tiện, PS = đối tác "cùng làm" — KHÔNG định vị PV lệ thuộc PS. "bài toán cấp thiết nhất" ở cột "Hôm nay")*
 >
 > **Dòng mục tiêu (earned goal — nói rõ là đích):**
 > Mục tiêu — trở thành **đối tác phân phối độc quyền** của Pebble Square tại Việt Nam, và vươn thành
