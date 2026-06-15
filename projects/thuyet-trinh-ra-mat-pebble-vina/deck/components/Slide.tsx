@@ -4,6 +4,7 @@ import { motion, type Variants } from "motion/react";
 import type { SlideData, Lang } from "@/lib/slides";
 import { Figure } from "@/components/Figure";
 import { CoverChip3D } from "@/components/CoverChip3D";
+import { rich } from "@/lib/rich";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -53,7 +54,7 @@ function Content({ s, lang }: { s: SlideData; lang: Lang }) {
           variants={rise}
           className="font-serif text-[clamp(1.9rem,4.4vw,3.1rem)] font-semibold leading-[1.08] tracking-[-0.015em] text-ink"
         >
-          {s.title[lang]}
+          {rich(s.title[lang])}
         </motion.h2>
       </div>
 
@@ -62,7 +63,7 @@ function Content({ s, lang }: { s: SlideData; lang: Lang }) {
           variants={rise}
           className="mt-4 max-w-[56ch] font-sans text-[clamp(1.08rem,1.75vw,1.5rem)] font-light leading-[1.42] text-ink/85"
         >
-          {s.headline[lang]}
+          {rich(s.headline[lang])}
         </motion.p>
       )}
 
@@ -82,7 +83,7 @@ function Content({ s, lang }: { s: SlideData; lang: Lang }) {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span className="font-sans text-[clamp(1rem,1.5vw,1.25rem)] leading-snug text-ink/90">
-                {b}
+                {rich(b)}
               </span>
             </motion.li>
           ))}

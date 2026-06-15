@@ -107,9 +107,9 @@ export const SLIDES: SlideData[] = [
     eyebrow: L("Bối cảnh · Kỷ nguyên mới", "시대적 배경 · 새로운 시대", "Context · A new era"),
     title: L("Kỷ nguyên vươn mình của Việt Nam", "도약하는 베트남의 시대", "Vietnam's era of national rising"),
     headline: L(
-      "Việt Nam đang bước vào kỷ nguyên vươn mình của dân tộc — công cuộc hiện đại hóa đất nước được Tổng Bí thư Tô Lâm cùng lãnh đạo Đảng, Nhà nước coi trọng và thúc đẩy.",
-      "베트남은 민족의 도약 시대에 들어서고 있습니다 — 국가 현대화 과업을 또 럼 서기장과 당·국가 지도부가 중시하고 적극 추진하고 있습니다.",
-      "Vietnam is entering an era of national rising — the country's modernization is valued and actively driven by General Secretary Tô Lâm and the Party and State leadership.",
+      "*Kỷ nguyên vươn mình* — quyết tâm đưa Việt Nam thành quốc gia phát triển, hiện đại; lấy khoa học – công nghệ làm đột phá, với *bán dẫn và AI* là ngành ưu tiên chiến lược.",
+      "*도약의 시대* — 베트남을 선진·현대 국가로 만들겠다는 의지이며, 과학기술을 돌파구로 삼고 그 중심에 *반도체와 AI*를 전략 우선 산업으로 둡니다.",
+      "*An era of national rising* — Vietnam's resolve to become a developed, modern nation, with science and technology as the breakthrough and *semiconductors and AI* as strategic priority sectors.",
     ),
     figure: {
       kind: "flow",
@@ -130,12 +130,21 @@ export const SLIDES: SlideData[] = [
       foot: L("Đó là lý do Pebble Vina ra đời.", "그것이 바로 Pebble Vina가 탄생한 이유입니다.", "That is why Pebble Vina was born."),
     },
     bullets: {
-      vi: ["Theo Nghị quyết 57-NQ/TW và Chiến lược phát triển công nghiệp bán dẫn quốc gia đến 2030."],
-      ko: ["결의 제57호와 2030 국가 반도체 산업 발전 전략에 근거합니다."],
-      en: ["Per Resolution 57-NQ/TW and the national Semiconductor Industry Strategy to 2030."],
+      vi: [
+        "Chủ trương được *Tổng Bí thư Tô Lâm* cùng lãnh đạo Đảng, Nhà nước thúc đẩy.",
+        "Căn cứ *Nghị quyết 57-NQ/TW* (*22/12/2024*) và *Quyết định 1018/QĐ-TTg* (*21/9/2024*) — Chiến lược phát triển công nghiệp bán dẫn Việt Nam đến 2030.",
+      ],
+      ko: [
+        "*또 럼 서기장*과 당·국가 지도부가 추진하는 국가 기조입니다.",
+        "근거: *결의 57-NQ/TW호* (*2024.12.22*) · *결정 1018/QĐ-TTg호* (*2024.9.21*) — 2030 베트남 반도체 산업 발전 전략.",
+      ],
+      en: [
+        "A national agenda driven by *General Secretary Tô Lâm* and the Party and State leadership.",
+        "Basis: *Resolution 57-NQ/TW* (*22 Dec 2024*) and *Decision 1018/QĐ-TTg* (*21 Sep 2024*) — Vietnam's Semiconductor Industry Strategy to 2030.",
+      ],
     },
     need: ["GM duyệt câu chữ chính trị", "Native proofread KO/EN"],
-    notes: "Mạch DIỄN DỊCH kiểu Việt (GM, 2026-06-15): đại cục quốc gia → suy ra cần đơn vị tiên phong → hạ cánh Pebble Vina. LẰN RANH: KHÔNG ngụ ý lãnh đạo bảo trợ PV — chỉ dẫn chủ trương quốc gia rồi TA tự đáp lời. Chức danh đã xác minh: Tổng Bí thư khóa XIV (đương nhiệm). Nguồn NQ57 (22/12/2024) + QĐ1018 (21/9/2024).",
+    notes: "Mạch DIỄN DỊCH kiểu Việt (GM, 2026-06-15): đại cục quốc gia → suy ra cần đơn vị tiên phong → hạ cánh Pebble Vina. LẰN RANH: KHÔNG ngụ ý lãnh đạo bảo trợ PV — chỉ dẫn chủ trương quốc gia rồi TA tự đáp lời. Chức danh đã xác minh: Tổng Bí thư khóa XIV (đương nhiệm). Nguồn NQ57 (22/12/2024) + QĐ1018 (21/9/2024). TINH GỌN (2026-06-15): headline = ĐỊNH NGHĨA 'kỷ nguyên là gì' (quốc gia phát triển/hiện đại · KH-CN đột phá · bán dẫn+AI ưu tiên) thay vì câu dài; TÊN lãnh đạo + số hiệu văn bản DỜI xuống bullet (giảm rủi ro lằn ranh, headline thuần khái niệm). Chữ nhấn gradient (.hl): headline = 'kỷ nguyên vươn mình' + 'bán dẫn và AI'; bullet tách 2 dòng (chủ trương+tên lãnh đạo / căn cứ pháp lý), NHẤN tên riêng · mã văn bản · ngày ban hành đầy đủ — GM chốt 2026-06-15 (muốn tên lãnh đạo nổi). Số hiệu+ngày đã xác minh: NQ57 22/12/2024 · QĐ1018 21/9/2024.",
     why: "Khung luận GM: mở deck bằng diễn dịch quốc gia — nâng PV thành 'đáp lời nhu cầu quốc gia', giải thế khó 'chưa ký HĐ/chưa chọn vertical' (biện minh ở tầm sứ mệnh). Nuốt luôn 'why now'.",
   },
 
@@ -143,18 +152,19 @@ export const SLIDES: SlideData[] = [
   {
     n: 2, file: "02-dinh-vi-pebble-vina.md", nhip: 0, owner: "GM", status: "drafting", tech: "non", gatDau: "Cả phòng",
     eyebrow: L("Pebble Vina là ai", "Pebble Vina는", "Who we are"),
-    title: L("Một câu về chúng tôi", "한 문장으로", "In one sentence"),
+    title: L("Một công ty Việt Nam, một tầm nhìn khu vực", "베트남 기업, 지역을 향한 비전", "A Vietnamese company, a regional vision"),
     headline: L(
-      "Pebble Vina ra đời để đưa công nghệ Edge-AI của Pebble Square (Hàn Quốc) vào vận hành thật tại Việt Nam.",
-      "Pebble Vina는 Pebble Square(한국)의 엣지 AI 기술을 베트남 현장에 실제로 도입하기 위해 설립되었습니다.",
-      "Pebble Vina was founded to bring Pebble Square's (Korea) Edge-AI technology into real operation in Vietnam.",
+      "Pebble Vina ra đời để đưa công nghệ *Edge-AI* của Pebble Square (Hàn Quốc) vào *vận hành thật* tại Việt Nam.",
+      "Pebble Vina는 Pebble Square(한국)의 *엣지 AI* 기술을 베트남 현장에 *실제로* 도입하기 위해 설립되었습니다.",
+      "Pebble Vina was founded to bring Pebble Square's (Korea) *Edge-AI* technology into *real operation* in Vietnam.",
     ),
     figure: {
       kind: "twocol",
       left: {
         head: L("Hôm nay", "오늘", "Today"),
         items: [
-          L("Một công ty Việt Nam độc lập", "독립된 베트남 기업", "An independent Vietnamese company"),
+          L("Một công ty *Việt Nam độc lập*", "*독립된 베트남 기업*", "An *independent Vietnamese company*"),
+          L("Kết nối với cộng đồng doanh nghiệp Hàn tại Việt Nam", "베트남 내 한국 기업 커뮤니티와 연결", "Connected to the Korean business community in Vietnam"),
           L("Bắt đầu từ bài toán cấp thiết nhất", "가장 시급한 과제부터 시작", "Starting with the most urgent problem"),
         ],
       },
@@ -162,7 +172,8 @@ export const SLIDES: SlideData[] = [
         head: L("Mục tiêu", "목표", "Our goal"),
         items: [
           L("Đối tác phân phối độc quyền của Pebble Square", "Pebble Square 독점 총판 파트너", "Pebble Square's exclusive distribution partner"),
-          L("Công ty giải pháp Edge-AI cho Đông Nam Á", "동남아를 위한 엣지 AI 솔루션 기업", "An Edge-AI solutions company for Southeast Asia"),
+          L("Mở rộng nhiều ứng dụng trên một nền tảng", "하나의 플랫폼에서 다양한 응용으로 확장", "Broadening many applications on one platform"),
+          L("Công ty giải pháp Edge-AI cho *Đông Nam Á*", "*동남아*를 위한 엣지 AI 솔루션 기업", "An Edge-AI solutions company for *Southeast Asia*"),
         ],
       },
     },
@@ -172,7 +183,7 @@ export const SLIDES: SlideData[] = [
       en: ["We set the goal — and make it real, step by step."],
     },
     need: ["GM chốt mức nói 'độc quyền' trên sân khấu", "Native proofread KO/EN"],
-    notes: "ĐỊNH VỊ HAI THÌ (chốt 2026-06-15): cột 'Hôm nay' = cái chứng minh được; cột 'Mục tiêu' (gold) = đích earned. CHƯA ký HĐ với PS → 'độc quyền' nằm ở cột MỤC TIÊU, không phải hiện trạng (CEO PS ngồi dưới). Motif = lời GM, sợi chỉ xuyên deck.",
+    notes: "ĐỊNH VỊ HAI THÌ (chốt 2026-06-15): cột 'Hôm nay' = cái chứng minh được; cột 'Mục tiêu' (gold) = đích earned. CHƯA ký HĐ với PS → 'độc quyền' nằm ở cột MỤC TIÊU, không phải hiện trạng (CEO PS ngồi dưới). Motif = lời GM, sợi chỉ xuyên deck. Chữ nhấn gradient (2026-06-15): headline = 'Edge-AI' + 'vận hành thật'; figure nhấn theo MẠCH ĐỊA LÝ 'Việt Nam độc lập' (Hôm nay) → 'Đông Nam Á' (Mục tiêu). CỐ Ý KHÔNG nhấn 'độc quyền' — giữ MỀM trên sân khấu, đồng bộ stance slide 04. (2026-06-15, GM feedback) Bỏ title 'Một câu về chúng tôi' (vô duyên, ít thông tin) → title định vị 'một công ty VN, một tầm nhìn khu vực'. Mở mỗi cột 2→3 mục: Hôm nay thêm 'kết nối cộng đồng DN Hàn (KOCHAM)'; Mục tiêu thêm 'mở rộng nhiều ứng dụng/một nền tảng' = bậc thang vai trò→bề rộng→khu vực (khớp 3 chân trời slide 06). ⚠️ Dòng KOCHAM nhắc nhẹ mạng lưới Hàn — GM rà mức công khai.",
     why: "Điểm hạ cánh của mạch diễn dịch slide 01. Phương pháp định vị hai thì — không hứa viển vông. Nguồn: dinh-vi §3; ADR 0001 (Hướng C).",
   },
 

@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "motion/react";
 import type { Figure as Fig, Lang, LText } from "@/lib/slides";
+import { rich } from "@/lib/rich";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const wrap: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } };
@@ -23,7 +24,7 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
               {tx(figure.value)}
             </motion.span>
             <motion.span variants={rise} className="mb-2 max-w-[34ch] font-sans text-[clamp(0.95rem,1.4vw,1.18rem)] leading-snug text-ink/90">
-              {tx(figure.caption)}
+              {rich(tx(figure.caption))}
             </motion.span>
           </div>
           {figure.source && (
@@ -44,7 +45,7 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
                   variants={rise}
                   className="flex min-w-[8.5rem] flex-col gap-1 border border-white/12 bg-white/[0.02] px-4 py-3"
                 >
-                  <span className="font-sans text-[clamp(1rem,1.5vw,1.25rem)] font-medium text-ink">{tx(st.label)}</span>
+                  <span className="font-sans text-[clamp(1rem,1.5vw,1.25rem)] font-medium text-ink">{rich(tx(st.label))}</span>
                   {st.sub && <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted">{tx(st.sub)}</span>}
                 </motion.div>
                 {i < figure.steps.length - 1 && (
@@ -58,7 +59,7 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
           <motion.div variants={grow} className="h-px w-full origin-left bg-white/10" />
           <motion.span variants={rise} className="flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.14em] text-gold">
             <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-            {tx(figure.foot)}
+            {rich(tx(figure.foot))}
           </motion.span>
         </motion.div>
       );
@@ -69,7 +70,7 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
           {figure.items.map((it, i) => (
             <motion.div key={i} variants={rise} className="flex flex-col gap-2 border-t-2 border-accent/60 bg-white/[0.02] px-4 py-4">
               <span className="font-mono text-[12px] font-medium tabular-nums text-accent/70">{`0${i + 1}`}</span>
-              <span className="font-sans text-[clamp(1rem,1.45vw,1.22rem)] font-medium leading-snug text-ink">{tx(it.label)}</span>
+              <span className="font-sans text-[clamp(1rem,1.45vw,1.22rem)] font-medium leading-snug text-ink">{rich(tx(it.label))}</span>
               <span className="font-mono text-[11px] uppercase tracking-[0.08em] leading-relaxed text-muted">{tx(it.sub)}</span>
             </motion.div>
           ))}
@@ -101,7 +102,7 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
             ))}
           </div>
           <motion.span variants={rise} className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
-            {tx(figure.foot)}
+            {rich(tx(figure.foot))}
           </motion.span>
         </motion.div>
       );
@@ -118,7 +119,7 @@ function Col({ head, items, tone }: { head: string; items: string[]; tone: "ink"
         {items.map((it, i) => (
           <li key={i} className="flex items-baseline gap-2.5 font-sans text-[clamp(0.92rem,1.3vw,1.1rem)] leading-snug text-ink/90">
             <span className={`mt-[0.45em] h-1.5 w-1.5 shrink-0 rounded-[1px] ${dot}`} />
-            {it}
+            {rich(it)}
           </li>
         ))}
       </ul>
