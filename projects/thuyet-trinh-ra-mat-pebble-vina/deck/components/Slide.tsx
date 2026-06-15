@@ -101,7 +101,7 @@ function Cover({ s, lang }: { s: SlideData; lang: Lang }) {
       variants={container}
       initial="hidden"
       animate="show"
-      className="grid h-full w-full grid-cols-1 items-center gap-x-8 md:grid-cols-[35fr_65fr]"
+      className="grid h-full w-full grid-cols-1 items-center gap-x-10 md:grid-cols-[42fr_58fr]"
     >
       {/* CỘT TRÁI — chữ */}
       <div className="flex flex-col justify-center">
@@ -123,7 +123,7 @@ function Cover({ s, lang }: { s: SlideData; lang: Lang }) {
         {s.slogan && (
           <motion.p
             variants={rise}
-            className="mt-5 max-w-[26ch] text-balance font-sans text-[clamp(1.3rem,2.2vw,1.9rem)] font-light leading-[1.18] text-ink"
+            className="mt-5 max-w-[30ch] text-balance font-sans text-[clamp(1.35rem,2.35vw,2rem)] font-light leading-[1.18] text-ink"
           >
             {s.slogan[lang]}
           </motion.p>
@@ -132,7 +132,7 @@ function Cover({ s, lang }: { s: SlideData; lang: Lang }) {
         {s.headline && (
           <motion.p
             variants={rise}
-            className="mt-4 max-w-[42ch] font-sans text-[clamp(0.95rem,1.3vw,1.12rem)] font-light leading-[1.45] text-muted"
+            className="mt-4 max-w-[46ch] font-sans text-[clamp(1rem,1.45vw,1.2rem)] font-light leading-[1.45] text-muted"
           >
             {s.headline[lang]}
           </motion.p>
@@ -164,7 +164,7 @@ function Cover({ s, lang }: { s: SlideData; lang: Lang }) {
       </div>
 
       {/* CỘT PHẢI — die 3D */}
-      <CoverChip3D />
+      <CoverChip3D lang={lang} />
     </motion.div>
   );
 }

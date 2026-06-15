@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { motion } from "motion/react";
 import { Cpu } from "lucide-react";
 import type { LeadEl } from "@/components/ChipScene";
+import type { Lang, LText } from "@/lib/slides";
 
 // Bìa — chip 3D thật (R3F) + legend khoá đúng die (xem ChipScene). Canvas client-only (ssr:false).
 const ChipScene = dynamic(() => import("@/components/ChipScene").then((m) => m.ChipScene), { ssr: false });
@@ -14,11 +15,14 @@ const ease = [0.16, 1, 0.3, 1] as const;
 // Mỗi legend = NHÃN + CHÚ THÍCH nhỏ (in nghiêng). Đặt CẠNH đúng item; ChipScene cập nhật
 // vị trí mỗi frame sao cho khoảng cách-x tới khối LUÔN bằng nhau (trái hay phải).
 // side khớp SIDES trong ChipScene: [CORE-1 phải, Activation trái, CORE-2 phải, IO trái].
-const CALLOUTS = [
-  { label: "PIM CORE-1", desc: "nhân Analog-PIM", side: "right" as const },
-  { label: "Activation Logic", desc: "kích hoạt phi tuyến", side: "left" as const },
-  { label: "PIM CORE-2", desc: "nhân PIM song song", side: "right" as const },
-  { label: "I/O Driver", desc: "giao tiếp & nguồn", side: "left" as const },
+const tri = (vi: string, ko: string, en: string): LText => ({ vi, ko, en });
+
+// legend (label) + desc TAM NGỮ — đổi theo phím "l" (VI/KO/EN). KO là bản draft, cần native proofread.
+const CALLOUTS: { label: LText; desc: LText; side: "left" | "right" }[] = [
+  { label: tri("PIM CORE-1", "PIM 코어-1", "PIM CORE-1"), desc: tri("nhân Analog-PIM", "아날로그-PIM 코어", "Analog-PIM core"), side: "right" },
+  { label: tri("Activation Logic", "활성화 로직", "Activation Logic"), desc: tri("kích hoạt phi tuyến", "비선형 활성화", "nonlinear activation"), side: "left" },
+  { label: tri("PIM CORE-2", "PIM 코어-2", "PIM CORE-2"), desc: tri("nhân PIM song song", "병렬 PIM 코어", "parallel PIM core"), side: "right" },
+  { label: tri("I/O Driver", "I/O 드라이버", "I/O Driver"), desc: tri("giao tiếp & nguồn", "인터페이스 & 전원", "interface & power"), side: "left" },
 ];
 
 const PLUSES = [
@@ -42,7 +46,7 @@ function NeonPlus({ left, top, size, delay }: { left: string; top: string; size:
   );
 }
 
-export function CoverChip3D() {
+export function CoverChip3D({ lang }: { lang: Lang }) {
   const leads = useRef<LeadEl[]>([]);
   const setLead = (i: number, k: keyof LeadEl, el: LeadEl[keyof LeadEl]) => {
     (leads.current[i] ??= { poly: null, dot: null, core: null, label: null })[k] = el as never;
@@ -126,8 +130,8 @@ export function CoverChip3D() {
             className="rounded-md border border-accent/20 bg-base/80 px-2 py-1 shadow-[0_3px_12px_rgba(0,0,0,0.4)] backdrop-blur-sm"
             style={{ textAlign: c.side === "left" ? "right" : "left" }}
           >
-            <div className="whitespace-nowrap font-sans text-[11.5px] font-semibold leading-tight text-ink">{c.label}</div>
-            <div className="whitespace-nowrap font-serif text-[10px] italic leading-snug text-muted">{c.desc}</div>
+            <div className="whitespace-nowrap font-sans text-[11.5px] font-semibold leading-tight text-ink">{c.label[lang]}</div>
+            <div className="whitespace-nowrap font-serif text-[10px] italic leading-snug text-muted">{c.desc[lang]}</div>
           </div>
         </motion.div>
       ))}

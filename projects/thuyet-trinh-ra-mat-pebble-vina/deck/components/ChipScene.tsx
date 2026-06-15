@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Lightformer, RoundedBox } from "@react-three/drei";
-import { useMemo, useRef, type RefObject } from "react";
+import { useEffect, useMemo, useRef, type RefObject } from "react";
 import * as THREE from "three";
 
 // Cảnh 3D thật (R3F) cho bìa — exploded die Analog-PIM của Pebble Square.
@@ -25,6 +25,11 @@ const TITANIUM = "#c4c8cd"; // titanium phay sáng (thân die / IO driver)
 const DARK_TI = "#39434e"; // titanium anode tối (đế / package)
 const ACCENT = "#4f93e8"; // xanh điện — vùng tính toán phát sáng
 const GOLD = "#e0b056"; // vàng tiết chế — chân tiếp xúc, branding
+
+// Vật liệu phát sáng dùng CHUNG cho mọi ô PIM-core / bar logic (1 instance thay vì vài chục)
+// → giảm bộ nhớ GPU & overhead mỗi frame. Module-level: tạo 1 lần cho cả vòng đời app.
+const CORE_MAT = new THREE.MeshStandardMaterial({ color: new THREE.Color("#0a1c34"), emissive: new THREE.Color(ACCENT), emissiveIntensity: 1.35, roughness: 0.4, metalness: 0.2 });
+const LOGIC_MAT = new THREE.MeshStandardMaterial({ color: new THREE.Color("#0a1c34"), emissive: new THREE.Color(ACCENT), emissiveIntensity: 1.15, roughness: 0.4, metalness: 0.2 });
 
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -57,6 +62,13 @@ const DICE: DieCfg[] = [
   { size: [1.08, DIE_H, 0.94], color: TITANIUM, kind: "core", cells: [4, 3], target: [0.4, 1.4, -0.12], rank: 2 },
   { size: [0.9, DIE_H, 0.78], color: "#bcc1c7", kind: "logic", cells: [6, 1], target: [-0.46, 0.96, 0.16], rank: 1 },
   { size: [1.0, DIE_H, 0.86], color: "#cacfd3", kind: "core", cells: [4, 3], target: [0.34, 0.52, 0.1], rank: 0 },
+];
+
+// Tham số "nảy ngẫu nhiên" cho 3 die — biên/tần/pha khác nhau → lệch nhịp, trông ngẫu nhiên.
+const BOUNCE = [
+  { amp: 0.06, freq: 1.4, phase: 0.0 },
+  { amp: 0.085, freq: 0.95, phase: 2.2 },
+  { amp: 0.05, freq: 1.75, phase: 4.1 },
 ];
 
 // Khi "ráp": cả 3 chồng khít tại tâm thành MỘT khối (HBM-style stack). Tách sau 0.5s.
@@ -143,13 +155,12 @@ function CoreArray({ size, cells }: { size: [number, number, number]; cells: [nu
   }, [size, cells]);
   const y = size[1] / 2 + 0.012;
   const cw = Math.min(size[0], size[2]) * 0.12;
+  const geo = useMemo(() => new THREE.BoxGeometry(cw, 0.022, cw), [cw]);
+  useEffect(() => () => geo.dispose(), [geo]);
   return (
     <group>
       {pts.map((p, i) => (
-        <mesh key={i} position={[p[0], y, p[1]]}>
-          <boxGeometry args={[cw, 0.022, cw]} />
-          <meshStandardMaterial color="#0a1c34" emissive={ACCENT} emissiveIntensity={1.35} roughness={0.4} metalness={0.2} />
-        </mesh>
+        <mesh key={i} position={[p[0], y, p[1]]} geometry={geo} material={CORE_MAT} />
       ))}
     </group>
   );
@@ -168,9 +179,8 @@ function LogicBars({ size, count }: { size: [number, number, number]; count: num
   return (
     <group>
       {bars.map((b, i) => (
-        <mesh key={i} position={[b.x, baseY + b.h / 2, 0]}>
+        <mesh key={i} position={[b.x, baseY + b.h / 2, 0]} material={LOGIC_MAT}>
           <boxGeometry args={[size[0] * 0.05, b.h, size[2] * 0.52]} />
-          <meshStandardMaterial color="#0a1c34" emissive={ACCENT} emissiveIntensity={1.15} roughness={0.4} metalness={0.2} />
         </mesh>
       ))}
     </group>
@@ -197,15 +207,13 @@ function IODriver({
     <group position={[0, cy, zc]}>
       {/* thân driver — titanium sần (noise → roughness + bump), bo cạnh */}
       <RoundedBox args={[W, H, D]} radius={0.035} smoothness={4} creaseAngle={0.5}>
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           color={TITANIUM}
           metalness={0.92}
           roughness={0.52}
           roughnessMap={noiseTex}
           bumpMap={noiseTex}
           bumpScale={0.02}
-          clearcoat={0.35}
-          clearcoatRoughness={0.45}
           envMapIntensity={1.0}
         />
       </RoundedBox>
@@ -251,6 +259,7 @@ function Assembly({ leads }: { leads: RefObject<LeadEl[]> }) {
   const anchors = useRef<(THREE.Object3D | null)[]>([]);
   const { camera, size } = useThree();
   const v = useRef(new THREE.Vector3()).current;
+  const lastProj = useRef<{ x: number; y: number }[]>([]).current;
   const noiseTex = useMemo(() => makeNoiseTexture(), []);
   const brandTex = useMemo(() => makeBrandTexture(), []);
   const packTex = useMemo(() => {
@@ -270,8 +279,6 @@ function Assembly({ leads }: { leads: RefObject<LeadEl[]> }) {
     if (root.current) {
       const s = easeOut(clamp01(t / 0.7));
       root.current.scale.setScalar(0.93 + 0.07 * s);
-      root.current.position.y = Math.sin(t * 0.5) * 0.025; // trôi rất nhẹ
-      root.current.rotation.y = Math.sin(t * 0.22) * 0.025;
     }
     // ráp → tách: nội suy vị trí + scale cho từng die (thấp nhất tách trước)
     DICE.forEach((d, i) => {
@@ -284,6 +291,12 @@ function Assembly({ leads }: { leads: RefObject<LeadEl[]> }) {
       g.position.y = lerp(assembledY(d.rank), d.target[1], ep);
       g.position.z = lerp(0, d.target[2], ep);
       g.scale.setScalar(lerp(ASSEM_SCALE, 1, es));
+      // nảy ngẫu nhiên — chỉ bật SAU khi nổ-lắp xong (ramp mượt, không giật)
+      const b = BOUNCE[i];
+      const bg = clamp01((t - 2.2) / 1.2);
+      g.position.y += b.amp * bg * Math.sin(t * b.freq + b.phase);
+      g.position.x += b.amp * 0.4 * bg * Math.sin(t * b.freq * 0.8 + b.phase * 1.7);
+      g.rotation.y = 0.1 * bg * Math.sin(t * b.freq * 0.6 + b.phase);
     });
 
     // chiếu anchor → màn hình; cập nhật leader VUÔNG GÓC + vị trí nhãn
@@ -296,6 +309,11 @@ function Assembly({ leads }: { leads: RefObject<LeadEl[]> }) {
         a.getWorldPosition(v).project(camera);
         const x = (v.x * 0.5 + 0.5) * size.width;
         const y = (-v.y * 0.5 + 0.5) * size.height;
+        // Throttle DOM: bỏ qua khi điểm chiếu dịch < 0.5px so với lần ghi trước → sau khi
+        // die "nổ" xong (chỉ còn trôi rất nhẹ), gần như không còn thao tác DOM mỗi frame.
+        const lp = lastProj[i];
+        if (lp && Math.abs(lp.x - x) < 0.5 && Math.abs(lp.y - y) < 0.5) return;
+        lastProj[i] = { x, y };
         const side = SIDES[i] ?? 1;
         const lx = x + side * GAP; // khoảng cách-x tới thẻ nhãn LUÔN = GAP (trái hay phải)
         const ly = y + DROP; // chân đoạn rẽ dọc = mép-trên thẻ nhãn
@@ -317,21 +335,19 @@ function Assembly({ leads }: { leads: RefObject<LeadEl[]> }) {
     <group ref={root} position={[-0.28, 0, 0]}>
       {/* đế / package — titanium anode tối, bo, hơi sần */}
       <RoundedBox args={[BASE_W, BASE_H, BASE_D]} radius={0.05} smoothness={4} creaseAngle={0.5} position={[0, 0, 0]}>
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           color={DARK_TI}
           metalness={0.85}
           roughness={0.46}
           roughnessMap={packTex}
           bumpMap={packTex}
           bumpScale={0.012}
-          clearcoat={0.5}
-          clearcoatRoughness={0.3}
           envMapIntensity={0.9}
         />
       </RoundedBox>
       {/* vùng active mỏng trên đế — ánh accent để "có sự sống" */}
       <RoundedBox args={[BASE_W * 0.8, 0.022, BASE_D * 0.62]} radius={0.008} smoothness={3} position={[0, BASE_H * 0.5 + 0.012, -BASE_D * 0.14]}>
-        <meshPhysicalMaterial color="#1a3556" metalness={0.4} roughness={0.3} clearcoat={1} clearcoatRoughness={0.12} emissive={ACCENT} emissiveIntensity={0.22} />
+        <meshStandardMaterial color="#1a3556" metalness={0.4} roughness={0.3} emissive={ACCENT} emissiveIntensity={0.22} />
       </RoundedBox>
 
       {/* khối I/O Driver high-tech (+ anchor index 3) */}
@@ -341,13 +357,10 @@ function Assembly({ leads }: { leads: RefObject<LeadEl[]> }) {
       {DICE.map((d, i) => (
         <group key={i} ref={(el) => (dieGroups.current[i] = el)} position={[0, assembledY(d.rank), 0]}>
           <RoundedBox args={d.size} radius={0.022} smoothness={4} creaseAngle={0.5}>
-            <meshPhysicalMaterial
+            <meshStandardMaterial
               color={d.color}
               metalness={0.94}
               roughness={0.34}
-              clearcoat={0.6}
-              clearcoatRoughness={0.18}
-              reflectivity={0.6}
               envMapIntensity={1.15}
             />
           </RoundedBox>
@@ -363,7 +376,8 @@ function Assembly({ leads }: { leads: RefObject<LeadEl[]> }) {
 export function ChipScene({ leads }: { leads: RefObject<LeadEl[]> }) {
   return (
     <Canvas
-      dpr={[1, 2]}
+      frameloop="always"
+      dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       camera={{ position: [3.3, 2.7, 5.2], fov: 30 }}
       onCreated={({ camera }) => camera.lookAt(0, 0.78, 0)}
@@ -373,7 +387,7 @@ export function ChipScene({ leads }: { leads: RefObject<LeadEl[]> }) {
       <directionalLight position={[5, 8, 4]} intensity={1.6} />
       <directionalLight position={[-5, 4, -3]} intensity={0.5} color="#bcd2ff" />
       <directionalLight position={[0, 2.5, -6]} intensity={0.45} color="#e0b056" />
-      <Environment resolution={256} frames={1}>
+      <Environment resolution={128} frames={1}>
         <Lightformer form="rect" intensity={2.6} position={[0, 6, 2]} scale={[10, 10, 1]} color="#dbe7ff" />
         <Lightformer form="rect" intensity={1.7} position={[6, 3, 4]} scale={[6, 8, 1]} color="#ffffff" />
         <Lightformer form="rect" intensity={1.2} position={[-6, 2, 2]} scale={[6, 8, 1]} color="#ffe6c0" />
