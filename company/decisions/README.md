@@ -21,4 +21,5 @@ Ghi lại mọi quyết định **khó đảo ngược** hoặc có ảnh hưở
 
 | Số  | Tiêu đề | Ngày | Trạng thái |
 | --- | ------- | ---- | ---------- |
-| [0001](0001-huong-kien-truc-thuong-hieu.md) | Hướng kiến trúc thương hiệu Pebble Vina (C — lai có lộ trình) | 2026-06-13 | accepted |
+| [0001](0001-huong-kien-truc-thuong-hieu.md) | Hướng kiến trúc thương hiệu Pebble Vina (C — lai có lộ trình) | 2026-06-13 | superseded (bởi 0002) |
+| [0002](0002-pebble-vina-thanh-vien-pebble-square.md) | Pebble Vina = thành viên Việt Nam của nhóm Pebble Square (đảo Hướng C) | 2026-06-16 | accepted |

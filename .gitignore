@@ -6,6 +6,11 @@
 secrets/
 **/secrets.*
 
+# Tài liệu MẬT — KHÔNG đẩy ra remote (nguồn sơ cấp PS + GTM nhạy cảm)
+company/sources/
+memory/playbook-30-prospect.md
+market/2026-06-chien-luoc-tiep-can-prospect.md
+
 # Hệ điều hành / trình soạn thảo
 .DS_Store
 Thumbs.db

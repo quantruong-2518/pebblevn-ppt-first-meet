@@ -8,9 +8,10 @@
 ## 1. Công ty là ai
 
 - **Tên công ty:** **Pebble Vina**
-- **Một câu mô tả:** Nhà **phân phối độc quyền** sản phẩm **Edge AI / bán dẫn AI** của **Pebble Square
-  (Hàn Quốc)** tại **thị trường Việt Nam** — tầm nhìn mở rộng **Đông Nam Á**.
-- **Công ty mẹ / nhà cung cấp:** Pebble Square Inc. — chip AI **Analog-PIM** (xem `company/parent-pebble-square.md`).
+- **Một câu mô tả:** **Thành viên Việt Nam** của nhóm **Pebble Square (Hàn Quốc)** — đưa nền tảng **Edge AI /
+  bán dẫn AI** của công ty mẹ vào **vận hành thật** tại **thị trường Việt Nam**, tầm nhìn mở rộng **Đông Nam Á**.
+  *(Đổi từ "nhà phân phối độc quyền" → mô hình thành viên/công ty con — 2026-06-16, [ADR 0002](company/decisions/0002-pebble-vina-thanh-vien-pebble-square.md).)*
+- **Công ty mẹ:** Pebble Square Inc. — chip AI **Analog-PIM** (xem `company/parent-pebble-square.md`).
 - **Nhà đầu tư chính:** bác Kim — Phó Chủ tịch Hội Doanh nghiệp Hàn Quốc tại VN (KOCHAM).
 - **Giai đoạn:** đang thành lập (pre-revenue).
 - **Người vận hành:** General Manager (GM) — chủ repo này, ra quyết định cuối cùng.

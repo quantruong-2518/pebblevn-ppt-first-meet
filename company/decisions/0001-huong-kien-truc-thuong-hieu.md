@@ -1,12 +1,18 @@
 ---
 title: Hướng kiến trúc thương hiệu Pebble Vina (C — lai có lộ trình)
-status: accepted
+status: superseded
 owner: GM
-updated: 2026-06-13
+updated: 2026-06-16
 supersedes:
+superseded-by: 0002
 ---
 
 # 0001. Hướng kiến trúc thương hiệu Pebble Vina (C — lai có lộ trình)
+
+> ⚠️ **SUPERSEDED 2026-06-16 bởi [ADR 0002](0002-pebble-vina-thanh-vien-pebble-square.md).** Quan hệ pháp lý với
+> Pebble Square đã/đang chuyển sang mô hình công ty con–thành viên (kích hoạt điều kiện rà lại số 3 ở mục Hệ quả) →
+> Pebble Vina định vị là **thành viên Việt Nam của nhóm Pebble Square**, bỏ con đường "tách dần sang thương hiệu
+> riêng". Nội dung lịch sử dưới đây giữ nguyên để truy vết *vì sao trước đây chọn Hướng C*.
 
 ## Bối cảnh
 

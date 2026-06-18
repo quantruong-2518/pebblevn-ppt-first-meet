@@ -14,19 +14,22 @@ links: [company/parent-pebble-square.md, planning/2026-06-09-co-hoi-thi-truong-v
 ## Cơ bản
 
 - **Tên giao dịch:** Pebble Vina *(tên pháp lý chính thức khi đăng ký: `[CẦN ĐIỀN]`)*
-- **Lĩnh vực:** Phân phối B2B giải pháp & chip **Edge AI** (bán dẫn AI)
-- **Một câu mô tả:** Pebble Vina là **nhà phân phối độc quyền** các sản phẩm AI của **Pebble Square (Hàn Quốc)**
-  tại **thị trường Việt Nam** — tầm nhìn mở rộng ra **Đông Nam Á**.
+- **Lĩnh vực:** Giải pháp & chip **Edge AI** (bán dẫn AI) — đưa nền tảng của công ty mẹ vào vận hành thật tại VN.
+- **Một câu mô tả:** Pebble Vina là **thành viên Việt Nam của nhóm Pebble Square (Hàn Quốc)** — mang nền tảng
+  bán dẫn Edge AI của công ty mẹ vào **vận hành thật** tại **Việt Nam**, tầm nhìn mở rộng ra **Đông Nam Á**.
 - **Giai đoạn:** đang thành lập / tiền doanh thu (pre-revenue)
 - **Người vận hành:** General Manager — chủ repo này, ra quyết định cuối cùng.
 
-## Quan hệ với công ty mẹ / nhà cung cấp
+## Quan hệ với công ty mẹ
 
-- **Principal (bên giao hàng):** Pebble Square Inc. (Hàn Quốc) — xem `company/parent-pebble-square.md`.
-- **Vai trò của Pebble Vina:** nhập sản phẩm Pebble Square để **phân phối lại** tại VN (nắm quyền sở hữu
-  hàng hóa & bán cho khách trong nước), với **quyền độc quyền theo lãnh thổ**.
-- **Hợp đồng phân phối độc quyền:** `[CẦN ĐIỀN — trạng thái: đã ký / đang đàm phán / dự thảo]`.
-  Khung pháp lý & điều khoản then chốt: xem `market/_phap-ly-phan-phoi-vn.md`.
+> **Đổi mô hình 2026-06-16 (ADR 0002):** từ "nhà phân phối độc quyền" → **thành viên / công ty con** của nhóm
+> Pebble Square. PV KHÔNG còn định vị nhà phân phối độc lập.
+
+- **Công ty mẹ:** Pebble Square Inc. (Hàn Quốc) — xem `company/parent-pebble-square.md`.
+- **Vai trò của Pebble Vina:** **thành viên / cánh tay Việt Nam** của nhóm Pebble Square — đưa nền tảng công nghệ
+  của công ty mẹ vào vận hành thật tại VN, hỗ trợ tại chỗ (FAE, tuân thủ TCVN/QCVN, KOCHAM), hướng Đông Nam Á.
+- **Cấu trúc pháp nhân & sở hữu:** `[CẦN ĐIỀN — công ty con 100% / liên doanh / thành viên góp vốn; tỉ lệ sở hữu
+  của Pebble Square; ngày hiệu lực]`. Khung pháp lý & điều khoản then chốt: xem `market/_phap-ly-phan-phoi-vn.md`.
 
 ## Nhà đầu tư & Hậu thuẫn chiến lược
 
