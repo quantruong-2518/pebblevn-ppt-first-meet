@@ -5,9 +5,10 @@ nhip: mở đầu
 status: drafting
 owner: GM
 tech: non
-gat-dau: Cả phòng (đặc biệt khán giả Việt)
-updated: 2026-06-15
-links: [planning/2026-06-13-dinh-vi-thuong-hieu-pebble-vina.md, slides/02-dinh-vi-pebble-vina.md]
+goc-nhin: Pebble Vina — đáp lời nhu cầu quốc gia
+gat-dau: "Kim + khách Việt · đúng nước, đúng lúc (bệ phóng, ngắn)"
+updated: 2026-06-16
+links: [planning/2026-06-13-dinh-vi-thuong-hieu-pebble-vina.md, slides/02-dinh-vi-pebble-vina.md, company/decisions/0002-pebble-vina-thanh-vien-pebble-square.md]
 ---
 
 # Slide 01 — Kỷ nguyên vươn mình của Việt Nam
@@ -25,19 +26,23 @@ links: [planning/2026-06-13-dinh-vi-thuong-hieu-pebble-vina.md, slides/02-dinh-v
   Edge-AI vào vận hành thật**.
 - **❹ Giá trị:** cải tiến **các ngành hiện hữu** (sản xuất, năng lượng, nông nghiệp, hạ tầng) và mở ra
   **năng lực công nghệ tự chủ, ngành nghề mới**. *(SHOW rút gọn: "cải tiến ngành cũ · tạo ngành mới")*
-- **❺ Bắc cầu:** *"Đó là lý do Pebble Vina ra đời."* → chuyển sang slide 02 (định vị).
+- **❺ Bắc cầu:** *"Đó là lý do Pebble Vina ra đời — và đây là việc cụ thể chúng tôi sẽ làm."* → bắc thẳng
+  sang slide 02 (định vị). *(Nhấn: ❶–❷ nói NHANH như bệ phóng; trọng lượng dồn vào "việc cụ thể của chúng tôi" ở các slide sau.)*
 - **Footer nguồn:** Nghị quyết 57-NQ/TW (22/12/2024) · Quyết định 1018/QĐ-TTg (21/9/2024).
 
 ## 🎤 Lời thoại
 - Giọng **trang trọng, tự hào, nhịp chậm** — mở từ đại cục dân tộc, hạ dần về công ty (đúng lối diễn dịch).
 - **Lằn ranh khi nói:** KHÔNG nói "lãnh đạo ủng hộ Pebble Vina". Nói lãnh đạo cổ vũ **công cuộc hiện đại
   hóa** (sự thật, công khai) — rồi **TA tự nguyện đáp lời**.
+- **Liều lượng cho phòng 3 VIP (góc nhìn — xem `_audience-pov-map.md`):** đại cục là **bệ phóng**, không
+  phải nội dung chính. CEO Pebble Square (Hàn) ít quan tâm chính trị VN → nói gọn phần quốc gia rồi **xoay
+  nhanh sang "việc cụ thể của chúng tôi"**. Đừng để slide này dài quá ~1 phút.
 
 ## 🧭 Vì sao slide này (truy vết)
 - **Khung luận (GM, 2026-06-15):** mở deck bằng **diễn dịch kiểu Việt** — đại cục quốc gia → suy ra nhu cầu
   → hạ cánh Pebble Vina. Nâng công ty lên tầm **"đáp lời nhu cầu quốc gia"** (gravitas + đúng thời điểm).
-- **Giải thế khó:** vì biện minh ở tầm **sứ mệnh**, slide này đỡ cho việc *chưa ký HĐ với Pebble Square* và
-  *chưa chọn vertical* — công ty tồn tại vì một nhu cầu lớn, không vì một hợp đồng hay một sản phẩm.
+- **Giải thế khó:** vì biện minh ở tầm **sứ mệnh**, slide này đỡ cho việc *chưa chọn vertical* — công ty tồn tại
+  vì một nhu cầu lớn của quốc gia, không vì một sản phẩm đơn lẻ.
 - **Nuốt "why now":** đại cục quốc gia chính là "vì sao bây giờ" lớn nhất → bỏ được slide "why now" riêng.
 
 ## 📥 Cần gì để hoàn thiện

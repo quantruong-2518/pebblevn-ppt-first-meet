@@ -5,7 +5,8 @@ nhip: "—"
 status: skeleton
 owner: growth
 tech: non
-gat-dau: Cả phòng
+goc-nhin: Pebble Vina — đĩnh đạc
+gat-dau: "Cả phòng · sự kiện nghiêm túc, chỉn chu"
 updated: 2026-06-13
 links: [projects/thuyet-trinh-ra-mat-pebble-vina/README.md, company/decisions/0001-huong-kien-truc-thuong-hieu.md]
 ---

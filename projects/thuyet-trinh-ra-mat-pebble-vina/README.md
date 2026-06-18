@@ -21,8 +21,9 @@ links: [planning/2026-06-13-khung-thuyet-trinh-pebble-vina.md, planning/2026-06-
 ## 1. Tóm tắt một phút (cho người mới mở folder)
 
 - **Mục tiêu:** giới thiệu Pebble Vina, căn chỉnh cả phòng, tạo chính danh & động lượng.
-- **Khán giả (hỗn hợp cấp cao):** nhà đầu tư **bác Kim** (Phó CT KOCHAM) · **CEO Pebble Square** (GS Bae
-  Hak-yeol) · **quan khách** · **trộn người có tech / không tech**.
+- **Khán giả (phòng nhỏ, 3 VIP cốt lõi):** nhà đầu tư **bác Kim** (Phó CT KOCHAM) · **CEO Pebble Square**
+  (Lee Choong-hyun) · **một "head" khách hàng tiềm năng**. Cả ba chung một câu hỏi: *"PV sẽ làm gì ở VN với
+  nền tảng PS — và năng lực người vận hành tới đâu?"* → chi tiết: [`slides/_audience-pov-map.md`](slides/_audience-pov-map.md).
 - **Thể loại:** **ra mắt/giới thiệu** — *không* phải pitch đóng kín. Ask cứng (vốn/độc quyền/pilot) để **gặp riêng**.
 - **Thông điệp lõi (1 câu, v2):** *"Pebble Vina — công ty giải pháp Edge-AI cho VN & ĐNÁ, khởi đầu từ an toàn
   điện, trên nền nền-tảng đa năng độc quyền của Pebble Square."* (tagline làm việc, chờ GM duyệt)
@@ -54,20 +55,24 @@ Bài này là **artifact dẫn xuất** từ chuỗi suy luận chiến lược.
 > sang các vertical thật của PS. Khung v1 (khóa vào arc-fault) đã archive: `slides/_archive/2026-06-14-v1-cay-cau-arcfault/`.
 > Bìa (00) + tầng UI/figure **giữ nguyên**. *(Tầng render `deck/lib/slides.ts` còn ở v1 — sẽ cập nhật sau khi GM chốt khung md v2.)*
 
-| # | File | Nhịp arc | Luận cứ gốc | "Gật đầu" cho | Tech | Owner | Status |
+> **🎯 Khán giả & góc nhìn:** nguồn sự thật là [`slides/_audience-pov-map.md`](slides/_audience-pov-map.md)
+> — *AI nói cho ai, từ giọng nào.* Bảng dưới phản ánh nó (cột **Góc nhìn** + **Gật đầu cho**). Khi đổi
+> khung khán giả, sửa bản đồ TRƯỚC rồi mới lan xuống đây + frontmatter từng slide.
+>
+> **Deck hiện là 9 slide (00–08).** Bản 11 slide cũ (00–10+99 theo arc 10 nhịp) đã gộp lại khi dựng v2;
+> slide 05 *"cách thực thi"* được chèn 2026-06-19 (chứng minh năng lực vận hành). Tên file & đánh số dưới là hiện trạng.
+
+| # | File | Nhịp | Góc nhìn (giọng) | Gật đầu cho (người nghe chính) | Tech | Owner | Status |
 |---|---|---|---|---|---|---|---|
-| 00 | [slides/00-bia.md](slides/00-bia.md) | — (bìa) | — | Cả phòng | non | `growth` | skeleton |
-| 01 | [slides/01-dinh-vi-chao.md](slides/01-dinh-vi-chao.md) | 0 | Tri giác (định vị + cầu) | Cả phòng | non | `growth`+GM | skeleton |
-| 02 | [slides/02-noi-dau.md](slides/02-noi-dau.md) | 1 | Nhu cầu | Cả phòng | non | `growth` | skeleton |
-| 03 | [slides/03-vi-sao-bay-gio.md](slides/03-vi-sao-bay-gio.md) | 2 | Thế–thời | Investor, quan khách | nhẹ | `analyst` | skeleton |
-| 04 | [slides/04-giai-phap-bang-chung.md](slides/04-giai-phap-bang-chung.md) | 3 | **Trụ 1: Nền tảng đa năng** | **CEO Pebble Square** | 1 điểm | `product-lead` | skeleton ⚠️ |
-| 05 | [slides/05-vi-sao-la-ta.md](slides/05-vi-sao-la-ta.md) | 4 | **Trụ 2: Bản địa** | **Bác Kim/KOCHAM** | non | `growth`+GM | skeleton |
-| 06 | [slides/06-cong-sinh.md](slides/06-cong-sinh.md) | 5 | **Cộng sinh (mới)** | CEO + Investor | non | GM+`chief-of-staff` | skeleton |
-| 07 | [slides/07-dich-den.md](slides/07-dich-den.md) | 6 | *Lộ trình 3 chân trời* | Investor + CEO | non | GM+`analyst` | skeleton |
-| 08 | [slides/08-loi-nhuan-kep.md](slides/08-loi-nhuan-kep.md) | 7 | Nhu cầu + Tài chính | Investor | non | `cfo` | skeleton |
-| 09 | [slides/09-rui-ro-hoa-giai.md](slides/09-rui-ro-hoa-giai.md) | 8 | Refutatio | Investor | non | `chief-of-staff` | skeleton |
-| 10 | [slides/10-keu-goi-cam-on.md](slides/10-keu-goi-cam-on.md) | 9 | Tri giác + *Ask* | Cả phòng | non | `growth`+GM | skeleton |
-| 99 | [slides/99-phu-luc-ky-thuat.md](slides/99-phu-luc-ky-thuat.md) | phụ lục | proof (sâu) + số lộ trình | Kỹ sư hỏi sau | sâu | `product-lead` | skeleton |
+| 00 | [slides/00-bia.md](slides/00-bia.md) | — (bìa) | PV — đĩnh đạc | Cả phòng · sự kiện nghiêm túc | non | `growth` | skeleton |
+| 01 | [slides/01-ky-nguyen-vuon-minh.md](slides/01-ky-nguyen-vuon-minh.md) | mở đầu | PV — đáp lời nhu cầu quốc gia | Kim + khách Việt *(bệ phóng, ngắn)* | non | GM | drafting |
+| 02 | [slides/02-dinh-vi-pebble-vina.md](slides/02-dinh-vi-pebble-vina.md) | 0 | PV — người vận hành | Cả phòng *(nhất khách chưa biết PS)* | non | GM | drafting |
+| 03 | [slides/03-do-chin-thi-truong.md](slides/03-do-chin-thi-truong.md) | 1 | PV — nhà chiến lược | Kim + khách hàng | nhẹ | GM+`analyst` | drafting |
+| 04 | [slides/04-menu-nen-tang.md](slides/04-menu-nen-tang.md) | 2 | PV — nhà vận hành | Khách hàng + CEO PS | nhẹ | GM+`analyst` | drafting ⚠️ |
+| 05 | [slides/05-cach-thuc-thi.md](slides/05-cach-thuc-thi.md) | 3 | PV — người vận hành (có phương pháp) | CEO PS + Kim · *"biết CÁCH biến nền tảng thành kết quả"* | nhẹ | GM | drafting 🆕 |
+| 06 | [slides/06-cong-sinh.md](slides/06-cong-sinh.md) | 4 | PV — thành viên nhóm | CEO PS + Kim | non | GM+`chief-of-staff` | drafting |
+| 07 | [slides/07-lo-trinh.md](slides/07-lo-trinh.md) | 5 | PV — người dẫn dắt | Kim + CEO PS | non | GM+`analyst` | drafting |
+| 08 | [slides/08-loi-moi.md](slides/08-loi-moi.md) | 6 | PV — người mời | Cả phòng *(ask riêng từng VIP)* | non | `growth`+GM | drafting |
 
 ## 4. Nguyên tắc trình bày (nhắc nhanh — chi tiết ở khung luận §1)
 

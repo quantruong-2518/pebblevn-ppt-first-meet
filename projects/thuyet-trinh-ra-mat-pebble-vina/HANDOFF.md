@@ -10,9 +10,16 @@ links: [README.md, slides/_research-pebble-square-services.md, nghien-cuu-va-bra
 
 > Phiên mới: đọc file này → `README.md` (§3 bảng slide) → `slides/_research-pebble-square-services.md`. Là đủ
 > để tiếp tục. Hôm nay 2026-06-14. Sự kiện ra mắt (dự kiến) ~19/06 — kiểm lại với GM.
+>
+> **⭐ Cập nhật 2026-06-19:** deck nay **9 slide (00–08)** — chèn **slide 05 "cách thực thi"** (chứng minh
+> năng lực vận hành: *bản địa hóa · thứ nên mang vào · tech→business*, dạng KHUNG, chưa khóa beachhead). Có
+> **bản đồ khán giả & góc nhìn** mới — `slides/_audience-pov-map.md` (đọc cùng README §3): 3 VIP (Kim/KOCHAM ·
+> CEO PS · head khách hàng) chung 1 câu hỏi *"PV làm gì với nền tảng PS + người vận hành giỏi ra sao"*. Đánh
+> số cũ 05/06/07 → 06/07/08. *(Số dưới đây ở §3–§6 còn theo khung cũ — đối chiếu README §3 cho hiện trạng.)*
 
 ## 1. Ta đang làm gì
-Làm lại **ý tưởng** bộ slide ra mắt Pebble Vina (nhà phân phối độc quyền VN của **Pebble Square**, Hàn Quốc).
+Làm lại **ý tưởng** bộ slide ra mắt Pebble Vina (**thành viên Việt Nam của nhóm Pebble Square**, Hàn Quốc —
+đổi luận chính 2026-06-16, ADR 0002; trước đó định vị "nhà phân phối độc quyền").
 Đã qua 2 vòng phê bình của GM:
 1. *"Quá tập trung cái Pebble Square CÓ, thiếu lộ trình của Pebble Vina + cộng sinh + hướng ĐNÁ."* → dựng xương
    sống **"Cây cầu: 2 trụ + 1 con đường"** (arc 10 nhịp, thêm nhịp Cộng sinh + lộ trình 3 chân trời). = **v1**.

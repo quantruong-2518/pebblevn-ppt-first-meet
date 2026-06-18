@@ -88,7 +88,7 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
     case "matrix":
       return (
         <motion.div variants={wrap} initial="hidden" animate="show" className="flex flex-col gap-3">
-          {/* 4 cột: trên = năng lực Pebble Square · ↓ · dưới = phân khúc VN + số bằng chứng */}
+          {/* 4 cột: trên = sản phẩm Pebble Square · ↓ · dưới = phân khúc VN + chip dùng */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {figure.cols.map((c, i) => (
               <motion.div key={i} variants={rise} className="flex flex-col border border-white/10 bg-white/[0.02]">
@@ -118,24 +118,32 @@ export function Figure({ figure, lang }: { figure: Fig; lang: Lang }) {
 
     case "ladder":
       return (
-        <motion.div variants={wrap} initial="hidden" animate="show" className="flex flex-col gap-2.5">
-          {/* thang độ chín: xếp từ trên (chín nhất) xuống — mỗi bậc = 1 mảng dịch vụ PS + độ chín thị trường VN */}
+        <motion.div variants={wrap} initial="hidden" animate="show" className="flex flex-col gap-2">
+          {/* thang độ chín: trên (chín nhất) → dưới. cap · tech (công nghệ PS gộp) | seg · stat; nguồn ở foot */}
           {figure.rungs.map((r, i) => (
             <motion.div key={i} variants={rise} className="flex items-stretch gap-3 border border-white/10 bg-white/[0.02]">
-              <div className="flex w-12 shrink-0 items-center justify-center border-r border-white/10 bg-accent/[0.06] font-mono text-lg tabular-nums text-accent/80">
+              <div className="flex w-9 shrink-0 items-center justify-center border-r border-white/10 bg-accent/[0.06] font-mono text-base tabular-nums text-accent/80">
                 {i + 1}
               </div>
-              <div className="flex flex-1 flex-col gap-1 px-4 py-2.5">
-                <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                  <span className="font-sans text-[clamp(1rem,1.4vw,1.2rem)] font-medium leading-snug text-ink">{rich(tx(r.cap))}</span>
+              <div className="flex flex-1 flex-col gap-0.5 px-4 py-2">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <span className="font-sans text-[clamp(0.98rem,1.3vw,1.15rem)] font-medium leading-snug text-ink">
+                    {rich(tx(r.cap))} <span className="text-accent/70">· {tx(r.tech)}</span>
+                  </span>
                   <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-gold">{tx(r.tier)}</span>
                 </div>
-                <span className="font-sans text-[clamp(0.85rem,1.1vw,0.98rem)] leading-snug text-muted">{tx(r.seg)}</span>
-                <span className="pt-0.5 font-mono text-[11px] leading-relaxed tabular-nums text-ink/70">{r.stat}</span>
+                <span className="font-sans text-[clamp(0.8rem,1vw,0.92rem)] leading-snug text-muted">
+                  {tx(r.seg)} <span className="font-mono tabular-nums text-ink/55">· {r.stat}</span>
+                </span>
               </div>
             </motion.div>
           ))}
-          <motion.span variants={rise} className="pt-0.5 font-mono text-[12px] uppercase tracking-[0.12em] text-muted">
+          {/* nền tảng PS — công nghệ gộp từ slide 'nền tảng ta chọn' cũ */}
+          <motion.div variants={rise} className="flex items-center gap-3 border-l-2 border-accent bg-accent/[0.06] px-4 py-2">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+            <span className="font-sans text-[clamp(0.8rem,1.05vw,0.96rem)] leading-snug text-ink/85">{tx(figure.platform)}</span>
+          </motion.div>
+          <motion.span variants={rise} className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted">
             {tx(figure.foot)}
           </motion.span>
         </motion.div>
